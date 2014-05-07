@@ -18,9 +18,9 @@ namespace PandaApp.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Requests()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "View requests";
 
             return View();
         }
@@ -28,12 +28,6 @@ namespace PandaApp.Controllers
         public ActionResult FAQ()
         {
             ViewBag.Message = "FAQ YOU";
-            return View();
-        }
-
-        public ActionResult Requests()
-        {
-            ViewBag.Message = "Requests for YOU";
             return View();
         }
 
