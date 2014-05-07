@@ -7,13 +7,14 @@ namespace PandaApp.Models
 {
     public class Request
     {
-        public string Title { get; set; }
-        public string Language { get; set; }
-        public DateTime DateCreated { get; set; }
+        public string title { get; set; }
+        public string language { get; set; }
+        public string text { get; set; }
+        public DateTime dateCreated { get; set; }
 
         public Request()
 		{
-			DateCreated = DateTime.Now;
+			dateCreated = DateTime.Now;
 		}
     }
 }

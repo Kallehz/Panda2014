@@ -1,5 +1,9 @@
 ﻿@model PandaApp.Models.Request
 
+@{
+    ViewBag.Title = "Create Request";
+}
+
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
@@ -10,18 +14,26 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
+            <p>Title</p>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Title)
-                @Html.ValidationMessageFor(model => model.Title)
+                @Html.EditorFor(model => model.title)
+                @Html.ValidationMessageFor(model => model.title)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Language, new { @class = "control-label col-md-2" })
+           <p>Requested language</p>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Language)
-                @Html.ValidationMessageFor(model => model.Language)
+                @Html.EditorFor(model => model.language)
+                @Html.ValidationMessageFor(model => model.language)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p>Anything to add</p>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.text)
+                @Html.ValidationMessageFor(model => model.text)
             </div>
         </div>
 

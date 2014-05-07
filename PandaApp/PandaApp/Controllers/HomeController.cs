@@ -13,13 +13,17 @@ namespace PandaApp.Controllers
         {
             return View();
         }
-
+        
+        [Authorize]
         [HttpGet]
         public ActionResult Upload()
         {
+            ViewBag.Message = "Upload subtitle";
+
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Upload(Subtitle item)
         {
