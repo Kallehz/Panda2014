@@ -31,11 +31,5 @@ namespace PandaApp.Controllers
             return View();
         }
 
-        public ActionResult Requests()
-        {
-            ViewBag.Message = "Requests for YOU";
-            return View();
-        }
-
     }
 }
