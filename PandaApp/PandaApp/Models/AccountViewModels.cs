@@ -28,8 +28,6 @@ namespace PandaApp.Models
         public string ConfirmPassword { get; set; }
     }
 
-    // Placeholder, need to make another viewmodel that descirbes both log in and register
-    // This atm has all the attributes of LogIn and Register with changed names
     public class LoginViewModel
     {
         [Required]
@@ -89,7 +87,7 @@ namespace PandaApp.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("RegisterPassword", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
 }
