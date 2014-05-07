@@ -65,6 +65,7 @@ dfn {
 h1 {
   font-size: 2em;
   margin: 0.67em 0;
+  text-decoration: none;
 }
 mark {
   background: #ff0;
@@ -294,8 +295,7 @@ a {
 }
 a:hover,
 a:focus {
-  color: #158cba;
-  text-decoration: underline;
+  
 }
 a:focus {
   outline: thin dotted;
@@ -4464,6 +4464,7 @@ a.thumbnail.active {
   right: -21px;
   color: inherit;
 }
+
 .alert-success {
   background-color: #28b62c;
   border-color: #24a528;
