@@ -9,11 +9,15 @@
 
 </head>
 <body>
+    @if (Request.IsAuthenticated)
+    {
+        <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+    }
         <div class="navbar">
             <h1>@Html.ActionLink("Panda", "Index", "Home")</h1>
             <ul class="navbar-nav">
                 <li class="btn">@Html.ActionLink("Browse", "Index", "Home")</li>
-                <li class="btn">@Html.ActionLink("Sign in", "Login", "Account")</li>
+                <li class="btn">@Html.Partial("_LoginPartial")</li>
                 <li class="btn">@Html.ActionLink("Requests", "Requests", "Home")</li>
                 <li class="btn">@Html.ActionLink("Upload", "Upload", "Home")</li>
                 <li class="btn">@Html.ActionLink("FAQ", "FAQ", "Home")</li>
