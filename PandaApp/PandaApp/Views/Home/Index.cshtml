@@ -1,6 +1,18 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+ <!-- TODO! some search action-->
+
+    <form class="row text-center" method="get" action="http://www.google.com">
+        <input type="text" class="textinput" name="q" size="21" maxlength="120" placeholder="Subtitle search">
+        <input type="button" value="search" class="button">
+        <select name="language">
+            <option value="all" selected>Language</option>
+            <option value="is">Icelandic</option>
+            <option value="en">English</option>
+        </select>
+    </form>
+
 
 <div class="jumbotron">
     <h1>Lorem</h1>
@@ -21,8 +33,5 @@
     videntur parum clari, fiant sollemnes in futurum.</p>
 </div>
 
-<div id="searchbox">
-    <form id="newsearch" method="get" action="http://www.google.com"> <!-- hér vantar action annað en að senda á google-->
-        <input type="text" class="textinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="button">
-    </form>
-</div>
+
+  
