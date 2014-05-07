@@ -18,9 +18,9 @@ namespace PandaApp.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Requests()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "View requests";
 
             return View();
         }
