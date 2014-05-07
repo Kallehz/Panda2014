@@ -8,6 +8,15 @@
 */
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 
+.footer-left {
+    text-align: left;
+    float: left;
+}
+
+.footer-right {
+    text-align: right;
+}
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
