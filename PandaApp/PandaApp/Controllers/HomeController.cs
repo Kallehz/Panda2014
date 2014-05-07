@@ -13,10 +13,8 @@ namespace PandaApp.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Upload()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 

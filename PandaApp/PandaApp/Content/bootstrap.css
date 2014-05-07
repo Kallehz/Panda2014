@@ -3649,12 +3649,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border-top-left-radius: 0;
 }
 .navbar {
-    margin: auto;
+  margin: auto;
   position: relative;
   min-height: 50px;
   margin-bottom: 20px;
   width: 70%;
-  border: 1px solid black;
+  border: 1px solid #e7e7e7;
+  border-radius: 5px;
 }
 @media (min-width: 768px) {
   .navbar {
@@ -5804,19 +5805,20 @@ button.close {
   }
 }
 .navbar {
-  border-width: 0 1px 4px 1px;
   text-align: center;
+  background-color: #fafafa
 }
 .btn {
   padding: 8px 12px 7px;
-  border-width: 0 1px 4px 1px;
-  font-size: 12px;
+  border: 1px solid gray;
+  font-size: 16px;
   font-weight: bold;
   text-transform: uppercase;
+  background-color: #c6c6c6;
+
 }
 .btn:hover {
-  margin-top: 1px;
-  border-bottom-width: 3px;
+  background-color: #a3a3a3;
 }
 .btn:active {
   margin-top: 2px;
