@@ -28,6 +28,8 @@ namespace PandaApp.Models
         public string ConfirmPassword { get; set; }
     }
 
+    // Placeholder, need to make another viewmodel that descirbes both log in and register
+    // This atm has all the attributes of LogIn and Register with changed names
     public class LoginViewModel
     {
         [Required]
@@ -41,6 +43,23 @@ namespace PandaApp.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+
+        // Register Viewmodel with Register prefix, identical attributes to LogInviewmodel
+        //[Required]
+        [Display(Name = "User name")]
+        public string RegisterUserName { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string RegisterPassword { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
     }
 
     public class RegisterViewModel

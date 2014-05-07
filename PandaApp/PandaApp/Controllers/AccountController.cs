@@ -74,12 +74,12 @@ namespace PandaApp.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var user = new ApplicationUser() { UserName = model.RegisterUserName };
+                var result = await UserManager.CreateAsync(user, model.RegisterPassword);
                 if (result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
