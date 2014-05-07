@@ -8,11 +8,6 @@
 */
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 
-.header-name {
-    font-size: 34px;
-    text-align: center;
-}
-
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -740,7 +735,6 @@ pre code {
   overflow-y: scroll;
 }
 .container {
-  border: 3px solid red;
   display: block;
   margin-right: auto;
   margin-left: auto;
@@ -3646,10 +3640,12 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border-top-left-radius: 0;
 }
 .navbar {
+    margin: auto;
   position: relative;
   min-height: 50px;
   margin-bottom: 20px;
-  border: 1px solid transparent;
+  width: 70%;
+  border: 1px solid black;
 }
 @media (min-width: 768px) {
   .navbar {
@@ -3790,8 +3786,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-nav {
-  margin-left: 40%;
-  margin: 7.5px -15px;
+  margin-top: 20px;
   text-align: center;
 }
 .navbar-nav > li > a {
@@ -4381,6 +4376,11 @@ a.list-group-item.active > .badge,
   color: inherit;
   background-color: #fafafa;
 }
+
+.header-container {
+    background-color: #fafafa;
+}
+
 .jumbotron h1,
 .jumbotron .h1 {
   color: inherit;
