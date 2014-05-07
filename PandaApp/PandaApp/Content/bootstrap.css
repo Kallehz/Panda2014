@@ -7,6 +7,12 @@
  * Based on Bootstrap
 */
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
+
+.header-name {
+    font-size: 34px;
+    text-align: center;
+}
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -734,6 +740,8 @@ pre code {
   overflow-y: scroll;
 }
 .container {
+  border: 3px solid red;
+  display: block;
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
@@ -3735,9 +3743,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border-width: 1px 0 0;
 }
 .navbar-brand {
-  float: left;
+  display: block;
   padding: 15px 15px;
-  font-size: 18px;
+  font-size: 24px;
+  float: left;
   line-height: 20px;
   height: 50px;
 }
@@ -3782,6 +3791,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-nav {
   margin: 7.5px -15px;
+  text-align: center;
 }
 .navbar-nav > li > a {
   padding-top: 10px;
@@ -5782,6 +5792,7 @@ button.close {
 }
 .navbar {
   border-width: 0 1px 4px 1px;
+  text-align: center;
 }
 .btn {
   padding: 8px 12px 7px;
