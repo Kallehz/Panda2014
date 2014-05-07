@@ -8,6 +8,12 @@
 */
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 
+.logout {
+    float: right;
+    margin-right: 5%;
+    vertical-align: top;
+}
+
 .footer-left {
     text-align: left;
     float: left;
@@ -3655,13 +3661,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin-bottom: 20px;
   width: 70%;
   border: 1px solid #e7e7e7;
-  border-radius: 5px;
+  border-top: 0px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
-@media (min-width: 768px) {
-  .navbar {
-    border-radius: 4px;
-  }
-}
+
 @media (min-width: 768px) {
   .navbar-header {
     float: left;
@@ -5821,10 +5825,7 @@ button.close {
   background-color: #a3a3a3;
 }
 .btn:active {
-  margin-top: 2px;
-  border-bottom-width: 2px;
-  -webkit-box-shadow: none;
-  box-shadow: none;
+  background-color: #828282;
 }
 .btn-lg,
 .btn-group-lg > .btn {
