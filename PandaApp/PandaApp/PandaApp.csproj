@@ -218,7 +218,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Upload.cshtml" />
     <Content Include="Views\Home\Requests.cshtml" />
-    <Content Include="Views\Home\View1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
