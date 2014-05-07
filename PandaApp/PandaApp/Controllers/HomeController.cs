@@ -24,5 +24,18 @@ namespace PandaApp.Controllers
 
             return View();
         }
+
+        public ActionResult FAQ()
+        {
+            ViewBag.Message = "FAQ YOU";
+            return View();
+        }
+
+        public ActionResult Requests()
+        {
+            ViewBag.Message = "Requests for YOU";
+            return View();
+        }
+
     }
 }
