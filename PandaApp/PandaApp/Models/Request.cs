@@ -13,11 +13,11 @@ namespace PandaApp.Models
         public int LanguageID { get; set; }
         public string ExternalVideoLink { get; set; }
         public int Upvotes { get; set; }
-        public DateTime dateCreated { get; set; }
+        public DateTime DateCreated { get; set; }
 
         public Request()
 		{
-			dateCreated = DateTime.Now;
+			DateCreated = DateTime.Now;
 		}
     }
 }
