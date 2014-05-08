@@ -9,9 +9,11 @@ namespace PandaApp.Models
     public class Request
     {
         public int ID { get; set; }
+
+        [Display(Name = "Movie Title")]
         public int MediaID { get; set; }
         public int AuthorID { get; set; }
-        [Display(Name = "Language")]
+        [Display(Name = "Requested Language")]
         public int LanguageID { get; set; }
 
         [Display(Name = "Youtube/Vimeo")]
