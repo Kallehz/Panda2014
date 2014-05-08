@@ -12,7 +12,6 @@ namespace PandaApp.Models
         public int AuthorID { get; set; }
         public int MediaID { get; set; }
         public DateTime DateCreated { get; set; }
-
         public Subtitle()
 		{
 			DateCreated = DateTime.Now;

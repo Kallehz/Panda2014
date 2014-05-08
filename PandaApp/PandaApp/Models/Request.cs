@@ -14,7 +14,6 @@ namespace PandaApp.Models
         public string ExternalVideoLink { get; set; }
         public int Upvotes { get; set; }
         public DateTime DateCreated { get; set; }
-
         public Request()
 		{
 			DateCreated = DateTime.Now;
