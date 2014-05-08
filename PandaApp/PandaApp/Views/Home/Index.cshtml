@@ -1,14 +1,14 @@
-﻿@model IEnumerable<PandaApp.Models.Request>
+﻿@*Vill fara í gegnum Subtitles og Request listana í þessum klasa*@
+@model PandaApp.Models.SubAndReq
 @{
     ViewBag.Title = "Home Page";
 }
- <!-- TODO! some search action-->
-
+<!-- TODO! some search action-->
 <!-- Search-->
 <div>
     <form class="row text-center" method="get" action="http://www.google.com">
         <input type="text" class="form-control" id="input" name="q" size="21" maxlength="120" placeholder="Subtitle search">
-        
+
         <select class="form-control" id="select" name="language">
             <option value="all" selected>Language</option>
             <option value="is">Icelandic</option>
@@ -24,41 +24,79 @@
 <div class="row">
     <!-- div to the left -->
     <div class="col-xs-6">
-        <h3>Recently added</h3>
-       
-        <table class="table table-striped" width="647">
+        <h3>Recently Added</h3>
+        <table class="table-striped" width="647">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Title</th>
+                    <th>Name</th>
                     <th>Language</th>
-                    <th>Submitted by</th>
+                    <th>Author</th>
                 </tr>
             </thead>
-            <tbody>  <!-- TODO! some voodoo to get info from nonexisting database-->
-                <tr>
-                    <td>1</td>
-                    <td>Game of thrones S04E04</td>
-                    <td>Icelandic</td>
-                    <td>thomas@yahoo.com</td>
-                </tr>
+            <tbody>
+
+                @foreach (var sub in Model.Subtitles)
+                {
+                    <tr>
+                        <td>
+                            @sub.ID
+                            @*SUBTITLE ID*@
+                        </td>
+                        <td>
+                            @sub.MediaID
+                            @*MEDIA ID*@
+                        </td>
+                        <td>
+                            @sub.LanguageID
+                            @*SUBTITLE LANGUAGE ID*@
+                        </td>
+                        <td>
+                            @sub.AuthorID
+                            @*SUBTITLE AUTHOR ID*@
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>
     <!--Div to the left ends-->
     <!-- div to the right -->
-    <table class="table-striped" width="647">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>LanguageID</th>
-                <th>Upvotes</th>
-            </tr>
-        </thead>
-        <tbody>
-           
-        </tbody>
-    </table>
+    <div class="col-xs-6">
+        <h3>Most Upvoted Requests</h3>
+        <table class="table-striped" width="647">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Language</th>
+                    <th>Upvotes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var req in Model.Requests)
+                {
+                    <tr>
+                        <td>
+                            @*REQUEST ID*@
+                            @req.ID
+                        </td>
+                        <td>
+                            @*MEDIA ID*@
+                            @req.MediaID
+                        </td>
+                        <td>
+                            @*REQUEST LANGUAGE ID*@
+                            @req.LanguageID
+                        </td>
+                        <td>
+                            @*UPVOTES OF REQUEST*@
+                            @req.Upvotes
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
     <!--div to the right ends-->
 </div>

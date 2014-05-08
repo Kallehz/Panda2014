@@ -14,9 +14,17 @@ namespace PandaApp.Controllers
 
         public ActionResult Index()
         {
-            //PandaBase db = new PandaBase();
-            //var subtitle = from subtitles in db.Subtitles where subtitles.ID < 10 select subtitles;
-            return View();
+            SubAndReq SandR = new SubAndReq();
+
+            SandR.Requests = (from item in db.Requests
+                              orderby item.Upvotes descending
+                              select item).Take(15);
+
+            SandR.Subtitles = (from item in db.Subtitles
+                               orderby item.DateCreated descending
+                               select item).Take(15);
+
+            return View(SandR);
         }
         
         [Authorize]
