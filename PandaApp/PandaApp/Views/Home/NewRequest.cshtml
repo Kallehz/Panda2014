@@ -1,7 +1,7 @@
-﻿@model PandaApp.Models.Subtitle
+﻿@model PandaApp.Models.Request
 
 @{
-    ViewBag.Title = "Upload";
+    ViewBag.Title = "Create Request";
 }
 
 @using (Html.BeginForm()) 
@@ -9,7 +9,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Subtitle</h4>
+        <h4>Request</h4>
         <hr />
         @Html.ValidationSummary(true)
 
@@ -22,7 +22,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Language, new { @class = "control-label col-md-2" })
+           @Html.LabelFor(model => model.Language, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.Language, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Language)
@@ -30,10 +30,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Year, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Text, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Year, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Year)
+                @Html.TextAreaFor(model => model.Text, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Text)
             </div>
         </div>
 
@@ -46,5 +46,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Requests")
 </div>
