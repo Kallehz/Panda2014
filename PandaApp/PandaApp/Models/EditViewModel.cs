@@ -7,9 +7,9 @@ namespace PandaApp.Models
 {
     public class EditViewModel
     {
-        public int subtitleID { get; set; }
-        public string title { get; set; }
-        public string language { get; set; }
-        public List<SubtitleLine> lines { get; set; }
+        public int SubtitleID { get; set; }
+        public string Title { get; set; }
+        public string Language { get; set; }
+        public List<SubtitleLine> Lines { get; set; }
     }
 }
