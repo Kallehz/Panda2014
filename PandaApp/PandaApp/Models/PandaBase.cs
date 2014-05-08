@@ -16,5 +16,6 @@ namespace PandaApp.Models
         public DbSet<History> Histories { get; set; }
         public DbSet<Media> Medias { get; set; }
         public DbSet<SupportedLanguage> SupportedLanguages { get; set; }
+        public DbSet<Account> Accounts { get; set; }
     }
 }
