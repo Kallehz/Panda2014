@@ -11,5 +11,6 @@ namespace PandaApp.Models
         public int AccountID { get; set; }
         public string Description { get; set; }
         public int SubtitleID { get; set; }
+        public int RequestID { get; set; }
     }
 }

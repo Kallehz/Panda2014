@@ -5,8 +5,9 @@ using System.Web;
 
 namespace PandaApp.Models
 {
-    public class SubtitleViewModel
+    public class Language
     {
-        
+        public int ID { get; set; }
+        public string LanguageName { get; set; }
     }
 }

@@ -8,10 +8,10 @@ namespace PandaApp.Models
     public class SubtitleLine
     {
         public int ID { get; set; }
-        public int index { get; set; }
-        public int subtitleID { get; set; }
-        public string text { get; set; }
-        TimeSpan timeFrom { get; set; }
-        TimeSpan timeTo { get; set; }
+        public int Index { get; set; }
+        public int SubtitleID { get; set; }
+        public string Text { get; set; }
+        TimeSpan TimeFrom { get; set; }
+        TimeSpan TimeTo { get; set; }
     }
 }

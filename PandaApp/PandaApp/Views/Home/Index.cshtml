@@ -1,5 +1,4 @@
-﻿@*Vill fara í gegnum Subtitles og Request listana í þessum klasa*@
-@model PandaApp.Models.SubAndReq
+﻿@model IEnumerable<PandaApp.Models.Request>
 @{
     ViewBag.Title = "Home Page";
 }
@@ -25,79 +24,41 @@
 <div class="row">
     <!-- div to the left -->
     <div class="col-xs-6">
-        <h3>Recently Added</h3>
-        <table class="table-striped" width="647">
+        <h3>Recently added</h3>
+       
+        <table class="table table-striped" width="647">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
+                    <th>Title</th>
                     <th>Language</th>
-                    <th>Author</th>
+                    <th>Submitted by</th>
                 </tr>
             </thead>
-            <tbody>
-               
-                @foreach (var sub in Model.Subtitles)
-                {
-                    <tr>
-                        <td>
-                            @sub.ID
-                            @*SUBTITLE ID*@
-                        </td>
-                        <td>
-                            @sub.MediaID
-                            @*MEDIA ID*@
-                        </td>
-                        <td>
-                            @sub.LanguageID
-                            @*SUBTITLE LANGUAGE ID*@
-                        </td>
-                        <td>
-                            @sub.AuthorID
-                            @*SUBTITLE AUTHOR ID*@
-                        </td>
-                    </tr>
-                }
+            <tbody>  <!-- TODO! some voodoo to get info from nonexisting database-->
+                <tr>
+                    <td>1</td>
+                    <td>Game of thrones S04E04</td>
+                    <td>Icelandic</td>
+                    <td>thomas@yahoo.com</td>
+                </tr>
             </tbody>
         </table>
     </div>
     <!--Div to the left ends-->
     <!-- div to the right -->
-    <div class="col-xs-6">
-        <h3>Most Upvoted Requests</h3>
-        <table class="table-striped" width="647">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Language</th>
-                    <th>Upvotes</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var req in Model.Requests)
-                {
-                    <tr>
-                        <td>
-                            @*REQUEST ID*@
-                            @req.ID
-                        </td>
-                        <td>
-                            @*MEDIA ID*@
-                            @req.MediaID
-                        </td>
-                        <td>
-                            @*REQUEST LANGUAGE ID*@
-                            @req.LanguageID
-                        </td>
-                        <td>
-                            @*UPVOTES OF REQUEST*@
-                            @req.Upvotes
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+    <table class="table-striped" width="647">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>LanguageID</th>
+                <th>Upvotes</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+        </tbody>
+    </table>
     <!--div to the right ends-->
 </div>
