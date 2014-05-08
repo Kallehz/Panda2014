@@ -7,9 +7,10 @@ namespace PandaApp.Models
 {
     public class History
     {
-        public int Id { get; set; }
-        public int AccountId { get; set; }
+        public int ID { get; set; }
+        public int AccountID { get; set; }
         public string Description { get; set; }
-        public int SubtitleId { get; set; }
+        public int SubtitleID { get; set; }
+        public int RequestID { get; set; }
     }
 }
