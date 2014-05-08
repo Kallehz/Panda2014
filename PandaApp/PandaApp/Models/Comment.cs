@@ -5,15 +5,15 @@ using System.Web;
 
 namespace PandaApp.Models
 {
-    public class Request
+    public class Comment
     {
         public int ID { get; set; }
-        public string Title { get; set; }
-        public string Language { get; set; }
-        public string Text { get; set; }
+        public int AuthorId { get; set; }
+        public string Text {get; set; }
+        public int SubtitleId { get; set; }
         public DateTime dateCreated { get; set; }
 
-        public Request()
+        public Comment()
 		{
 			dateCreated = DateTime.Now;
 		}
