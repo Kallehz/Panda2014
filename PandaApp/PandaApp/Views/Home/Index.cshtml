@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<PandaApp.Models.Request>
+@{
     ViewBag.Title = "Home Page";
 }
  <!-- TODO! some search action-->
@@ -46,27 +47,34 @@
     </div>
     <!--Div to the left ends-->
     <!-- div to the right -->
-    <div class="col-xs-6">
-        <h3>Most popular requests</h3>
-        <table class="table table-striped" width="647">
-            <thead>
+    <table class="table-striped" width="647">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>LanguageID</th>
+                <th>Upvotes</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
                 <tr>
-                    <th>#</th>
-                    <th>Title</th>
-                    <th>Language</th>
-                    <th>Upvotes</th>
+                    <td>
+                        @item.ID
+                    </td>
+                    <td>
+                        @item.MediaID
+                    </td>
+                    <td>
+                        @item.LanguageID
+                    </td>
+                    <td>
+                        @item.Upvotes
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                <!-- TODO! some voodoo to get info from nonexisting database-->
-                <tr>
-                    <td>1</td>
-                    <td>Spaugstofan S04E04</td>
-                    <td>English</td>
-                    <td>90000</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+            }
+        </tbody>
+    </table>
     <!--div to the right ends-->
 </div>
