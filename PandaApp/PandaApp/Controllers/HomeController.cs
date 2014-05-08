@@ -16,7 +16,11 @@ namespace PandaApp.Controllers
         {
             //PandaBase db = new PandaBase();
             //var subtitle = from subtitles in db.Subtitles where subtitles.ID < 10 select subtitles;
-            return View();
+
+            IEnumerable<Request> requests = (from item in db.Requests
+                                             orderby item.DateCreated descending
+                                             select item).Take(15);
+            return View(requests);
         }
         
         [Authorize]
