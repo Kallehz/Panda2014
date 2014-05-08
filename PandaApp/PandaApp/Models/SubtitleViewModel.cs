@@ -7,8 +7,6 @@ namespace PandaApp.Models
 {
     public class SubtitleViewModel
     {
-        public int index { get; set; }
         
-        public
     }
 }
