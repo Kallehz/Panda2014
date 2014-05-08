@@ -13,5 +13,6 @@ namespace PandaApp.Models
         public DbSet<Request> Requests { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Contributor> Contributors { get; set; }
+        public DbSet<History> Histories { get; set; }
     }
 }
