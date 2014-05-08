@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 
 namespace PandaApp.Models
 {
@@ -6,6 +7,7 @@ namespace PandaApp.Models
     public class ApplicationUser : IdentityUser
     {
     }
+
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
@@ -13,4 +15,5 @@ namespace PandaApp.Models
         {
         }
     }
+
 }

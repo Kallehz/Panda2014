@@ -32,7 +32,8 @@ namespace PandaApp.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
+            ViewBag.Login = new LoginViewModel();
+            ViewBag.Register = new RegisterViewModel();
             return View();
         }
 
@@ -58,6 +59,8 @@ namespace PandaApp.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            ViewBag.Login = model;
+            ViewBag.Register = new RegisterViewModel();
             return View(model);
         }
 
@@ -66,6 +69,8 @@ namespace PandaApp.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.Login = new LoginViewModel();
+            ViewBag.Register = new RegisterViewModel();
             return View();
         }
 
@@ -92,6 +97,8 @@ namespace PandaApp.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            ViewBag.Login = new LoginViewModel();
+            ViewBag.Register = model;
             return View(model);
         }
 
