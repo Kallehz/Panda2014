@@ -15,12 +15,4 @@ namespace PandaApp.Models
         {
         }
     }
-
-    public class ApplicationUser : IdentityUser
-    {
-        public string Email { get; set; }
-        public string ConfirmationToken { get; set; }
-        public bool IsConfirmed { get; set; }
-    }
-
 }
