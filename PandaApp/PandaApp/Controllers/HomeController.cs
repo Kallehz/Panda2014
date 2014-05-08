@@ -42,9 +42,11 @@ namespace PandaApp.Controllers
         {
             if (ModelState.IsValid)
             {
-               /* Vista í grunn */ 
-               return RedirectToAction("Index");
+                db.Subtitles.Add(item);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
+
             return View(item);
 
         }
@@ -55,8 +57,8 @@ namespace PandaApp.Controllers
             ViewBag.Message = "View requests";
 
             IEnumerable<Request> requests = (from item in db.Requests
-                                          orderby item.DateCreated descending
-                                          select item).Take(15);
+                                             orderby item.DateCreated descending
+                                             select item).Take(15);
             return View(requests);
         }
 
