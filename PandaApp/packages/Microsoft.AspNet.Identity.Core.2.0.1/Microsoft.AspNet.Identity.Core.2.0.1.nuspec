@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Microsoft.AspNet.Identity.Core</id>
-    <version>1.0.0</version>
+    <version>2.0.1</version>
     <title>Microsoft ASP.NET Identity Core</title>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
