@@ -23,12 +23,13 @@
 
 <h2>Requests</h2>
 
-<table>
-    <caption>Student List</caption>
+<table class="table-striped" width="647px">
     <thead>
         <tr>
-            <th>Name:</th>
-            <th>Year:</th>
+            <th>#</th>
+            <th>Name</th>
+            <th>LanguageID</th>
+            <th>Upvotes</th>
         </tr>
     </thead>
     <tbody>
@@ -36,10 +37,16 @@
         {
             <tr>
                 <td>
-                    @Html.ActionLink(item.Language, "Name", new { id = item.Id })
+                    @item.ID
                 </td>
                 <td>
-                    @item.Language
+                    @item.MediaID
+                </td>
+                <td>
+                    @item.LanguageID
+                </td>
+                <td>
+                    @item.Upvotes (+)
                 </td>
             </tr>
         }
