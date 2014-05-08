@@ -5,7 +5,7 @@ using System.Web;
 
 namespace PandaApp.Models
 {
-    public class SubtitleViewModel
+    public class EditViewModel
     {
         public int subtitleID { get; set; }
         public string title { get; set; }
