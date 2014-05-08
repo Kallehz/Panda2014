@@ -7,6 +7,7 @@ namespace PandaApp.Models
 {
     public class Subtitle
     {
+        public int ID { get; set; }
         public string Title { get; set; }
         public string Language { get; set; }
         public string subText { get; set; }
