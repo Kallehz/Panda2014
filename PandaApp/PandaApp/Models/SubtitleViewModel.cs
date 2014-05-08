@@ -7,6 +7,9 @@ namespace PandaApp.Models
 {
     public class SubtitleViewModel
     {
-        
+        public int subtitleID { get; set; }
+        public string title { get; set; }
+        public string language { get; set; }
+        public List<SubtitleLine> lines { get; set; }
     }
 }
