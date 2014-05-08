@@ -30,7 +30,7 @@ namespace PandaApp.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Login()
         {
             ViewBag.Login = new LoginViewModel();
             ViewBag.Register = new RegisterViewModel();
