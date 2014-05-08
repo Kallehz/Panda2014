@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<PandaApp.Models.Request>
+
 @{
     ViewBag.Title = "Requests";
 }
@@ -20,10 +21,29 @@
 </div>
 <!-- search end-->
 
-<!--komment fyrir alla-->
-
-
-
 <h2>Requests</h2>
+
+<table>
+    <caption>Student List</caption>
+    <thead>
+        <tr>
+            <th>Name:</th>
+            <th>Year:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Language, "Name", new { id = item.Id })
+                </td>
+                <td>
+                    @item.Language
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
 <h3>@Html.ActionLink("Create Request", "NewRequest")</h3>

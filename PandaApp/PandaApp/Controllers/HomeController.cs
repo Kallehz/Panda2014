@@ -10,6 +10,8 @@ namespace PandaApp.Controllers
 {
     public class HomeController : Controller
     {
+        PandaBase db = new PandaBase();
+
         public ActionResult Index()
         {
             //PandaBase db = new PandaBase();
@@ -44,7 +46,10 @@ namespace PandaApp.Controllers
         {
             ViewBag.Message = "View requests";
 
-            return View();
+            IEnumerable<Request> news = (from item in db.Requests
+                                          orderby item.DateCreated descending
+                                          select item).Take(15);
+            return View(news);
         }
 
         [HttpGet]
@@ -56,10 +61,12 @@ namespace PandaApp.Controllers
         [HttpPost]
         public ActionResult NewRequest(Request item)
         {
-            ViewBag.Message = "View requests";
+            ViewBag.Message = "Create requests";
+
             if (ModelState.IsValid)
             {
-                /* Vista í grunn */                
+                db.Requests.Add(item);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 

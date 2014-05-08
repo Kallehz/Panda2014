@@ -7,15 +7,15 @@ namespace PandaApp.Models
 {
     public class Request
     {
-        public int ID { get; set; }
-        public string Title { get; set; }
+        public int Id { get; set; }
+        public int MediaId { get; set; }
         public string Language { get; set; }
-        public string Text { get; set; }
-        public DateTime dateCreated { get; set; }
+        public string VideoLink { get; set; }
+        public DateTime DateCreated { get; set; }
 
         public Request()
 		{
-			dateCreated = DateTime.Now;
+			DateCreated = DateTime.Now;
 		}
     }
 }

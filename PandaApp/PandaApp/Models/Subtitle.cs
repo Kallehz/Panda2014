@@ -15,7 +15,7 @@ namespace PandaApp.Models
 
         public Subtitle()
 		{
-			dateCreated = DateTime.Now;
+			DateCreated = DateTime.Now;
 		}
     }
 }
