@@ -7,8 +7,14 @@
 
 @Html.ValidationSummary(true, "Login was unsuccessful. Please correct the errors and try again.")
 
-@{ Html.RenderPartial("LoginPV", (PandaApp.Models.LoginViewModel)ViewBag.Login); }
-@{ Html.RenderPartial("RegisterPV", (PandaApp.Models.RegisterViewModel)ViewBag.Register); }
+<div class="row">
+    <div class="col-md-5 col-md-offset-1 col-xs-12">
+        @{ Html.RenderPartial("LoginPV", (PandaApp.Models.LoginViewModel)ViewBag.Login); }
+    </div>
+    <div class="col-md-5 col-xs-12">
+        @{ Html.RenderPartial("RegisterPV", (PandaApp.Models.RegisterViewModel)ViewBag.Register); }
+    </div>
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
