@@ -46,10 +46,10 @@ namespace PandaApp.Controllers
         {
             ViewBag.Message = "View requests";
 
-            IEnumerable<Request> news = (from item in db.Requests
+            IEnumerable<Request> requests = (from item in db.Requests
                                           orderby item.DateCreated descending
                                           select item).Take(15);
-            return View(news);
+            return View(requests);
         }
 
         [HttpGet]
