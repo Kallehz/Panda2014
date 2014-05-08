@@ -5,15 +5,14 @@ namespace PandaApp.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<PandaApp.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<PandaApp.Models.PandaBase>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
-            ContextKey = "PandaApp.Models.ApplicationDbContext";
+            AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(PandaApp.Models.ApplicationDbContext context)
+        protected override void Seed(PandaApp.Models.PandaBase context)
         {
             //  This method will be called after migrating to the latest version.
 

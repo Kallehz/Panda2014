@@ -5,12 +5,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace PandaApp.Controllers
 {
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
+            //PandaBase db = new PandaBase();
+            //var subtitle = from subtitles in db.Subtitles where subtitles.ID < 10 select subtitles;
             return View();
         }
         
