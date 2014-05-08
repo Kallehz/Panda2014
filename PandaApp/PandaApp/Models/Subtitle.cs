@@ -7,9 +7,9 @@ namespace PandaApp.Models
 {
     public class Subtitle
     {
-        public string title { get; set; }
-        public string language { get; set; }
-        public string year { get; set; }
+        public string Title { get; set; }
+        public string Language { get; set; }
+        public string Year { get; set; }
         public DateTime dateCreated { get; set; }
 
         public Subtitle()
