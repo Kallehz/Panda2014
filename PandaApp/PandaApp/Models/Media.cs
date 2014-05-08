@@ -7,8 +7,8 @@ namespace PandaApp.Models
 {
     public class Media
     {
-        public int Id { get; set; }
-        public string Title { get; set; }
+        public int ID { get; set; }
+        public string title { get; set; }
         public string IMDB { get; set; }
     }
 }
