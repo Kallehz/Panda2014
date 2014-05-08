@@ -16,6 +16,10 @@ namespace PandaApp.Models
 
         [Display(Name = "Movie Title")]
         public int MediaID { get; set; }
+
+        // This is not working currently, date gets 
+        // displayed as default: 8.5.2014 17:30:56
+        [DisplayFormat(DataFormatString = "{dd/MM/yyyy}")]
         public DateTime DateCreated { get; set; }
         public Subtitle()
 		{

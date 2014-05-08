@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Project Panda</title>
+    @Styles.Render("~/Content/custom.css")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -29,7 +30,7 @@
         @RenderBody()
         <hr />
         <footer class="footer-left">
-            <p>support@panda.com</p>
+            <p><a href="mailto:support@panda.com">support@panda.com</a></p>
         </footer>
         <footer class="footer-right">
             <p>&copy; Panda @DateTime.Now.Year</p>

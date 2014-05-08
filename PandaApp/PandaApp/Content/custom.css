@@ -1,0 +1,48 @@
+﻿h1
+{
+    text-align: center;
+    text-decoration: none;
+}
+
+h1 a:hover
+{
+    text-decoration: none;
+}
+
+.navbar-nav 
+{
+    padding-left: 0px;
+    background-color: #eb6864;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.navbar-nav .btn {
+    padding: 8px 30px;
+}
+
+.navbar-nav li a
+{
+    text-decoration: none;
+    color: white;
+}
+
+.navbar-right
+{
+    float: none !important;
+}
+
+.footer-left {
+    float: left;
+}
+
+.footer-left a:hover
+{
+    text-decoration: none;
+}
+
+
+.footer-right {
+    color: #eb6864;
+    float: right;
+}
