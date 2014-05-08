@@ -11,11 +11,11 @@ namespace PandaApp.Models
         public int AuthorId { get; set; }
         public string Text {get; set; }
         public int SubtitleId { get; set; }
-        public DateTime dateCreated { get; set; }
+        public DateTime DateCreated { get; set; }
 
         public Comment()
 		{
-			dateCreated = DateTime.Now;
+			DateCreated = DateTime.Now;
 		}
     }
 }
