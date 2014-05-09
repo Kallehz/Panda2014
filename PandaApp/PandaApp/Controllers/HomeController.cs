@@ -38,8 +38,9 @@ namespace PandaApp.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Upload(Subtitle item)
+        public ActionResult Upload(Subtitle item, HttpPostedFileBase file)
         {
+            //TODO send file to database table!
             if (ModelState.IsValid)
             {
                 db.AddSubtitle(item);
