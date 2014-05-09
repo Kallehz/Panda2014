@@ -69,18 +69,11 @@ namespace PandaApp.Models
             db.SaveChanges();
         }
 
-        public void UpdateSubtitle(SubtitleLine sl)
+        public void UpdateSubtitleLine(SubtitleLine sl)
         {
-            SubtitleLine line = new SubtitleLine();
-            var subtitle = (from s in GetAllSubtitles()
-                            where s.ID == sl.SubtitleID
-                            select s);
-            
-            if (sl != null)
-            {
-                line.Text = sl.Text;
-                db.SaveChanges();
-            }
+            // Update-ar SubtitleLine með Sql skipun
+            db.SubtitleLines.SqlQuery("UPDATE SubtitleLines SET Text = @NewText WHERE ID = @ID"
+                                        ,sl.Text, sl.SubtitleID);
         }
 
         public void Save()
