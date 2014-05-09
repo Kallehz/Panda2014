@@ -86,11 +86,11 @@ namespace PandaApp.Controllers
                 var user = new ApplicationUser() { UserName = model.UserName };
                 var result = await UserManager.CreateAsync(user, model.Password);
 
-                var newAccount = new Account() { Username = model.UserName, Email = model.Email };
-                //PandaRepo.AddAccount(newAccount);
 
                 if (result.Succeeded)
                 {
+                    Account newAccount = new Account() { Username = model.UserName, Email = model.Email };
+                    PandaRepo.AddAccount(newAccount);
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }
