@@ -79,12 +79,12 @@ namespace PandaApp.Controllers
                 {
                     // If noone is logged in the
                     // author will be set as Guest
-                    item.AuthorID = "Guest";
+                    //item.AuthorID = "Guest";
                 }
                 else
                 {
                     // Set Author as logged in user.
-                    item.AuthorID = User.Identity.Name;
+                    //item.AuthorID = User.Identity.Name;
                 }
                 
                 db.AddRequest(item);
