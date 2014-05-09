@@ -12,11 +12,11 @@ namespace PandaApp.Models
 
         [Display(Name = "Movie Title")]
         public int MediaID { get; set; }
-        public string AuthorID { get; set; }
+        public int AuthorID { get; set; }
         [Display(Name = "Requested Language")]
         public int LanguageID { get; set; }
 
-        [Display(Name = "YouTube/Vimeo")]
+        [Display(Name = "Youtube/Vimeo")]
         public string ExternalVideoLink { get; set; }
         public int Upvotes { get; set; }
         public DateTime DateCreated { get; set; }
