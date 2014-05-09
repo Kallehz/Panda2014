@@ -168,6 +168,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201405091143121_InitialCreate.cs" />
+    <Compile Include="Migrations\201405091143121_InitialCreate.Designer.cs">
+      <DependentUpon>201405091143121_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405091418400_Email.cs" />
+    <Compile Include="Migrations\201405091418400_Email.Designer.cs">
+      <DependentUpon>201405091418400_Email.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405091442013_Email1.cs" />
+    <Compile Include="Migrations\201405091442013_Email1.Designer.cs">
+      <DependentUpon>201405091442013_Email1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -251,6 +263,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201405091143121_InitialCreate.resx">
+      <DependentUpon>201405091143121_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405091418400_Email.resx">
+      <DependentUpon>201405091418400_Email.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405091442013_Email1.resx">
+      <DependentUpon>201405091442013_Email1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
