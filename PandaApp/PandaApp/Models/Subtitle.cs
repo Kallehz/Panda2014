@@ -11,11 +11,11 @@ namespace PandaApp.Models
         public int ID { get; set; }
 
         [Display(Name = "Language")]
-        public int LanguageID { get; set; }
-        public int AuthorID { get; set; }
+        public string Language { get; set; }
+        public string Author { get; set; }
 
         [Display(Name = "Movie Title")]
-        public int MediaID { get; set; }
+        public string Title { get; set; }
 
         // This is not working currently, date gets 
         // displayed as default: 8.5.2014 17:30:56

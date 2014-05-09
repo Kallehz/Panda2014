@@ -11,10 +11,11 @@ namespace PandaApp.Models
         public int ID { get; set; }
 
         [Display(Name = "Movie Title")]
-        public int MediaID { get; set; }
-        public int AuthorID { get; set; }
+        public string Title { get; set; }
+        public string Author { get; set; }
+
         [Display(Name = "Requested Language")]
-        public int LanguageID { get; set; }
+        public string Language { get; set; }
 
         [Display(Name = "Youtube/Vimeo")]
         public string ExternalVideoLink { get; set; }

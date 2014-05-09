@@ -30,6 +30,7 @@
                     <th>Name</th>
                     <th>Language</th>
                     <th>Added</th>
+                    <th>Author</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,11 +43,11 @@
                             @*SUBTITLE ID*@
                         </td>
                         <td>
-                            @sub.MediaID
+                            @sub.Title
                             @*MEDIA ID*@
                         </td>
                         <td>
-                            @sub.LanguageID
+                            @sub.Language
                             @*SUBTITLE LANGUAGE ID*@
                         </td>
                         <td>
@@ -54,7 +55,7 @@
                             @*SUBTITLE DATECREATED*@
                         </td>
                         <td>
-                            @sub.AuthorID
+                            @sub.Author
                             @*SUBTITLE AUTHOR*@
                         </td>
                     </tr>
@@ -73,6 +74,7 @@
                     <th>Name</th>
                     <th>Language</th>
                     <th>Upvotes</th>
+                    <th>Author</th>
                 </tr>
             </thead>
             <tbody>
@@ -85,11 +87,11 @@
                         </td>
                         <td>
                             @*MEDIA ID*@
-                            @req.MediaID
+                            @req.Title
                         </td>
                         <td>
                             @*REQUEST LANGUAGE ID*@
-                            @req.LanguageID
+                            @req.Language
                         </td>
                         <td>
                             @*UPVOTES OF REQUEST*@
@@ -97,7 +99,7 @@
                         </td>
                         <td>
                             @*AUTHOR OF REQUEST*@
-                            @req.AuthorID
+                            @req.Author
                         </td>
                     </tr>
                 }
