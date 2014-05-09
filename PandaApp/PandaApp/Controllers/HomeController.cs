@@ -43,6 +43,7 @@ namespace PandaApp.Controllers
             //TODO send file to database table!
             if (ModelState.IsValid)
             {
+                item.Author = User.Identity.Name;
                 db.AddSubtitle(item);
                 db.Save();
                 return RedirectToAction("Index");
@@ -76,6 +77,14 @@ namespace PandaApp.Controllers
 
             if (ModelState.IsValid)
             {
+                if (User.Identity.Name.Length == 0)
+                {
+                    item.Author = "Guest";
+                }
+                else
+                {
+                    item.Author = User.Identity.Name;
+                }
                 db.AddRequest(item);
                 db.Save();
                 return RedirectToAction("Requests");
