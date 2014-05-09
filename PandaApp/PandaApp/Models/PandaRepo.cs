@@ -55,8 +55,9 @@ namespace PandaApp.Models
             db.Requests.Add(req);
             db.SaveChanges();
         }
-        public void AddAccount(Account acc)
+        public static void AddAccount(Account acc)
         {
+            PandaBase db = new PandaBase();
             db.Accounts.Add(acc);
             db.SaveChanges();
         }
