@@ -10,7 +10,7 @@ namespace PandaApp.Controllers
 {
     public class HomeController : Controller
     {
-        PandaBase db = new PandaBase();
+         
 
         public ActionResult Index()
         {
