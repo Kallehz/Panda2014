@@ -5876,3 +5876,9 @@ button.close {
 .panel-info .panel-title {
   color: #fff;
 }
+
+#File1 {
+  color: #ffffff;
+  background-color: #999999;
+  border-color: #999999;
+}
