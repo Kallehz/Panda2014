@@ -24,6 +24,7 @@ namespace PandaApp.Models
             var result = (from s in db.Subtitles
                           where s.ID == id
                           select s).SingleOrDefault();
+
             return result;
         }
         //TODO: Language and title linq requests
