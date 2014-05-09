@@ -10,17 +10,17 @@ namespace PandaApp.Controllers
 {
     public class HomeController : Controller
     {
-        PandaBase db = new PandaBase();
+        PandaRepo db = new PandaRepo();
 
         public ActionResult Index()
         {
             SubAndReq SandR = new SubAndReq();
 
-            SandR.Requests = (from item in db.Requests
+            SandR.Requests = (from item in db.GetAllRequests()
                               orderby item.Upvotes descending
                               select item).Take(15);
 
-            SandR.Subtitles = (from item in db.Subtitles
+            SandR.Subtitles = (from item in db.GetAllSubtitles()
                                orderby item.DateCreated descending
                                select item).Take(15);
 
@@ -42,8 +42,8 @@ namespace PandaApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Subtitles.Add(item);
-                db.SaveChanges();
+                db.AddSubtitle(item);
+                db.Save();
                 return RedirectToAction("Index");
             }
 
@@ -56,7 +56,7 @@ namespace PandaApp.Controllers
         {
             ViewBag.Message = "View requests";
 
-            IEnumerable<Request> requests = (from item in db.Requests
+            IQueryable<Request> requests = (from item in db.GetAllRequests()
                                              orderby item.DateCreated descending
                                              select item).Take(15);
             return View(requests);
@@ -75,9 +75,21 @@ namespace PandaApp.Controllers
 
             if (ModelState.IsValid)
             {
-                db.Requests.Add(item);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (User.Identity.Name.Length == 0)
+                {
+                    // If noone is logged in the
+                    // author will be set as Guest
+                    item.AuthorID = "Guest";
+                }
+                else
+                {
+                    // Set Author as logged in user.
+                    item.AuthorID = User.Identity.Name;
+                }
+                
+                db.AddRequest(item);
+                db.Save();
+                return RedirectToAction("Requests");
             }
 
             return View();

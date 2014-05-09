@@ -9,9 +9,14 @@ namespace PandaApp.Models
     {
         PandaBase db = new PandaBase();
 
-        public IEnumerable<Subtitle> GetAllSubtitles()
+        public IQueryable<Subtitle> GetAllSubtitles()
         {
             return db.Subtitles;
+        }
+
+        public IQueryable<Request> GetAllRequests()
+        {
+            return db.Requests;
         }
 
         public Subtitle GetSubtitleById(int id)
@@ -52,13 +57,13 @@ namespace PandaApp.Models
             if (sl != null)
             {
                 line.Text = sl.Text;
-                
+                db.SaveChanges();
             }
         }
 
         public void Save()
         {
-            m_db.SaveChanges();
+            db.SaveChanges();
         }
     }
 }

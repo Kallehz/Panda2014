@@ -53,6 +53,10 @@
                             @sub.DateCreated
                             @*SUBTITLE DATECREATED*@
                         </td>
+                        <td>
+                            @sub.AuthorID
+                            @*SUBTITLE AUTHOR*@
+                        </td>
                     </tr>
                 }
             </tbody>
@@ -90,6 +94,10 @@
                         <td>
                             @*UPVOTES OF REQUEST*@
                             @req.Upvotes
+                        </td>
+                        <td>
+                            @*AUTHOR OF REQUEST*@
+                            @req.AuthorID
                         </td>
                     </tr>
                 }
