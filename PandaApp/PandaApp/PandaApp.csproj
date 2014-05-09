@@ -165,6 +165,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MediaController.cs" />
     <Compile Include="Controllers\SubtitleController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -241,9 +242,14 @@
     <Content Include="Views\Account\LoginPV.cshtml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Folder Include="App_Data\" />
     <Folder Include="Views\Media\" />
+=======
+    <Folder Include="Data\" />
+>>>>>>> UploadBranch_SoIDontMessThingsUp
     <Folder Include="Views\Subtitle\" />
+    <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
