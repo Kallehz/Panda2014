@@ -19,7 +19,6 @@ namespace PandaApp.Models
         [Display(Name = "Youtube/Vimeo")]
         public string ExternalVideoLink { get; set; }
         public int Upvotes { get; set; }
-        public string Imdb { get; set; }
         public DateTime DateCreated { get; set; }
         public Request()
 		{
