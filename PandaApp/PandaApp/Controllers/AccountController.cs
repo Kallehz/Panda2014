@@ -63,9 +63,10 @@ namespace PandaApp.Controllers
             ViewBag.Register = new RegisterViewModel();
             return View(model);
         }
-
+        
         //
         // GET: /Account/Register
+        /*
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -73,7 +74,7 @@ namespace PandaApp.Controllers
             ViewBag.Register = new RegisterViewModel();
             return View();
         }
-
+        */
         //
         // POST: /Account/Register
         [HttpPost]

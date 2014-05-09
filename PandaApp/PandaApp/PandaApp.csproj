@@ -252,6 +252,7 @@
     <Content Include="Views\Account\RegisterPV.cshtml" />
     <Content Include="Views\Account\LoginPV.cshtml" />
     <Content Include="Views\Subtitle\Edit.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
