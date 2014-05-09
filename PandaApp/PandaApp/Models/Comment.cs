@@ -12,6 +12,8 @@ namespace PandaApp.Models
         public string Text {get; set; }
         public int SubtitleId { get; set; }
         public DateTime DateCreated { get; set; }
+
+        public virtual Subtitle Subtitle { get; set; }
         public Comment()
 		{
 			DateCreated = DateTime.Now;
