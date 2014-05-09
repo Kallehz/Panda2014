@@ -75,18 +75,6 @@ namespace PandaApp.Controllers
 
             if (ModelState.IsValid)
             {
-                if (User.Identity.Name.Length == 0)
-                {
-                    // If noone is logged in the
-                    // author will be set as Guest
-                    //item.AuthorID = "Guest";
-                }
-                else
-                {
-                    // Set Author as logged in user.
-                    //item.AuthorID = User.Identity.Name;
-                }
-                
                 db.AddRequest(item);
                 db.Save();
                 return RedirectToAction("Requests");

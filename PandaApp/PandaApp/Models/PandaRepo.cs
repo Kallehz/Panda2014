@@ -26,14 +26,21 @@ namespace PandaApp.Models
                           select s).SingleOrDefault();
             return result;
         }
-        /*public static IEnumerable<SubtitleLine> GetLines(int subtitleID)
+        //TODO: Language and title linq requests
+        /*public EditViewModel GetEditViewModel(int subtitleID)
         {
             
-            IEnumerable<SubtitleLine> lines = (from item in db.SubtitleLines
-                                            where item.ID == subtitleID
-                                             orderby item.Index descending
+            EditViewModel viewModel = new EditViewModel();
+            viewModel.SubtitleID = subtitleID;
+            viewModel.Title = "test";
+            viewModel.Language = "English";
+
+            viewModel.Lines = (from item in db.SubtitleLines
+                               orderby item. descending
+                               where db. = SubtitleID
                                select item);
-            return lines;
+            return viewModel;
+            return EditViewModel();
         }*/
 
         public Request GetRequestById(int id)
@@ -55,12 +62,7 @@ namespace PandaApp.Models
             db.Requests.Add(req);
             db.SaveChanges();
         }
-        public static void AddAccount(Account acc)
-        {
-            PandaBase db = new PandaBase();
-            db.Accounts.Add(acc);
-            db.SaveChanges();
-        }
+
         public void UpdateSubtitle(SubtitleLine sl)
         {
             SubtitleLine line = new SubtitleLine();
