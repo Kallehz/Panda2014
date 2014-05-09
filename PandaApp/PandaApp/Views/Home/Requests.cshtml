@@ -21,10 +21,10 @@
 </div>
 <!-- search end-->
 
-<h2>Requests</h2>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-7 col-md-offset-2">
+        <h3>View Requests</h3>
         <table class="table-striped" width="647">
             <thead>
                 <tr>
@@ -48,7 +48,10 @@
                             @item.LanguageID
                         </td>
                         <td>
-                            @item.Upvotes (+)
+                            @item.Upvotes
+                        </td>
+                        <td>
+                            @item.AuthorID
                         </td>
                     </tr>
                 }
