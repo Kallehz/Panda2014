@@ -21,6 +21,9 @@ namespace PandaApp.Models
         // displayed as default: 8.5.2014 17:30:56
         [DisplayFormat(DataFormatString = "{dd/MM/yyyy}")]
         public DateTime DateCreated { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
+
         public Subtitle()
 		{
 			DateCreated = DateTime.Now;
