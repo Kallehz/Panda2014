@@ -18,7 +18,8 @@ namespace PandaApp.Models
         public DbSet<Media> Medias { get; set; }
         public DbSet<Language> Languages { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        /*
+         * protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // ENTITY FRAMEWORK FLUENT API
             modelBuilder.Entity<Comment>()
@@ -27,6 +28,6 @@ namespace PandaApp.Models
                 .HasForeignKey(p => p.SubtitleId);
 
             base.OnModelCreating(modelBuilder);
-        }
+        }*/
     }
 }
