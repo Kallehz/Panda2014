@@ -27,21 +27,21 @@ namespace PandaApp.Models
             return result;
         }
         //TODO: Language and title linq requests
-        public EditViewModel GetEditViewModel(int subtitleID)
+        /*public EditViewModel GetEditViewModel(int subtitleID)
         {
+            
             EditViewModel viewModel = new EditViewModel();
             viewModel.SubtitleID = subtitleID;
-
             viewModel.Title = "test";
-
             viewModel.Language = "English";
 
             viewModel.Lines = (from item in db.SubtitleLines
-                               orderby item.index descending
-                               where db.ID = SubtitleID
+                               orderby item. descending
+                               where db. = SubtitleID
                                select item);
             return viewModel;
-        }
+            return EditViewModel();
+        }*/
 
         public Request GetRequestById(int id)
         {
