@@ -51,6 +51,12 @@ namespace PandaApp.Models
             return result;
         }
 
+        public static void AddAccount(Account acc)
+        {
+            PandaBase db = new PandaBase();
+            db.Accounts.Add(acc);
+            db.SaveChanges();
+        }
         public void AddSubtitle(Subtitle sub)
         {
             db.Subtitles.Add(sub);

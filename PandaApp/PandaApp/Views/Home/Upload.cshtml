@@ -1,4 +1,5 @@
-﻿@model PandaApp.Models.Subtitle
+﻿@model PandaApp.Models.Media
+
 
 @{
     ViewBag.Title = "Upload";
@@ -9,60 +10,54 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h3>Subtitle</h3>
+        <h4>Subtitle upload</h4>
         <hr />
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MediaID, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.MediaID, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.MediaID)
+                @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Title)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.LanguageID, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ID, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.LanguageID, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.LanguageID)
+                @Html.TextBoxFor(model => model.ID, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ID)
             </div>
         </div>
-
+        <!-- New upload field starts-->  <!--TODO send file somewhere!-->
         <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <form id="Form1" method="post" enctype="multipart/form-data" runat="server" >
+                    <INPUT type=file id=File1 name=File1 runat="server"  />
+                    <br>
+
+                    <input type="submit" id="Submit1" value="Upload" runat="server" class="btn btn-default" />
+                </form>
+                </div>
+            </div>
+        <!-- new upload field ends-->
+
+     <!--        this is the old "create" 
+ 
+         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
+         
+     -->
+
+
     </div>
 }
-
-<!-- upload form frá msdn
-<form id="form1" runat="server">
     <div>
-        <h4>Select a file to upload:</h4>
-
-        <asp:FileUpload id="FileUpload1"
-                        runat="server">
-        </asp:FileUpload>
-
-        <br /><br />
-
-        <asp:Button id="UploadButton"
-                    Text="Upload file"
-                    OnClick="UploadButton_Click"
-                    runat="server">
-        </asp:Button>
-
-        <hr />
-
-        <asp:Label id="UploadStatusLabel"
-                   runat="server">
-        </asp:Label>
+        @Html.ActionLink("Back to List", "Index")
     </div>
-</form>
-upload form frá msdn endar-->
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+ 
