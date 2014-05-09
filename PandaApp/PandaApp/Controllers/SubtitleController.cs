@@ -10,11 +10,9 @@ namespace PandaApp.Controllers
 {
     public class SubtitleController : Controller
     {
-        public ActionResult Edit(int subtitleID)
+        public ActionResult DisplayEditPage(int subtitleID)
         {
-            //EditViewModel editViewModel = GetEditViewModel(subtitleID);
-            //return View(editViewModel);
-            return View();
+            return View(new EditViewModel(subtitleID));
         }
 	}
 
