@@ -23,7 +23,7 @@ namespace PandaApp.Controllers
             SandR.Subtitles = (from item in db.GetAllSubtitles()
                                orderby item.DateCreated descending
                                select item).Take(15);
-
+            // Comment
             return View(SandR);
         }
         
