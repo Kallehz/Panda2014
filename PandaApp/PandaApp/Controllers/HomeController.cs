@@ -42,7 +42,7 @@ namespace PandaApp.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Upload(Subtitle item, HttpPostedFileBase file)
+        public ActionResult Upload(Subtitle item, HttpPostedFileBase file, SubtitleLine srtLine)
         {
             
            
@@ -79,10 +79,14 @@ namespace PandaApp.Controllers
               @"(?<sequence>\d+)\r\n(?<start>\d{2}\:\d{2}\:\d{2},\d{3}) --\> " +
               @"(?<end>\d{2}\:\d{2}\:\d{2},\d{3})\r\n(?<text>[\s\S]*?\r\n\r\n)";
 
-            //parse string
+            //parse string and send to database
             foreach (string result in Regex.Split(srtString, pattern))
             {
                 Debug.WriteLine(result);
+                srtLine.Text = result;
+                db.UpdateSubtitleLine(srtLine);
+                db.Save();
+                
             }
 
             if (ModelState.IsValid)
