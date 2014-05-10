@@ -1,13 +1,15 @@
 ﻿@model PandaApp.Models.Request
 
 @{
-    ViewBag.Title = "Create Request";
+    ViewBag.Title = "Create";
 }
 
-@using (Html.BeginForm()) 
+<h2>Create Request</h2>
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Request</h4>
         <hr />

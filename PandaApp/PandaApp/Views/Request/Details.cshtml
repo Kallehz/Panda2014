@@ -1,0 +1,35 @@
+﻿@model PandaApp.Models.Request
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <h4>Request Details</h4>
+	<hr />
+    <table class="table-striped" width="1000">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Requested Language</th>
+                <th>Video Link</th>
+                <th>Date Created</th>
+                <th>Upvotes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(model => model.Title)</td>
+                <td>@Html.DisplayFor(model => model.Author)</td>
+                <td>@Html.DisplayFor(model => model.Language)</td>
+                <td>@Html.DisplayFor(model => model.ExternalVideoLink)</td>
+                <td>@Html.DisplayFor(model => model.DateCreated)</td>
+                <td>@Html.DisplayFor(model => model.Upvotes)</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Requests", "Request")
+</p>

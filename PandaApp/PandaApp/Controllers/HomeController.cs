@@ -137,35 +137,6 @@ namespace PandaApp.Controllers
             return View(UserProfile);
         }
         */
-        [HttpGet]
-        public ActionResult NewRequest()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult NewRequest(Request item)
-        {
-            ViewBag.Message = "Create requests";
-
-            if (ModelState.IsValid)
-            {
-                if (User.Identity.Name.Length == 0)
-                {
-                    item.Author = "Guest";
-                }
-                else
-                {
-                    item.Author = User.Identity.Name;
-                }
-                db.AddRequest(item);
-                db.Save();
-                return RedirectToAction("Requests");
-            }
-
-            return View();
-        }
-
 
         public ActionResult FAQ()
         {
