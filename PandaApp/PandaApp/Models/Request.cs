@@ -9,11 +9,13 @@ namespace PandaApp.Models
     public class Request
     {
         public int ID { get; set; }
+        [Required]
 
         [Display(Name = "Movie Title")]
         public string Title { get; set; }
         public string Author { get; set; }
 
+        [Required]
         [Display(Name = "Requested Language")]
         public string Language { get; set; }
 

@@ -1,10 +1,53 @@
 ﻿@using PandaApp.Models;
 @using Microsoft.AspNet.Identity;
+@model IEnumerable<PandaApp.Models.Request>
+
 @{
     ViewBag.Title = "Manage Account";
 }
 
 <h2>@ViewBag.Title.</h2>
+
+<div>
+    <table class="table-striped" width="450">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Language</th>
+                <th>Author</th>
+                <th>Upvotes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Crashes if This is removed-->
+            @if(Model != null)
+            {
+                foreach (var prof in Model)
+                {
+                    <tr>
+                        <td>
+                            @*MEDIA ID*@
+                            @prof.Title
+                        </td>
+                        <td>
+                            @*REQUEST LANGUAGE ID*@
+                            @prof.Language
+                        </td>
+                        <td>
+                            @*AUTHOR OF REQUEST*@
+                            @prof.Author
+                        </td>
+                        <td>
+                            @*Upvotes*@
+                            @prof.Upvotes
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div class="row">

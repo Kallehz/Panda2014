@@ -65,6 +65,17 @@ namespace PandaApp.Controllers
         }
 
         [HttpGet]
+        public ActionResult Profile()
+        {
+
+            IQueryable<Request> UserProfile = (from item in db.GetAllRequests()
+                                               where item.Author == User.Identity.Name
+                                               orderby item.DateCreated descending
+                                               select item).Take(10);
+            return View(UserProfile);
+        }
+
+        [HttpGet]
         public ActionResult NewRequest()
         {
             return View();
