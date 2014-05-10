@@ -16,8 +16,6 @@ namespace PandaApp.Controllers
             return View();
         }
 
-
-
         public ActionResult MediaProfile(int? id)
         {
             if (id != null)
