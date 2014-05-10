@@ -21,12 +21,6 @@ namespace PandaApp.Controllers
         {
             SubAndReq SandR = new SubAndReq();
 
-            SandR.Requests = (from item in db.GetAllRequests()
-                              where (item.Title.Contains(title) && 
-                              (item.Language == language))
-                              orderby item.Upvotes descending
-                              select item).Take(15);
-
             if(language != "all")
             {
                 SandR.Subtitles = (from item in db.GetAllSubtitles()
@@ -34,6 +28,12 @@ namespace PandaApp.Controllers
                                    (item.Language == language))
                                    orderby item.DateCreated descending
                                    select item).Take(15);
+
+                SandR.Requests = (from item in db.GetAllRequests()
+                                  where (item.Title.Contains(title) &&
+                                  (item.Language == language))
+                                  orderby item.Upvotes descending
+                                  select item).Take(15);
             }
             else
             {
@@ -41,6 +41,11 @@ namespace PandaApp.Controllers
                                    where (item.Title.Contains(title))
                                    orderby item.DateCreated descending
                                    select item).Take(15);
+
+                SandR.Requests = (from item in db.GetAllRequests()
+                                  where (item.Title.Contains(title))
+                                  orderby item.Upvotes descending
+                                  select item).Take(15);
             }
             
 
