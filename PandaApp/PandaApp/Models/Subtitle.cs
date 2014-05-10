@@ -15,7 +15,7 @@ namespace PandaApp.Models
         public string Author { get; set; }
 
         [Display(Name = "Movie Title")]
-        public int mediaID { get; set; }
+        public string Title { get; set; }
 
         // This is not working currently, date gets 
         // displayed as default: 8.5.2014 17:30:56

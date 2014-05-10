@@ -43,7 +43,7 @@
                             @*SUBTITLE ID*@
                         </td>
                         <td>
-                            @sub.mediaID
+                            @sub.Title
                             @*MEDIA ID*@
                         </td>
                         <td>
@@ -73,8 +73,8 @@
                     <th>#</th>
                     <th>Name</th>
                     <th>Language</th>
-                    <th>Upvotes</th>
                     <th>Author</th>
+                    <th>Upvotes</th>
                 </tr>
             </thead>
             <tbody>
@@ -87,19 +87,19 @@
                         </td>
                         <td>
                             @*MEDIA ID*@
-                            @req.mediaID
+                            @req.Title
                         </td>
                         <td>
                             @*REQUEST LANGUAGE ID*@
                             @req.Language
                         </td>
                         <td>
-                            @*UPVOTES OF REQUEST*@
-                            @req.Upvotes
-                        </td>
-                        <td>
                             @*AUTHOR OF REQUEST*@
                             @req.Author
+                        </td>
+                        <td>
+                            @*UPVOTES OF REQUEST*@
+                            @req.Upvotes
                         </td>
                     </tr>
                 }

@@ -9,6 +9,6 @@ namespace PandaApp.Models
     {
         public int Id { get; set; }
         public int SubtitleID { get; set; }
-        public int UserID { get; set; }
+        public string User { get; set; }
     }
 }
