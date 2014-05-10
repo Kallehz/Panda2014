@@ -42,20 +42,16 @@
                 {
                     <tr>
                         <td>
-                            @sub.Title
-                            @*MEDIA ID*@
+                            @Html.ActionLink(sub.Title, "MediaProfile", "Media", null, new { id = sub.MediaID })
                         </td>
                         <td>
                             @sub.Language
-                            @*SUBTITLE LANGUAGE ID*@
                         </td>
                         <td>
                             @sub.DateCreated
-                            @*SUBTITLE DATECREATED*@
                         </td>
                         <td>
                             @sub.Author
-                            @*SUBTITLE AUTHOR*@
                         </td>
                     </tr>
                 }
@@ -80,19 +76,15 @@
                 {
                     <tr>
                         <td>
-                            @*MEDIA ID*@
                             @req.Title
                         </td>
                         <td>
-                            @*REQUEST LANGUAGE ID*@
                             @req.Language
                         </td>
                         <td>
-                            @*AUTHOR OF REQUEST*@
                             @req.Author
                         </td>
                         <td>
-                            @*UPVOTES OF REQUEST*@
                             @req.Upvotes
                         </td>
                     </tr>

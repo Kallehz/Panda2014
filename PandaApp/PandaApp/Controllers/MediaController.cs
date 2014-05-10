@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PandaApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,14 +9,24 @@ namespace PandaApp.Controllers
 {
     public class MediaController : Controller
     {
-        // GET: /Media/
+        PandaRepo db = new PandaRepo();
+
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult DisplayMediaProfile(int mediaID)
+
+
+        public ActionResult MediaProfile(int? id)
         {
+            if (id != null)
+            {
+                object model = db.GetMediaById(id.Value);
+
+                return View(model);
+            }
+
             return View();
         }
 

@@ -14,6 +14,7 @@ namespace PandaApp.Models
         [Display(Name = "Movie Title")]
         public string Title { get; set; }
         public string Author { get; set; }
+        public int MediaID { get; set; }
 
         [Required]
         [Display(Name = "Requested Language")]

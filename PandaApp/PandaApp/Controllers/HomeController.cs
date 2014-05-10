@@ -31,9 +31,9 @@ namespace PandaApp.Controllers
         [HttpGet]
         public ActionResult Upload()
         {
-            ViewBag.Message = "Upload subtitle";
+            ViewBag.Message = "Upload subtitle";    
 
-            return View();
+            return View(new Media());
         }
 
         [Authorize]
@@ -50,7 +50,21 @@ namespace PandaApp.Controllers
             }
 
             return View(item);
+        }
 
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View(new Media());
+        }
+
+        [HttpPost]
+        public ActionResult Create(FormCollection formData)
+        {
+            Media m = new Media();
+            UpdateModel(m);
+            db.AddMedia(m);
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -103,6 +117,7 @@ namespace PandaApp.Controllers
 
             return View();
         }
+
 
         public ActionResult FAQ()
         {

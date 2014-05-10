@@ -44,6 +44,15 @@ namespace PandaApp.Models
             return EditViewModel();
         }*/
 
+        public Media GetMediaById(int id)
+        {
+            var result = (from m in db.Medias
+                          where m.ID == id
+                          select m).SingleOrDefault();
+
+            return result;
+        }
+
         public Request GetRequestById(int id)
         {
             var result = (from s in db.Requests
@@ -67,6 +76,12 @@ namespace PandaApp.Models
         public void AddRequest(Request req)
         {
             db.Requests.Add(req);
+            db.SaveChanges();
+        }
+
+        public void AddMedia(Media med)
+        {
+            db.Medias.Add(med);
             db.SaveChanges();
         }
 
