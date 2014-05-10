@@ -27,11 +27,22 @@ namespace PandaApp.Controllers
                               orderby item.Upvotes descending
                               select item).Take(15);
 
-            SandR.Subtitles = (from item in db.GetAllSubtitles()
-                               where (item.Title.Contains(title) &&
-                               (item.Language == language))
-                               orderby item.DateCreated descending
-                               select item).Take(15);
+            if(language != "all")
+            {
+                SandR.Subtitles = (from item in db.GetAllSubtitles()
+                                   where (item.Title.Contains(title) &&
+                                   (item.Language == language))
+                                   orderby item.DateCreated descending
+                                   select item).Take(15);
+            }
+            else
+            {
+                SandR.Subtitles = (from item in db.GetAllSubtitles()
+                                   where (item.Title.Contains(title))
+                                   orderby item.DateCreated descending
+                                   select item).Take(15);
+            }
+            
 
             return View(SandR);
         }
