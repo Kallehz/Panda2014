@@ -63,7 +63,7 @@ namespace PandaApp.Controllers
                                              select item).Take(15);
             return View(requests);
         }
-
+        /*
         [HttpGet]
         public ActionResult Profile()
         {
@@ -74,7 +74,7 @@ namespace PandaApp.Controllers
                                                select item).Take(10);
             return View(UserProfile);
         }
-
+        */
         [HttpGet]
         public ActionResult NewRequest()
         {

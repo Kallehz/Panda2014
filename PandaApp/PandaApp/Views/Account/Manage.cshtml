@@ -8,6 +8,9 @@
 
 <h2>@ViewBag.Title.</h2>
 
+<p>You're logged in as <strong>@User.Identity.GetUserName()</strong>.</p>
+
+<h2>My requests</h2>
 <div>
     <table class="table-striped" width="450">
         <thead>
@@ -49,9 +52,8 @@
     </table>
 </div>
 
-<p class="text-success">@ViewBag.StatusMessage</p>
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
         @if (ViewBag.HasLocalPassword)
         {
             @Html.Partial("_ChangePasswordPartial")
@@ -62,6 +64,8 @@
         }
     </div>
 </div>
+<p class="text-success">@ViewBag.StatusMessage</p>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

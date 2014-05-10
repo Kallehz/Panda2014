@@ -28,6 +28,17 @@ namespace PandaApp.Models
         public string ConfirmPassword { get; set; }
     }
 
+    public class ManageEmailViewModel
+    {
+        [Required]
+        [Display(Name = "New password")]
+        public string NewEmail { get; set; }
+
+        [Display(Name = "Confirm new Email")]
+        [Compare("NewEmail", ErrorMessage = "The new Email and confirmation Email do not match.")]
+        public string ConfirmEmail { get; set; }
+    }
+
     public class LoginViewModel
     {
         [Required]
@@ -49,9 +60,11 @@ namespace PandaApp.Models
         [Display(Name = "Username")]
         public string UserName { get; set; }
 
-        [Required]
+
+        [Required(ErrorMessage = "The email address is required")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         [DataType(DataType.EmailAddress)]
-        [Display(Name = "Email")]
+        [Display(Name = "Email Address")]
         public string Email { get; set; }
 
         [Required]
