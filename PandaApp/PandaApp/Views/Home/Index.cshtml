@@ -4,19 +4,27 @@
 }
 <!-- TODO! some search action-->
 <!-- Search-->
-<div>
-    <form class="row text-center" method="get" action="http://www.google.com">
-        <input type="text" class="form-control" id="input" name="q" size="21" maxlength="120" placeholder="Subtitle search">
 
+<div class="row text-center">
+    @using (Html.BeginForm("SearchResult", "Subtitle"))
+    {
+        <input type="text" class="form-control" id="input" name="title" size="21" maxlength="120" placeholder="Subtitle search">
         <select class="form-control" id="select" name="language">
             <option value="all" selected>Language</option>
-            <option value="is">Icelandic</option>
-            <option value="en">English</option>
+            <option value="ice">Icelandic</option>
+            <option value="eng">English</option>
         </select>
-
         <input type="submit" class="btn btn-primary" value="Search">
+    }
+</div>
+<!--
+    OLD SEARCH!
+    <div>
+    <form class="row text-center" method="get" action="http://www.google.com">
+        <input type="text" class="form-control" id="input" name="q" size="21" maxlength="120" placeholder="Subtitle search">
     </form>
 </div>
+-->
 <!-- search end-->
 
 <div class="row">
