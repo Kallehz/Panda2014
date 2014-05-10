@@ -48,6 +48,6 @@ namespace PandaApp.Controllers
             }
         }
 
-        //End of code that might not belong here
+        //End of code from MS
 	}
 }
