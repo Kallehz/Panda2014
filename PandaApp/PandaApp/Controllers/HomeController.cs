@@ -1,7 +1,10 @@
 ﻿using PandaApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -41,6 +44,31 @@ namespace PandaApp.Controllers
         public ActionResult Upload(Subtitle item, HttpPostedFileBase file)
         {
             //TODO send file to database table!
+           
+            //Code that checks if uploaded file has content.
+            if ((file != null) && (file.ContentLength > 0))
+            {
+                string fn = System.IO.Path.GetFileName(file.FileName);
+                string SaveLocation = Server.MapPath("~/App_Data/" + fn);
+                try
+                {
+                    file.SaveAs(SaveLocation);
+                    Debug.Write("The file has been uploaded.");
+                }
+                catch (Exception ex)
+                {
+                    Debug.Write("Error: " + ex.Message);
+                    //Note: Exception.Message returns detailed message that describes the current exception. 
+                    //For security reasons, we do not recommend you return Exception.Message to end users in 
+                    //production environments. It would be better just to put a generic error message. 
+                }
+            }
+            else
+            {
+                Debug.Write("Please select a file to upload.");
+            }
+
+
             if (ModelState.IsValid)
             {
                 item.Author = User.Identity.Name;
