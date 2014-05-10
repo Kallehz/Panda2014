@@ -1,7 +1,33 @@
-﻿
+﻿@model PandaApp.Models.Media
+
 @{
-    ViewBag.Title = "Media Profile";
+    ViewBag.Title = "MediaProfile";
 }
 
-<h2>Media Profile</h2>
+<h2>MediaProfile</h2>
+<!-- This is not working, not sure how it will retrieve the title, its coming up empty -->
+<div>
+    <h4>Media</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IMDB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IMDB)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index", "Home")
+</p>
