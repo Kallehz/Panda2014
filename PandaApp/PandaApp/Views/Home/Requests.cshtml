@@ -4,23 +4,25 @@
     ViewBag.Title = "Requests";
 }
 
-<!-- TODO! some search action-->
 <!-- Search-->
-<div>
-    <form class="row text-center" method="get" action="http://www.google.com">
-        <input type="text" class="form-control" id="input" name="q" size="21" maxlength="120" placeholder="Request search">
-
+<div class="row text-center">
+    @using (Html.BeginForm("SearchResult", "Subtitle"))
+    {
+        <input type="text" class="form-control" id="input" name="title" size="21" maxlength="120" placeholder="Request search">
         <select class="form-control" id="select" name="language">
             <option value="all" selected>Language</option>
-            <option value="is">Icelandic</option>
-            <option value="en">English</option>
+            <option value="icelandic">Icelandic</option>
+            <option value="english">English</option>
+            <option value="danish">Danish</option>
+            <option value="spanish">Spanish</option>
+            <option value="swedish">Swedish</option>
+            <option value="klingon">Klingon</option>
+            <option value="hungarian">Hungarian</option>
         </select>
-
-        <input type="submit" class="btn btn-primary" value="Search">
-    </form>
+        <input type="submit" class="btn btn" value="Search">
+    }
 </div>
 <!-- search end-->
-
 
 <div class="row">
     <div class="col-md-7 col-md-offset-2">
@@ -28,11 +30,10 @@
         <table class="table-striped" width="647">
             <thead>
                 <tr>
-                    <th>#</th>
                     <th>Name</th>
                     <th>Language</th>
-                    <th>Upvotes</th>
                     <th>Author</th>
+                    <th>Upvotes</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,19 +41,16 @@
                 {
                     <tr>
                         <td>
-                            @item.ID
-                        </td>
-                        <td>
                             @item.Title
                         </td>
                         <td>
                             @item.Language
                         </td>
                         <td>
-                            @item.Upvotes
+                            @item.Author
                         </td>
                         <td>
-                            @item.Author
+                            @item.Upvotes
                         </td>
                     </tr>
                 }
