@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -43,7 +44,7 @@ namespace PandaApp.Controllers
         [HttpPost]
         public ActionResult Upload(Subtitle item, HttpPostedFileBase file)
         {
-            //TODO send file to database table!
+            
            
             //Code that checks if uploaded file has content.
             if ((file != null) && (file.ContentLength > 0))
@@ -67,7 +68,22 @@ namespace PandaApp.Controllers
             {
                 Debug.Write("Please select a file to upload.");
             }
+            //TODO send file to database table!
 
+            //Turn file to string
+            string srtString = new StreamReader(file.InputStream).ReadToEnd();
+           // Debug.Write(srtString);
+
+            //regex for srt files from http://www.codeproject.com/Articles/32834/Subtitle-Synchronization-with-C
+            string pattern =
+              @"(?<sequence>\d+)\r\n(?<start>\d{2}\:\d{2}\:\d{2},\d{3}) --\> " +
+              @"(?<end>\d{2}\:\d{2}\:\d{2},\d{3})\r\n(?<text>[\s\S]*?\r\n\r\n)";
+
+            //parse string
+            foreach (string result in Regex.Split(srtString, pattern))
+            {
+                Debug.WriteLine(result);
+            }
 
             if (ModelState.IsValid)
             {
