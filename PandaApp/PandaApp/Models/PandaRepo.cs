@@ -88,8 +88,12 @@ namespace PandaApp.Models
         public void UpdateSubtitleLine(SubtitleLine sl)
         {
             // Update-ar SubtitleLine með Sql skipun
-            db.SubtitleLines.SqlQuery("UPDATE SubtitleLines SET Text = @NewText WHERE ID = @ID"
-                                        ,sl.Text, sl.SubtitleID);
+          //  db.SubtitleLines.SqlQuery("UPDATE SubtitleLines SET Text = @NewText WHERE ID = @ID"
+          //                              ,sl.Text, sl.SubtitleID);
+
+            PandaBase db = new PandaBase();
+            db.SubtitleLines.Add(sl);
+            db.SaveChanges();
         }
 
         public void Save()
