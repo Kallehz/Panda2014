@@ -28,7 +28,7 @@ namespace PandaApp.Controllers
             if ((File1.PostedFile != null) && (File1.PostedFile.ContentLength > 0))
             {
                 string fn = System.IO.Path.GetFileName(File1.PostedFile.FileName);
-                string SaveLocation = Server.MapPath("App_Data") + "\\" + fn;
+                string SaveLocation = Server.MapPath("App_Data") + "\\" + fn;//muna tildu ef þetta verður aktíverað aftur
                 try
                 {
                     File1.PostedFile.SaveAs(SaveLocation);
