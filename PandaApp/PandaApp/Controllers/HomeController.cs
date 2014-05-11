@@ -84,9 +84,9 @@ namespace PandaApp.Controllers
             {
                 Debug.WriteLine(result);
                 srtLine.Text = result;
-                db.UpdateSubtitleLine(srtLine);
+                db.UpdateSubtitleLine(srtLine); 
                 db.Save();
-                
+                 
             }
 
             if (ModelState.IsValid)
