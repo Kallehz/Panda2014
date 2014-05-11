@@ -256,8 +256,11 @@
     <Content Include="Views\Account\_ChangeEmailPartial.cshtml" />
     <Content Include="Views\Media\MediaProfile.cshtml" />
     <Content Include="Views\Request\Create.cshtml" />
-    <Content Include="Views\Request\Requests.cshtml" />
+    <Content Include="Views\Request\Index.cshtml" />
     <Content Include="Views\Request\Details.cshtml" />
+    <Content Include="Views\Request\NotFound.cshtml" />
+    <Content Include="Views\Media\NotFound.cshtml" />
+    <Content Include="Views\Subtitle\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

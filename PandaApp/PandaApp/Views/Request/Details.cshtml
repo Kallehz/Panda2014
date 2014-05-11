@@ -4,32 +4,64 @@
     ViewBag.Title = "Details";
 }
 
+<h2>Details</h2>
+
 <div>
-    <h4>Request Details</h4>
+    <h4>Request</h4>
 	<hr />
-    <table class="table-striped" width="1000">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Requested Language</th>
-                <th>Video Link</th>
-                <th>Date Created</th>
-                <th>Upvotes</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>@Html.DisplayFor(model => model.Title)</td>
-                <td>@Html.DisplayFor(model => model.Author)</td>
-                <td>@Html.DisplayFor(model => model.Language)</td>
-                <td>@Html.DisplayFor(model => model.ExternalVideoLink)</td>
-                <td>@Html.DisplayFor(model => model.DateCreated)</td>
-                <td>@Html.DisplayFor(model => model.Upvotes)</td>
-            </tr>
-        </tbody>
-    </table>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Language)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Language)
+        </dd>
+        @* Hides video link if its empty *@
+        @if (Model.ExternalVideoLink != null)
+        {
+        <dt>
+            @Html.DisplayNameFor(model => model.ExternalVideoLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExternalVideoLink)
+        </dd>
+        }
+        <dt>
+            @Html.DisplayNameFor(model => model.Upvotes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Upvotes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+
+    </dl>
 </div>
 <p>
-    @Html.ActionLink("Back to List", "Requests", "Request")
+    @Html.ActionLink("Back to List", "Index")
 </p>

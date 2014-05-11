@@ -11,7 +11,7 @@ namespace PandaApp.Controllers
     {
         PandaRepo db = new PandaRepo();
 
-        public ActionResult Requests()
+        public ActionResult Index()
         {
             IEnumerable<Request> requests = (from item in db.GetAllRequests()
                                             orderby item.Upvotes descending
@@ -45,9 +45,15 @@ namespace PandaApp.Controllers
             return View();
         }
 
-        public ActionResult Details(Request item)
+        [HttpGet]
+        public ActionResult Details(int id)
         {
-            return View(item);
+            Request r = db.GetRequestById(id);
+            if (r != null)
+            {
+                return View(r);
+            }
+            return View("NotFound");
         }
 	}
 }
