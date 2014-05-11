@@ -16,16 +16,15 @@ namespace PandaApp.Controllers
             return View();
         }
 
-        public ActionResult MediaProfile(int? id)
+        public ActionResult MediaProfile(int id)
         {
-            if (id != null)
+            Media m = db.GetMediaById(id);
+            if (m != null)
             {
-                object model = db.GetMediaById(id.Value);
-
-                return View(model);
+                return View(m);
             }
 
-            return View();
+            return View("NotFound");
         }
 
         public void GetAvailableSubtitles(int mediaID)
@@ -36,6 +35,21 @@ namespace PandaApp.Controllers
         public void GetIMDBInfo(int mediaID)
         {
             // USE IMDB API
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View(new Media());
+        }
+
+        [HttpPost]
+        public ActionResult Create(FormCollection formData)
+        {
+            Media m = new Media();
+            UpdateModel(m);
+            db.AddMedia(m);
+            return RedirectToAction("Index");
         }
 	}
 }

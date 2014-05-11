@@ -418,5 +418,14 @@ namespace PandaApp.Controllers
             }
         }
         #endregion
+
+        [AllowAnonymous]
+        public ActionResult ViewUser(string username)
+        {
+            PandaRepo db = new PandaRepo();
+            Account user = db.GetUserByName(username);
+
+            return View(user);
+        }
     }
 }

@@ -37,15 +37,13 @@ namespace PandaApp.Controllers
         {
             ViewBag.Message = "Upload subtitle";    
 
-            return View(new Media());
+            return View(new Subtitle());
         }
 
         [Authorize]
         [HttpPost]
         public ActionResult Upload(Subtitle item, HttpPostedFileBase file, SubtitleLine srtLine)
         {
-            
-           
             //Code that checks if uploaded file has content.
             if ((file != null) && (file.ContentLength > 0))
             {
@@ -100,32 +98,7 @@ namespace PandaApp.Controllers
             return View(item);
         }
 
-        [HttpGet]
-        public ActionResult Create()
-        {
-            return View(new Media());
-        }
-
-        [HttpPost]
-        public ActionResult Create(FormCollection formData)
-        {
-            Media m = new Media();
-            UpdateModel(m);
-            db.AddMedia(m);
-            return RedirectToAction("Index");
-        }
-
-        [HttpGet]
-        public ActionResult Requests()
-        {
-            ViewBag.Message = "View requests";
-
-            IQueryable<Request> requests = (from item in db.GetAllRequests()
-                                             orderby item.DateCreated descending
-                                             select item).Take(15);
-            return View(requests);
-        }
-        /*
+        /* Should be in account controller.
         [HttpGet]
         public ActionResult Profile()
         {
@@ -137,35 +110,6 @@ namespace PandaApp.Controllers
             return View(UserProfile);
         }
         */
-        [HttpGet]
-        public ActionResult NewRequest()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult NewRequest(Request item)
-        {
-            ViewBag.Message = "Create requests";
-
-            if (ModelState.IsValid)
-            {
-                if (User.Identity.Name.Length == 0)
-                {
-                    item.Author = "Guest";
-                }
-                else
-                {
-                    item.Author = User.Identity.Name;
-                }
-                db.AddRequest(item);
-                db.Save();
-                return RedirectToAction("Requests");
-            }
-
-            return View();
-        }
-
 
         public ActionResult FAQ()
         {

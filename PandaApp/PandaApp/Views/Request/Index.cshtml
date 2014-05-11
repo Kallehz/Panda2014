@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<PandaApp.Models.Request>
-
 @{
     ViewBag.Title = "Requests";
 }
@@ -24,10 +23,11 @@
 </div>
 <!-- search end-->
 
+<hr />
 <div class="row">
     <div class="col-md-7 col-md-offset-2">
-        <h3>View Requests</h3>
-        <table class="table-striped" width="647">
+        <h4>View Requests</h4>
+        <table class="table-striped" width="747">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -41,7 +41,8 @@
                 {
                     <tr>
                         <td>
-                            @item.Title
+                            <!-- So the title links to its profile -->
+                            @Html.ActionLink(item.Title, "Details", "Request",new { id = item.ID }, null)
                         </td>
                         <td>
                             @item.Language
@@ -60,4 +61,4 @@
 </div>
 
 
-@Html.ActionLink("Create Request", "NewRequest", null, new { @class = "btn btn-default" })
+@Html.ActionLink("Create Request", "Create", null, new { @class = "btn btn-default" })

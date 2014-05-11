@@ -23,6 +23,7 @@
 </div>
 <!-- search end-->
 
+<hr />
 <div class="row">
     <!-- div to the left -->
     <div class="col-md-7">
@@ -37,12 +38,11 @@
                 </tr>
             </thead>
             <tbody>
-
                 @foreach (var sub in Model.Subtitles)
                 {
                     <tr>
                         <td>
-                            <!-- So the title links to its profile -->
+                            <!-- So the title links to its media profile -->
                             @Html.ActionLink(sub.Title, "MediaProfile", "Media", new { id = sub.MediaID }, null)
                         </td>
                         <td>
@@ -52,8 +52,15 @@
                             @sub.DateCreated
                         </td>
                         <td>
-                            @sub.Author
-                        </td>
+                            @if (@sub.Author == "Guest")
+                            {
+                                @sub.Author
+                            }
+                            else
+                            {
+                                @Html.ActionLink(sub.Author, "ViewUser", "Account", new { username = sub.Author }, null)
+                            }
+                        </td>                   
                     </tr>
                 }
             </tbody>
@@ -77,14 +84,22 @@
                 {
                     <tr>
                         <td>
-                            @req.Title
+                            <!-- So the title links to its profile -->
+                            @Html.ActionLink(req.Title, "Details", "Request",new { id = req.ID }, null)
                         </td>
                         <td>
                             @req.Language
                         </td>
                         <td>
-                            @req.Author
-                        </td>
+                            @if (@req.Author == "Guest")
+                            {
+                                @req.Author
+                            }
+                            else
+                            {
+                                @Html.ActionLink(req.Author, "ViewUser", "Account", new { username = req.Author }, null)
+                            }
+                        </td> 
                         <td>
                             @req.Upvotes
                         </td>

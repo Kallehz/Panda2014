@@ -1,0 +1,67 @@
+﻿@model PandaApp.Models.Request
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Request</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Language)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Language)
+        </dd>
+        @* Hides video link if its empty *@
+        @if (Model.ExternalVideoLink != null)
+        {
+        <dt>
+            @Html.DisplayNameFor(model => model.ExternalVideoLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExternalVideoLink)
+        </dd>
+        }
+        <dt>
+            @Html.DisplayNameFor(model => model.Upvotes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Upvotes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
