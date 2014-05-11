@@ -52,8 +52,15 @@
                             @sub.DateCreated
                         </td>
                         <td>
-                            @sub.Author
-                        </td>
+                            @if (@sub.Author == "Guest")
+                            {
+                                @sub.Author
+                            }
+                            else
+                            {
+                                @Html.ActionLink(sub.Author, "ViewUser", "Account", new { username = sub.Author }, null)
+                            }
+                        </td>                   
                     </tr>
                 }
             </tbody>
@@ -84,8 +91,15 @@
                             @req.Language
                         </td>
                         <td>
-                            @req.Author
-                        </td>
+                            @if (@req.Author == "Guest")
+                            {
+                                @req.Author
+                            }
+                            else
+                            {
+                                @Html.ActionLink(req.Author, "ViewUser", "Account", new { username = req.Author }, null)
+                            }
+                        </td> 
                         <td>
                             @req.Upvotes
                         </td>

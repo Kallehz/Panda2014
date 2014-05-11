@@ -96,5 +96,13 @@ namespace PandaApp.Models
         {
             db.SaveChanges();
         }
+
+        public Account GetUserByName(string username)
+        {
+            var result = (from user in db.Accounts
+                          where user.Username == username
+                          select user).SingleOrDefault();
+            return result;
+        }
     }
 }
