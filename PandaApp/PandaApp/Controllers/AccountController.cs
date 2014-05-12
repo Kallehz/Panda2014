@@ -431,7 +431,7 @@ namespace PandaApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult Profile()
+        public ActionResult MyRequest()
         {
 
             List<Request> UserProfile = ((from item in db.GetAllRequests()

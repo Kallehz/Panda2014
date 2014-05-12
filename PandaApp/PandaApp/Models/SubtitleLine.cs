@@ -11,7 +11,7 @@ namespace PandaApp.Models
         public int Index { get; set; }
         public int SubtitleID { get; set; }
         public string Text { get; set; }
-        TimeSpan TimeFrom { get; set; }
-        TimeSpan TimeTo { get; set; }
+        public string TimeFrom { get; set; }
+        public string TimeTo { get; set; }
     }
 }
