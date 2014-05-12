@@ -44,6 +44,12 @@ namespace PandaApp.Controllers
         [HttpPost]
         public ActionResult Upload(Subtitle item, HttpPostedFileBase file, SubtitleLine srtLine)
         {
+            if (ModelState.IsValid)
+            {
+                item.Author = User.Identity.Name;
+                db.AddSubtitle(item);
+                db.Save();
+
             //Code that checks if uploaded file has content.
             if ((file != null) && (file.ContentLength > 0))
             {
@@ -109,6 +115,7 @@ namespace PandaApp.Controllers
                 if (counter == 5)
                     {
                         srtLine.Text = result;
+                        srtLine.SubtitleID = item.ID;
                         counter = 0;
                     }
 
@@ -118,18 +125,16 @@ namespace PandaApp.Controllers
                 if (srtLine.Index != 0
                     && srtLine.TimeFrom != null
                     && srtLine.TimeTo != null
-                    && srtLine.Text != null)
+                    && srtLine.Text != null
+                    && srtLine.SubtitleID != 0)
                         {
                             db.AddSubtitleLine(srtLine);
                             db.Save();
                         }
             }
 
-            if (ModelState.IsValid)
-            {
-                item.Author = User.Identity.Name;
-                db.AddSubtitle(item);
-                db.Save();
+            
+                
                 return RedirectToAction("Index");
             }
 
