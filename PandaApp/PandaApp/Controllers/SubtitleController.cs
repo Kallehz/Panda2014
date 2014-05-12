@@ -17,18 +17,22 @@ namespace PandaApp.Controllers
         {
             return View(new EditViewModel(subtitleID));
         }
-        public void UpdateSubtitleLine(string text)
+        public void UpdateSubtitleLine(int id, string text)
         {
-            Debug.WriteLine(text);
             /*
-            Debug.WriteLine("Adding line " + ID + ": " + newText);
             PandaBase DB = new PandaBase();
-            PandaApp.Models.SubtitleLine newLine = DB.SubtitleLines.Find(ID);
+            PandaApp.Models.SubtitleLine newLine = DB.SubtitleLines.Find(id);
             DB.SubtitleLines.Remove(newLine);
-            newLine.Text = newText;
-            DB.SubtitleLines.Add(newLine);
             DB.SaveChanges();
+            PandaApp.Models.SubtitleLine test = DB.SubtitleLines.Find(id);
             */
+            using(var context = new PandaBase())
+            {
+                SubtitleLine line = context.SubtitleLines.Where(l => l.ID == id).FirstOrDefault<SubtitleLine>();
+                line.Text = text;
+                context.Entry(line).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();  
+            }
         }
 
         public ActionResult SearchResult(string title, string language)

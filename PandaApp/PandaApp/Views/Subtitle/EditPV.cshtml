@@ -3,18 +3,13 @@
 @{
     ViewBag.Title = "EditPV";
 }
-@using (Html.BeginForm("UpdateSubtitleLine", "Subtitle", FormMethod.Post, new { @class = "form-horizontal", @id= Model.ID, role = "form" }))
+@using (Html.BeginForm("UpdateSubtitleLine", "Subtitle", FormMethod.Post, new { @class = "form-horizontal", @id = Model.ID, role = "form" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-    <div class="form-group">
-        @Html.LabelFor(m => m.Text, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            <input type="hidden" id ="ID" name="ID" value="@Model.ID" />
-            @Html.TextBoxFor(m => m.Text, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Text)
-        </div>
-    </div>
-    <input type="submit" value="Edit" id="form_submit"/>
+    @Html.LabelFor(m => m.Text, new { @id = "text" })
+    <input type="hidden" id="ID" name="ID" value="@Model.ID" />
+    @Html.TextBoxFor(m => m.Text)
+    @Html.ValidationMessageFor(m => m.Text)
+    <input type="submit" value="Edit" id="form_submit" />
 }
-

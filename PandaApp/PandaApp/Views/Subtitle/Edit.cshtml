@@ -3,23 +3,25 @@
     ViewBag.Title = "Edit";
 }
 <h2>Edit</h2>
-    
-    <h3>
-        @foreach(var item in Model.Lines)
-        {
-            Html.RenderPartial("EditPV", item);
-        }
-    </h3>
+
+<h3>
+    @foreach (var item in Model.Lines)
+    {
+        Html.RenderPartial("EditPV", item);
+    }
+</h3>
 <script src="/Scripts/jquery-1.10.2.js"></script>
 <script>
     $(document).ready(function () {
-        $('#form_submit').click(function (e) {
+        $('form').submit(function (e) {
+            var id = this.id;
+            var text = $("#" + id + " #Text").val();
             $.ajax({
                 type: 'post',
-                url: 'Subtitle/UpdateSubtitleLine',
-                data: "test",
+                url: '/Subtitle/UpdateSubtitleLine',
+                data: { id: id, text: text },
                 success: function () {
-                    alert('subtitle updated');
+                    Debug.writeln('subtitle updated');
                 }
             });
             e.preventDefault();
