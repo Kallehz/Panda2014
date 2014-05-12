@@ -1,20 +1,32 @@
-﻿@model PandaApp.Models.SubtitleLine
-
+﻿@model PandaApp.Models.EditViewModel
 @{
-    ViewBag.Title = "EditPV";
+    ViewBag.Title = "Edit";
 }
-@using (Html.BeginForm("UpdateSubtitleLine", "Subtitle", FormMethod.Post, new { @class = "form-horizontal", @id= Model.ID, role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-    <div class="form-group">
-        @Html.LabelFor(m => m.Text, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            <input type="hidden" id ="ID" name="ID" value="@Model.ID" />
-            @Html.TextBoxFor(m => m.Text, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Text)
-        </div>
-    </div>
-    <input type="submit" value="Edit" id="form_submit"/>
-}
+<h2>Edit</h2>
 
+<h3>
+    @foreach (var item in Model.Lines)
+    {
+        Html.RenderPartial("EditPV", item);
+    }
+</h3>
+<script src="/Scripts/jquery-1.10.2.js"></script>
+<script>
+    $(document).ready(function () {
+        $('form').submit(function (e) {
+            var id = this.id;
+            var text = $("#" + id + " #Text").val();
+            alert(text);
+
+            $.ajax({
+                type: 'post',
+                url: '/Subtitle/UpdateSubtitleLine',
+                data: { id: id, text: text },
+                success: function () {
+                    Debug.writeln('subtitle updated');
+                }
+            });
+            e.preventDefault();
+        });
+    });
+</script>

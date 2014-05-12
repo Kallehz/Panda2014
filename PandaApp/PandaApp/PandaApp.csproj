@@ -267,6 +267,7 @@
     <Content Include="Views\Account\MyRequests.cshtml" />
     <Content Include="Views\Account\UserTranslations.cshtml" />
     <Content Include="Views\Subtitle\Details.cshtml" />
+    <Content Include="Views\Subtitle\EditPV.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
