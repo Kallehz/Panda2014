@@ -43,7 +43,7 @@
                     <tr>
                         <td>
                             <!-- So the title links to its media profile -->
-                            @Html.ActionLink(sub.Title, "MediaProfile", "Media", new { id = sub.MediaID }, null)
+                            @Html.ActionLink(sub.Title, "Details", "Subtitle", new { id = sub.ID }, null)
                         </td>
                         <td>
                             @sub.Language

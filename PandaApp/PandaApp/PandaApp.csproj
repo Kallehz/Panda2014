@@ -265,7 +265,7 @@
     <Content Include="Views\Account\ViewUser.cshtml" />
     <Content Include="Views\Account\MyRequests.cshtml" />
     <Content Include="Views\Account\UserTranslations.cshtml" />
-    <Content Include="Views\Request\Upvote.cshtml" />
+    <Content Include="Views\Subtitle\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
