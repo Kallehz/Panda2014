@@ -1,5 +1,6 @@
 ﻿using PandaApp.Models;
 using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -54,6 +55,12 @@ namespace PandaApp.Controllers
                 return View(r);
             }
             return View("NotFound");
+        }
+
+        [HttpPost]
+        public void Upvote(string s)
+        {
+            
         }
 	}
 }
