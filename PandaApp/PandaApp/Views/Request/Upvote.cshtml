@@ -8,7 +8,7 @@
 
 <div>
     <h4>Request</h4>
-	<hr />
+    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Title)
@@ -36,13 +36,13 @@
         @* Hides video link if its empty *@
         @if (Model.ExternalVideoLink != null)
         {
-        <dt>
-            @Html.DisplayNameFor(model => model.ExternalVideoLink)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ExternalVideoLink)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ExternalVideoLink)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ExternalVideoLink)
+            </dd>
         }
         <dt>
             @Html.DisplayNameFor(model => model.Upvotes)
@@ -65,7 +65,7 @@
 <div class="row text-center">
     @using (Html.BeginForm("Upvote", "Request"))
     {
-        <input type="text" name="s" value="@Convert.ToString(Model.ID)" style="display:none"/>
+        <input type="text" name="s" value="@Convert.ToString(Model.ID)" style="display:none" />
         <input type="submit" class="btn btn" value="Upvote">
     }
 </div>

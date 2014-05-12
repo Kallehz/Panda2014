@@ -58,9 +58,15 @@ namespace PandaApp.Controllers
         }
 
         [HttpPost]
-        public void Upvote(string s)
+        public ActionResult Upvote(string s)
         {
-            
+            int id = Convert.ToInt32(s);
+            PandaBase panda = new PandaBase();
+            Request req = panda.Requests.Single(r => r.ID == id);
+            req.Upvotes++;
+            panda.SaveChanges();
+            Request re = db.GetRequestById(id);
+            return View(re);
         }
 	}
 }
