@@ -116,5 +116,38 @@ namespace PandaApp.Models
                           select user).SingleOrDefault();
             return result;
         }
+
+        public Account GetUserById(int id)
+        {
+            var result = (from user in db.Accounts
+                          where user.ID == id
+                          select user).First();
+            return result;
+        }
+
+        public bool GetReqUpBool(int rId, int uId)
+        {
+            int req = 0, acc = 0;
+            try
+            {
+                req = (from r in db.Upvoters
+                           where r.RequestID == rId
+                           select r.RequestID).First();
+                acc = (from a in db.Upvoters
+                           where a.UserID == uId
+                           select a.UserID).First();
+            }
+            catch(Exception e)
+            { }
+            
+            if(GetRequestById(req) == null || GetUserById(acc) == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
