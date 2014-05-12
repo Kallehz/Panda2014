@@ -17,6 +17,7 @@ namespace PandaApp.Models
         public DbSet<History> Histories { get; set; }
         public DbSet<Media> Medias { get; set; }
         public DbSet<Language> Languages { get; set; }
+        public DbSet<Upvoter> Upvoters { get; set; }
 
         /*
          * protected override void OnModelCreating(DbModelBuilder modelBuilder)
