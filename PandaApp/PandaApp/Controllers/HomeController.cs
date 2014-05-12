@@ -87,7 +87,10 @@ namespace PandaApp.Controllers
 
                 if ( coutner == 1)
                 {
-                    //do nothing
+                    srtLine.Index = 0;
+                    srtLine.TimeFrom = null;
+                    srtLine.TimeTo = null;
+                    srtLine.Text = null;
                 }
 
                 if (coutner == 2)
@@ -109,13 +112,22 @@ namespace PandaApp.Controllers
                 {
                     srtLine.Text = result;
                     coutner = 0;
+
                 }
 
                 coutner++;
-                // srtLine.SubtitleID = Convert.ToInt32(result);
-                //srtLine.Text = result;
-                db.AddSubtitleLine(srtLine);
-                db.Save();
+
+                // checks to see if all columns in srtLine has been populated.
+                if (srtLine.Index != 0
+                    && srtLine.TimeFrom != null
+                    && srtLine.TimeTo != null
+                    && srtLine.Text != null)
+                {
+                    // srtLine.SubtitleID = Convert.ToInt32(result);
+                    //srtLine.Text = result;
+                    db.AddSubtitleLine(srtLine);
+                    db.Save();
+                }
             }
 
             if (ModelState.IsValid)
