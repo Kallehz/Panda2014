@@ -114,7 +114,7 @@ namespace PandaApp.Controllers
                 coutner++;
                 // srtLine.SubtitleID = Convert.ToInt32(result);
                 //srtLine.Text = result;
-                db.UpdateSubtitleLine(srtLine);
+                db.AddSubtitleLine(srtLine);
                 db.Save();
             }
 
