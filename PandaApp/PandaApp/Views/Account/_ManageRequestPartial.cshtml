@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PandaApp.Models.Request>
+﻿@model List<PandaApp.Models.Request>
 
 <h2>My requests</h2>
 <div>
@@ -8,7 +8,6 @@
                 <th>#</th>
                 <th>Name</th>
                 <th>Language</th>
-                <th>Author</th>
                 <th>Upvotes</th>
             </tr>
         </thead>
@@ -20,6 +19,10 @@
                     <tr>
                         <td>
                             @*MEDIA ID*@
+                            @prof.ID
+                        </td>
+                        <td>
+                            @*Title*@
                             @prof.Title
                         </td>
                         <td>
