@@ -447,7 +447,7 @@ namespace PandaApp.Controllers
             var userTranslations = (from item in db.GetAllSubtitles()
                                     where item.Author == username
                                     orderby item.DateCreated descending
-                                    select item).Take(15);
+                                    select item);
 
             return PartialView(userTranslations);
         }
