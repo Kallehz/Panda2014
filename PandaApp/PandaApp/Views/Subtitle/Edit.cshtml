@@ -10,21 +10,4 @@
         Html.RenderPartial("EditPV", item);
     }
 </h3>
-<script src="/Scripts/jquery-1.10.2.js"></script>
-<script>
-    $(document).ready(function () {
-        $('form').submit(function (e) {
-            var id = this.id;
-            var text = $("#" + id + " #Text").val();
-            $.ajax({
-                type: 'post',
-                url: '/Subtitle/UpdateSubtitleLine',
-                data: { id: id, text: text },
-                success: function () {
-                    Debug.writeln('subtitle updated');
-                }
-            });
-            e.preventDefault();
-        });
-    });
-</script>
+<script src="~/Scripts/Pandascripts.js"></script>
