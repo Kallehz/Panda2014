@@ -1,6 +1,6 @@
 ﻿@using PandaApp.Models;
 @using Microsoft.AspNet.Identity;
-@model IEnumerable<PandaApp.Models.Request>
+@model List<PandaApp.Models.Request>
 
 @{
     ViewBag.Title = "Manage Account";
@@ -23,8 +23,7 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Crashes if This is removed-->
-            @if(Model != null)
+            @if (Model != null)
             {
                 foreach (var prof in Model)
                 {
@@ -38,17 +37,16 @@
                             @prof.Language
                         </td>
                         <td>
-                            @*AUTHOR OF REQUEST*@
-                            @prof.Author
-                        </td>
-                        <td>
                             @*Upvotes*@
                             @prof.Upvotes
                         </td>
                     </tr>
                 }
-            }
+            }        
         </tbody>
+
+
+
     </table>
 </div>
 
