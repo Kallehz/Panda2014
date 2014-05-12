@@ -7,6 +7,7 @@ namespace PandaApp.Models
 {
     public class Upvoter
     {
+        public int ID { get; set; }
         public int RequestID { get; set; }
         public int UserID { get; set; }
     }
