@@ -81,7 +81,36 @@ namespace PandaApp.Controllers
             int coutner = 1;
             foreach (string result in Regex.Split(srtString, pattern))
             {
-                Debug.WriteLine("Number: ", coutner, result);
+               // Debug.WriteLine("Number: ");
+               // Debug.WriteLine(coutner);
+               // Debug.WriteLine(result);
+
+                if ( coutner == 1)
+                {
+                    //do nothing
+                }
+
+                if (coutner == 2)
+                {
+                    srtLine.Index = Convert.ToInt32(result);
+                }
+
+                if (coutner == 3)
+                {
+                    srtLine.TimeFrom = result;
+                }
+
+                if (coutner == 4)
+                {
+                    srtLine.TimeTo = result;
+                }
+
+                if (coutner == 5)
+                {
+                    srtLine.Text = result;
+                    coutner = 0;
+                }
+
                 coutner++;
                 // srtLine.SubtitleID = Convert.ToInt32(result);
                 //srtLine.Text = result;
