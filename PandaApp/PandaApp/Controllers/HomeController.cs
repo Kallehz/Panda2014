@@ -66,11 +66,9 @@ namespace PandaApp.Controllers
             {
                 Debug.Write("Please select a file to upload.");
             }
-            //TODO send file to database table!
 
             //Turn file to string
             string srtString = new StreamReader(file.InputStream).ReadToEnd();
-           // Debug.Write(srtString);
 
             //regex for srt files from http://www.codeproject.com/Articles/32834/Subtitle-Synchronization-with-C
             string pattern =
@@ -107,7 +105,7 @@ namespace PandaApp.Controllers
                     {
                         srtLine.TimeTo = result;
                     }
-                //fifth is the actual onscreen test
+                //fifth is the actual onscreen text
                 if (counter == 5)
                     {
                         srtLine.Text = result;
