@@ -38,13 +38,20 @@
                 {
                     <tr>
                         <td>
-                            @sub.Title
+                            @Html.ActionLink(sub.Title, "MediaProfile", "Media", new { id = sub.MediaID }, null)
                         </td>
                         <td>
                             @sub.Language
                         </td>
                         <td>
-                            @sub.Author
+                            @if (@sub.Author == "Guest")
+                            {
+                                @sub.Author
+                            }
+                            else
+                            {
+                                @Html.ActionLink(sub.Author, "ViewUser", "Account", new { username = sub.Author }, null)
+                            }
                         </td>
                         <td>
                             @sub.DateCreated.ToShortDateString()
@@ -72,13 +79,20 @@
                 {
                     <tr>
                         <td>
-                            @req.Title
+                            @Html.ActionLink(req.Title, "Details", "Request", new { id = req.ID }, null)
                         </td>
                         <td>
                             @req.Language
                         </td>
                         <td>
-                            @req.Author
+                            @if (@req.Author == "Guest")
+                            {
+                                @req.Author
+                            }
+                            else
+                            {
+                                @Html.ActionLink(req.Author, "ViewUser", "Account", new { username = req.Author }, null)
+                            }
                         </td>
                         <td>
                             @req.DateCreated.ToShortDateString()
