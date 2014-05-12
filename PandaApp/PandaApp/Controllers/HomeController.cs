@@ -78,15 +78,53 @@ namespace PandaApp.Controllers
               @"(?<end>\d{2}\:\d{2}\:\d{2},\d{3})\r\n(?<text>[\s\S]*?\r\n\r\n)";
 
             //parse string and send to database
-            int coutner = 1;
+
+            int counter = 1;
             foreach (string result in Regex.Split(srtString, pattern))
             {
-                Debug.WriteLine("Number: ", coutner, result);
-                coutner++;
-                // srtLine.SubtitleID = Convert.ToInt32(result);
-                //srtLine.Text = result;
-                db.UpdateSubtitleLine(srtLine);
-                db.Save();
+                //first instance in the str format is always empty
+                if ( counter == 1)
+                    {
+                        srtLine.Index = 0;
+                        srtLine.TimeFrom = null;
+                        srtLine.TimeTo = null;
+                        srtLine.Text = null;
+                    }
+
+                //second instance is "subtitle number this"
+                if (counter == 2)
+                    {
+                        srtLine.Index = Convert.ToInt32(result);
+                    }
+
+                //tird instance is TC in
+                if (counter == 3)
+                    {
+                        srtLine.TimeFrom = result;
+                    }
+                //fourth is TC out
+                if (counter == 4)
+                    {
+                        srtLine.TimeTo = result;
+                    }
+                //fifth is the actual onscreen test
+                if (counter == 5)
+                    {
+                        srtLine.Text = result;
+                        counter = 0;
+                    }
+
+                counter++;
+
+                // checks to see if all columns in srtLine have been populated before adding a line to the database.
+                if (srtLine.Index != 0
+                    && srtLine.TimeFrom != null
+                    && srtLine.TimeTo != null
+                    && srtLine.Text != null)
+                        {
+                            db.AddSubtitleLine(srtLine);
+                            db.Save();
+                        }
             }
 
             if (ModelState.IsValid)

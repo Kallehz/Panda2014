@@ -17,6 +17,7 @@ namespace PandaApp.Controllers
     {
         PandaRepo db = new PandaRepo();
 
+        #region AccountActions
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
         {
@@ -334,7 +335,7 @@ namespace PandaApp.Controllers
             }
             base.Dispose(disposing);
         }
-
+        #endregion
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
@@ -430,15 +431,25 @@ namespace PandaApp.Controllers
             return View(user);
         }
 
-        [HttpGet]
-        public ActionResult MyRequest()
+        public ActionResult MyRequests()
         {
 
-            List<Request> UserProfile = ((from item in db.GetAllRequests()
-                                               where item.Author == User.Identity.Name
-                                               orderby item.DateCreated descending
-                                               select item).Take(10)).ToList();
-            return View(UserProfile);
+            var userRequests = (from item in db.GetAllRequests()
+                                where item.Author == User.Identity.Name
+                                orderby item.DateCreated descending
+                                select item).Take(15);
+
+            return PartialView(userRequests);
+        }
+
+        public ActionResult UserTranslations(string username)
+        {
+            var userTranslations = (from item in db.GetAllSubtitles()
+                                    where item.Author == username
+                                    orderby item.DateCreated descending
+                                    select item);
+
+            return PartialView(userTranslations);
         }
     }
 }

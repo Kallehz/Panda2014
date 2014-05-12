@@ -1,0 +1,34 @@
+﻿@model IEnumerable<PandaApp.Models.Request>
+
+<h2>My requests</h2>
+<div>
+    <table class="table-striped" width="400">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Language</th>
+                <th>Date Created</th>
+                <th>Upvotes</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var prof in Model)
+            {
+                <tr>
+                    <td>
+                        @prof.Title
+                    </td>
+                    <td>
+                        @prof.Language
+                    </td>
+                    <td>
+                        @prof.DateCreated
+                    </td>
+                    <td>
+                        @prof.Upvotes
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
