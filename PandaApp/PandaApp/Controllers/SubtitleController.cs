@@ -65,6 +65,16 @@ namespace PandaApp.Controllers
 
             return View(SandR);
         }
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            Subtitle r = db.GetSubtitleById(id);
+            if (r != null)
+            {
+                return View(r);
+            }
+            return View("NotFound");
+        }
 	}
 
 }
