@@ -1,5 +1,4 @@
-﻿@model PandaApp.Models.Request
-
+﻿@model PandaApp.Models.ReqUp
 @{
     ViewBag.Title = "Details";
 }
@@ -11,64 +10,67 @@
 	<hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.request.Title)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Title)
+            @Html.DisplayFor(model => model.request.Title)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Author)
+            @Html.DisplayNameFor(model => model.request.Author)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Author)
+            @Html.DisplayFor(model => model.request.Author)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Language)
+            @Html.DisplayNameFor(model => model.request.Language)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Language)
+            @Html.DisplayFor(model => model.request.Language)
         </dd>
         @* Hides video link if its empty *@
-        @if (Model.ExternalVideoLink != null)
+        @if (Model.request.ExternalVideoLink != null)
         {
         <dt>
-            @Html.DisplayNameFor(model => model.ExternalVideoLink)
+            @Html.DisplayNameFor(model => model.request.ExternalVideoLink)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ExternalVideoLink)
+            @Html.DisplayFor(model => model.request.ExternalVideoLink)
         </dd>
         }
         <dt>
-            @Html.DisplayNameFor(model => model.Upvotes)
+            @Html.DisplayNameFor(model => model.request.Upvotes)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Upvotes)
+            @Html.DisplayFor(model => model.request.Upvotes)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DateCreated)
+            @Html.DisplayNameFor(model => model.request.DateCreated)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DateCreated)
+            @Html.DisplayFor(model => model.request.DateCreated)
         </dd>
 
     </dl>
 </div>
-<div class="row text-center">
-    @using (Html.BeginForm("Upvote", "Request"))
-    {
-        <input type="text" name="s" value="@Convert.ToString(Model.ID)" style="display:none"/>
-        <input type="submit" class="btn btn" value="Upvote">
-    }
-</div>
+@if (Model.upvoted)
+{
+    <div class="row text-center">
+        @using (Html.BeginForm("Upvote", "Request"))
+        {
+            <input type="text" name="s" value="@Convert.ToString(Model.request.ID)" style="display:none" />
+            <input type="submit" class="btn btn" value="Upvote">
+        }
+    </div>
+}
 <!-- TODO! download action ! find pretty way to get rid of breakline -->
 <br />
 <div class="row text-center">
