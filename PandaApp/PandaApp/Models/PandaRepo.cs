@@ -27,6 +27,14 @@ namespace PandaApp.Models
 
             return result;
         }
+       public  static IEnumerable<SubtitleLine> GetLines(int subtitleID)
+       {
+           PandaBase db = new PandaBase();
+           return  (from item in db.SubtitleLines
+                               where item.SubtitleID == subtitleID
+                               orderby item.Index ascending
+                               select item);
+       }
         //TODO: Language and title linq requests
         /*public EditViewModel GetEditViewModel(int subtitleID)
         {
