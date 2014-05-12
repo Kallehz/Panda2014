@@ -4,4 +4,25 @@
 }
 <h2>Edit</h2>
     
-
+    <h3>
+        @foreach(var item in Model.Lines)
+        {
+            Html.RenderPartial("EditPV", item);
+        }
+    </h3>
+<script src="/Scripts/jquery-1.10.2.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#form_submit').click(function (e) {
+            $.ajax({
+                type: 'post',
+                url: 'Subtitle/UpdateSubtitleLine',
+                data: "test",
+                success: function () {
+                    alert('subtitle updated');
+                }
+            });
+            e.preventDefault();
+        });
+    });
+</script>
