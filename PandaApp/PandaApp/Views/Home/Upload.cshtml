@@ -24,25 +24,31 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Language, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Language, new { @class = "form-control" })
+                <select class="form-control" id="select" name="language">
+                    <option value="Icelandic">Icelandic</option>
+                    <option value="English">English</option>
+                    <option value="Danish">Danish</option>
+                    <option value="Spanish">Spanish</option>
+                    <option value="Swedish">Swedish</option>
+                    <option value="Klingon">Klingon</option>
+                    <option value="Hungarian">Hungarian</option>
+                </select>
                 @Html.ValidationMessageFor(model => model.Language)
             </div>
         </div>
 
-        <!-- New upload field starts -->
-        <!-- TODO send file somewhere! -->
-        <!-- TODO: Have this form required -->
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <form id="Form1" method="post" enctype="multipart/form-data" runat="server" >
-                    <input type=file id=file name=file />
+                <form id="Form1" method="post" enctype="multipart/form-data"  >
+                    <input type=file id=file name=file required />
                     <br>
 
                     <input type="submit" id="Submit1" value="Upload" class="btn btn-default" />
                 </form>
                 </div>
             </div>
-        <!-- new upload field ends-->
+        
 
     </div>
 }
