@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,9 +13,22 @@ namespace PandaApp.Controllers
     {
         PandaRepo db = new PandaRepo();
 
-        public ActionResult DisplayEditPage(int subtitleID)
+        public ActionResult Edit(int subtitleID)
         {
             return View(new EditViewModel(subtitleID));
+        }
+        public void UpdateSubtitleLine(string text)
+        {
+            Debug.WriteLine(text);
+            /*
+            Debug.WriteLine("Adding line " + ID + ": " + newText);
+            PandaBase DB = new PandaBase();
+            PandaApp.Models.SubtitleLine newLine = DB.SubtitleLines.Find(ID);
+            DB.SubtitleLines.Remove(newLine);
+            newLine.Text = newText;
+            DB.SubtitleLines.Add(newLine);
+            DB.SaveChanges();
+            */
         }
 
         public ActionResult SearchResult(string title, string language)
