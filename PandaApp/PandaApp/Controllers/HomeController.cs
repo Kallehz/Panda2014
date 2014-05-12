@@ -78,13 +78,15 @@ namespace PandaApp.Controllers
               @"(?<end>\d{2}\:\d{2}\:\d{2},\d{3})\r\n(?<text>[\s\S]*?\r\n\r\n)";
 
             //parse string and send to database
+            int coutner = 1;
             foreach (string result in Regex.Split(srtString, pattern))
             {
-                Debug.WriteLine(result);
-                srtLine.Text = result;
-                db.UpdateSubtitleLine(srtLine); 
+                Debug.WriteLine("Number: ", coutner, result);
+                coutner++;
+                // srtLine.SubtitleID = Convert.ToInt32(result);
+                //srtLine.Text = result;
+                db.UpdateSubtitleLine(srtLine);
                 db.Save();
-                 
             }
 
             if (ModelState.IsValid)
