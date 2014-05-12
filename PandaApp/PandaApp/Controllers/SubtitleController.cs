@@ -19,20 +19,20 @@ namespace PandaApp.Controllers
         }
         public void UpdateSubtitleLine(int id, string text)
         {
+            /*
             PandaBase DB = new PandaBase();
             PandaApp.Models.SubtitleLine newLine = DB.SubtitleLines.Find(id);
             DB.SubtitleLines.Remove(newLine);
-            PandaApp.Models.SubtitleLine test = DB.SubtitleLines.Find(id);
-
-            newLine.Text = text;
-            Debug.WriteLine("Line info: \n" + "ID: " + newLine.ID
-                            + "\nsubtitleID: " + newLine.SubtitleID
-                            + "\nIndex: " + newLine.Index
-                            + "\nText: " + newLine.Text
-                            + "\nTime from: " + newLine.TimeFrom
-                            + "\nTime to: " + newLine.TimeTo);
-            DB.SubtitleLines.Add(newLine);
             DB.SaveChanges();
+            PandaApp.Models.SubtitleLine test = DB.SubtitleLines.Find(id);
+            */
+            using(var context = new PandaBase())
+            {
+                SubtitleLine line = context.SubtitleLines.Where(l => l.ID == id).FirstOrDefault<SubtitleLine>();
+                line.Text = text;
+                context.Entry(line).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();  
+            }
         }
 
         public ActionResult SearchResult(string title, string language)

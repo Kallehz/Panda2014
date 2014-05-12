@@ -16,8 +16,6 @@
         $('form').submit(function (e) {
             var id = this.id;
             var text = $("#" + id + " #Text").val();
-            alert(text);
-
             $.ajax({
                 type: 'post',
                 url: '/Subtitle/UpdateSubtitleLine',
