@@ -1,32 +1,15 @@
-﻿@model PandaApp.Models.EditViewModel
+﻿@model PandaApp.Models.SubtitleLine
+
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "EditPV";
 }
-<h2>Edit</h2>
-
-<h3>
-    @foreach (var item in Model.Lines)
-    {
-        Html.RenderPartial("EditPV", item);
-    }
-</h3>
-<script src="/Scripts/jquery-1.10.2.js"></script>
-<script>
-    $(document).ready(function () {
-        $('form').submit(function (e) {
-            var id = this.id;
-            var text = $("#" + id + " #Text").val();
-            alert(text);
-
-            $.ajax({
-                type: 'post',
-                url: '/Subtitle/UpdateSubtitleLine',
-                data: { id: id, text: text },
-                success: function () {
-                    Debug.writeln('subtitle updated');
-                }
-            });
-            e.preventDefault();
-        });
-    });
-</script>
+@using (Html.BeginForm("UpdateSubtitleLine", "Subtitle", FormMethod.Post, new { @class = "form-horizontal", @id = Model.ID, role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.LabelFor(m => m.Text, new { @id = "text" })
+    <input type="hidden" id="ID" name="ID" value="@Model.ID" />
+    @Html.TextBoxFor(m => m.Text)
+    @Html.ValidationMessageFor(m => m.Text)
+    <input type="submit" value="Edit" id="form_submit" />
+}
