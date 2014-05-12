@@ -40,7 +40,7 @@ namespace PandaApp.Controllers
                 }
                 db.AddRequest(item);
                 db.Save();
-                return RedirectToAction("Requests");
+                return RedirectToAction("Index");
             }
             return View();
         }

@@ -1,0 +1,42 @@
+﻿@model List<PandaApp.Models.Request>
+
+<h2>My requests</h2>
+<div>
+    <table class="table-striped" width="450">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Language</th>
+                <th>Upvotes</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var prof in Model)
+                {
+                    <tr>
+                        <td>
+                            @*MEDIA ID*@
+                            @prof.ID
+                        </td>
+                        <td>
+                            @*Title*@
+                            @prof.Title
+                        </td>
+                        <td>
+                            @*REQUEST LANGUAGE ID*@
+                            @prof.Language
+                        </td>
+                        <td>
+                            @*Upvotes*@
+                            @prof.Upvotes
+                        </td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div>

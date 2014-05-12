@@ -15,6 +15,8 @@ namespace PandaApp.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        PandaRepo db = new PandaRepo();
+
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
         {
@@ -426,6 +428,17 @@ namespace PandaApp.Controllers
             Account user = db.GetUserByName(username);
 
             return View(user);
+        }
+
+        [HttpGet]
+        public ActionResult MyRequest()
+        {
+
+            List<Request> UserProfile = ((from item in db.GetAllRequests()
+                                               where item.Author == User.Identity.Name
+                                               orderby item.DateCreated descending
+                                               select item).Take(10)).ToList();
+            return View(UserProfile);
         }
     }
 }

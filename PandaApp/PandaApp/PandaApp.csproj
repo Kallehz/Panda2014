@@ -263,6 +263,7 @@
     <Content Include="Views\Media\NotFound.cshtml" />
     <Content Include="Views\Subtitle\NotFound.cshtml" />
     <Content Include="Views\Account\ViewUser.cshtml" />
+    <Content Include="Views\Account\_ManageRequestPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

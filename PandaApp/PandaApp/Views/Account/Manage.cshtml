@@ -1,6 +1,6 @@
 ﻿@using PandaApp.Models;
 @using Microsoft.AspNet.Identity;
-@model IEnumerable<PandaApp.Models.Request>
+@model List<PandaApp.Models.Request>
 
 @{
     ViewBag.Title = "Manage Account";
@@ -10,49 +10,10 @@
 
 <p>You're logged in as <strong>@User.Identity.GetUserName()</strong>.</p>
 
-<h2>My requests</h2>
-<div>
-    <table class="table-striped" width="450">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Language</th>
-                <th>Author</th>
-                <th>Upvotes</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Crashes if This is removed-->
-            @if(Model != null)
-            {
-                foreach (var prof in Model)
-                {
-                    <tr>
-                        <td>
-                            @*MEDIA ID*@
-                            @prof.Title
-                        </td>
-                        <td>
-                            @*REQUEST LANGUAGE ID*@
-                            @prof.Language
-                        </td>
-                        <td>
-                            @*AUTHOR OF REQUEST*@
-                            @prof.Author
-                        </td>
-                        <td>
-                            @*Upvotes*@
-                            @prof.Upvotes
-                        </td>
-                    </tr>
-                }
-            }
-        </tbody>
-    </table>
-</div>
-
 <div class="row">
+    <div class="col-md-6">
+        @Html.Partial("_ManageRequestPartial")
+    </div>
     <div class="col-md-6">
         @if (ViewBag.HasLocalPassword)
         {
@@ -62,9 +23,10 @@
         {
             @Html.Partial("_SetPasswordPartial")
         }
+        <p class="text-success">@ViewBag.StatusMessage</p>
     </div>
 </div>
-<p class="text-success">@ViewBag.StatusMessage</p>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
