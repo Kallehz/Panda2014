@@ -143,7 +143,7 @@ namespace PandaApp.Models
         {
             var result = (from user in db.Accounts
                           where user.ID == id
-                          select user).First();
+                          select user).FirstOrDefault();
             return result;
         }
 
