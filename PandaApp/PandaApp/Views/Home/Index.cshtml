@@ -97,8 +97,11 @@
                         <td>
                             @using (Html.BeginForm("Upvote", "Request"))
                             {
-                                <input type="text" name="s" value="@Convert.ToString(req.ID)" style="display:none" />
-                                <input type="submit" class="btn btn" value="+">
+                                if(req.UpvotedByUser)
+                                {
+                                    <input type="text" name="s" value="@Convert.ToString(req.ID)" style="display:none" />
+                                    <input type="submit" class="btn btn" value="+">
+                                }
                             }
                         </td>
                     </tr>
