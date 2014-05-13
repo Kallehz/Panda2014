@@ -69,6 +69,17 @@ namespace PandaApp.Controllers
 
             return View(SandR);
         }
+        [HttpPost]
+        public ActionResult Details()
+        {
+            if (ModelState.IsValid)
+            {
+                
+                db.Save();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
         [HttpGet]
         public ActionResult Details(int id)
         {
