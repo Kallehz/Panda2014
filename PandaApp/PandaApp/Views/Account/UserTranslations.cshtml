@@ -1,6 +1,12 @@
 ﻿@model IEnumerable<PandaApp.Models.Subtitle>
 
-<table class="table">
+@if (!Model.Any())
+{
+    <p>This user has not uploaded any subtitles.</p>
+}
+else
+{
+    <table class="table">
     <thead>
         <tr>
             <th>
@@ -30,7 +36,6 @@
         </tr>
     }
     </tbody>
-
-
-
 </table>
+
+}

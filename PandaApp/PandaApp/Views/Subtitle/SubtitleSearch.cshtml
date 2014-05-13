@@ -4,9 +4,16 @@
     ViewBag.Title = "Subtitle Search";
 }
 
-<h2>Subtitle Search</h2>
+<h3>Subtitle Search</h3>
+<hr />
 
-<table class="table">
+@if (!Model.Any())
+{
+    <p>No subtitles were found.</p>
+}
+else
+{
+    <table class="table">
     <thead>
         <tr>
             <th>
@@ -50,3 +57,4 @@
         }
     </tbody>
 </table>
+}

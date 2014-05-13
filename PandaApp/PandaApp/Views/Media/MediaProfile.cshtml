@@ -1,10 +1,11 @@
 ﻿@model PandaApp.Models.MediaAndSubtitles
 
 @{
-    ViewBag.Title = "MediaProfile";
+    ViewBag.Title = @Model.m.Title;
 }
 
-<h2>@Model.m.Title</h2>
+<h3>Subtitles for @Model.m.Title</h3>
+<hr />
 
 <table class="table">
     <thead>
