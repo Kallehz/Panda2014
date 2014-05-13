@@ -15,11 +15,12 @@
                 url: '/Subtitle/UpdateSubtitleLine',
                 data: { id: id, text: text, timeStart: timeStart, timeStop: timeStop },
                 success: function () {
-                    $("#edit_msg").css({ display: "none" });
-                    $("#edit_msg").html("Your changes have been saved");
-                    $("#edit_msg").fadeIn(600);
-                    $("#edit_msg").css({ display: "inline-table", color: "lightgreen" });
-                    $("#edit_msg").fadeOut(2000);
+                    alert(("input[value=\"" + id + "\"]"));
+                    $("input[value=\"" + id + "\"] ~ div[id=\"submit_div\"] #edit_msg").css({ display: "none" });
+                    $("input[value=\"" + id + "\"] ~ div[id=\"submit_div\"] #edit_msg").html("Your changes have been saved");
+                    $("input[value=\"" + id + "\"] ~ div[id=\"submit_div\"] #edit_msg").fadeIn(600);
+                    $("input[value=\"" + id + "\"] ~ div[id=\"submit_div\"] #edit_msg").css({ display: "inline-table", color: "lightgreen" });
+                    $("input[value=\"" + id + "\"] ~ div[id=\"submit_div\"] #edit_msg").fadeOut(2000);
                 }
             });
         }
