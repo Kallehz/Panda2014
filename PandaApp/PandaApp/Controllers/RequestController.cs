@@ -15,8 +15,8 @@ namespace PandaApp.Controllers
         public ActionResult Index()
         {
             IEnumerable<Request> requests = (from item in db.GetAllRequests()
-                                            orderby item.Upvotes descending
-                                            select item).Take(15);
+                                             orderby item.Upvotes descending
+                                             select item).Take(15);
             if (db.GetUserByName(User.Identity.Name) != null)
             {
                 foreach (Request req in requests)
@@ -41,6 +41,31 @@ namespace PandaApp.Controllers
 
             ViewBag.Languages = db.GetLanguageListItems();
             return View(requests);
+        }        
+
+        public ActionResult RequestSearch(string title, string language)
+        {
+            IEnumerable<Request> req;
+
+            if (language == "" || language == null)
+            {
+                req = (from item in db.GetAllRequests()
+                       where item.Title.ToLower().Contains(title.ToLower())
+                       orderby item.Upvotes descending
+                       select item).Take(15);
+            }
+            else
+            {
+                req = (from item in db.GetAllRequests()
+                       where (item.Title.ToLower().Contains(title.ToLower()) &&
+                       (item.Language == language))
+                       orderby item.Upvotes descending
+                       select item).Take(15);
+            }
+
+
+            ViewBag.Languages = db.GetLanguageListItems();
+            return View(req);
         }
 
         [HttpGet]

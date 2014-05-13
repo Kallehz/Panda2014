@@ -40,6 +40,26 @@ namespace PandaApp.Models
             return result;
         }
 
+        public IEnumerable<Request> GetRequestsWithSubstring(string str)
+        {
+            var result = (from item in db.Requests
+                          where item.Title.ToLower().Contains(str.ToLower())
+                          orderby item.Upvotes descending
+                          select item).Take(15);
+
+            return result;
+        }
+
+        public IEnumerable<Subtitle> GetSubsWithSubstring(string str)
+        {
+            var result = (from item in db.Subtitles
+                          where item.Title.ToLower().Contains(str.ToLower())
+                          orderby item.DateCreated descending
+                          select item).Take(15);
+
+            return result;
+        }
+
         public Subtitle GetSubtitleById(int id)
         {
             var result = (from s in db.Subtitles
@@ -146,7 +166,7 @@ namespace PandaApp.Models
         public Media GetMediaByName(string title)
         {
             var result = (from m in db.Medias
-                          where m.Title.ToLower().Contains(title.ToLower())
+                          where m.Title.ToLower() == title.ToLower()
                           select m).FirstOrDefault();
 
             return result;

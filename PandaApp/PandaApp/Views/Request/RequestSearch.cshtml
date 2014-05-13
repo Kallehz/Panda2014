@@ -1,0 +1,57 @@
+﻿@model IEnumerable<PandaApp.Models.Request>
+@using System.Linq;
+
+@{
+    ViewBag.Title = "Request Search";
+}
+
+<h2>Request Search</h2>
+
+@if (!Model.Any())
+{
+    <hr />
+    <p>No requests were found.</p>
+}
+else
+{
+    <table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Language</th>
+            <th>Author</th>
+            <th>Date Created</th>
+            <th>Upvotes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var req in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(req.Title, "Details", "Request", new { id = req.ID }, null)
+                </td>
+                <td>
+                    @req.Language
+                </td>
+                <td>
+                    @if (@req.Author == "Guest")
+                    {
+                        @req.Author
+                    }
+                    else
+                    {
+                        @Html.ActionLink(req.Author, "ViewUser", "Account", new { username = req.Author }, null)
+                    }
+                </td>
+                <td>
+                    @req.DateCreated.ToShortDateString()
+                </td>
+                <td>
+                    @req.Upvotes
+                </td>
+            </tr>
+        }
+        </tbody>    
+    </table>
+}
