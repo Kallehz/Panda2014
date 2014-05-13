@@ -100,7 +100,7 @@
                             @req.Upvotes
                         </td>
                         <td>
-                            @using (Html.BeginForm("Upvote", "Request", FormMethod.Post, new { @id = "Upvote" }))
+                            @using (Html.BeginForm("Upvote", "Home", FormMethod.Post, new { @id = "Upvote" }))
                             {
                                 if(req.UpvotedByUser)
                                 {
