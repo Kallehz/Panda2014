@@ -113,6 +113,11 @@ namespace PandaApp.Models
             db.Medias.Add(med);
             db.SaveChanges();
         }
+        public void AddComment(Comment c)
+        {
+            db.Comments.Add(c);
+            db.SaveChanges();
+        }
 
         public void AddSubtitleLine(SubtitleLine sl)
         {
