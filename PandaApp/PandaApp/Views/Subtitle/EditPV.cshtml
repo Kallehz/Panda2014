@@ -7,15 +7,36 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
+    
     <input type="hidden" id="lineID" value="@Model.ID" />   
-    <label for="Text">@Model.Index</label>
-    @Html.TextBoxFor(m => m.Text, new {id = "lineText"})
-    @Html.ValidationMessageFor(m => m.Text)
-    <label for="lineStart">Time start</label>
-    @Html.TextBoxFor(m => m.TimeFrom, new { id = "lineStart", })
-    @Html.ValidationMessageFor(m => m.TimeFrom)
-    <label for="lineStart">Time stop</label>
-    @Html.TextBoxFor(m => m.TimeTo, new { id = "lineStop"})
-    @Html.ValidationMessageFor(m => m.TimeTo)
-    <input type="submit" value="Edit" id="form_submit" />
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.Index, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Text, new { id = "lineText", @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Text)
+        </div>
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.TimeFrom, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.TimeFrom, new { id = "lineStart", @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.TimeFrom)
+        </div>
+    </div>
+    
+        <div class="form-group">
+        @Html.LabelFor(m => m.TimeTo, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.TimeTo, new { id = "lineStop", @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.TimeTo)
+        </div>
+    </div>
+
+    <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" id="form_submit" class="btn btn-default" />
+            </div>
+        </div>
 }
