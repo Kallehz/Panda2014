@@ -51,7 +51,12 @@
                             {
                                 @Html.ActionLink(sub.Author, "ViewUser", "Account", new { username = sub.Author }, null)
                             }
-                        </td>                   
+                        </td>     
+                        <td>
+                            @Html.ActionLink("Download", "CreateSrt", "SubtitleController", new { id = sub.ID }, null)
+
+
+                        </td>              
                     </tr>
                 }
             </tbody>
@@ -95,7 +100,7 @@
                             @req.Upvotes
                         </td>
                         <td>
-                            @using (Html.BeginForm("Upvote", "Request", FormMethod.Post, new { @id = "Upvote" }))
+                            @using (Html.BeginForm("Upvote", "Home", FormMethod.Post, new { @id = "Upvote" }))
                             {
                                 if(req.UpvotedByUser)
                                 {
@@ -104,6 +109,7 @@
                                 }
                             }
                         </td>
+                        
                     </tr>
                 }
             </tbody>
@@ -112,3 +118,5 @@
     <!--div to the right ends-->
 </div>
 <script src="~/Scripts/UpvoteScript.js"></script>
+
+<input onclick="CreateSrt(114)" type="submit" value="Download" />
