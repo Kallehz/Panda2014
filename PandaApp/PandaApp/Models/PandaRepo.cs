@@ -170,22 +170,19 @@ namespace PandaApp.Models
 
         public bool GetReqUpBool(int rId, int uId)
         {
-            int req = 0, acc = 0;
+            int item = 0;
             try
             {
-                req = (from r in db.Upvoters
-                           where r.RequestID == rId
-                           select r.RequestID).First();
-                acc = (from a in db.Upvoters
-                           where a.UserID == uId
-                           select a.UserID).First();
+                item = (from r in db.Upvoters
+                        where r.RequestID == rId && r.UserID == uId
+                        select r.ID).First();
             }
             catch(Exception)
             {
 
             }
             
-            if(GetRequestById(req) == null || GetUserById(acc) == null)
+            if(item == 0)
             {
                 return true;
             }
