@@ -45,11 +45,14 @@
                             @item.Upvotes 
                         </td>
                         <td>
-                            @using (Html.BeginForm("Upvote", "Request"))
+                            @using (Html.BeginForm("Upvote2", "Request", FormMethod.Post, new { @id = "Upvote" }))
+                            {
+                                if (item.UpvotedByUser)
                                 {
-                                    <input type="text" name="s" value="@Convert.ToString(item.ID)" style="display:none" ></input>
-                                     <input type="submit" class="btn btn" value="+">
+                                    <input type="text" name="s" value="@Convert.ToString(item.ID)" style="display:none" />
+                                    <input type="submit" class="btn btn" value="+">
                                 }
+                            }
                         </td>
                     </tr>
                 }
