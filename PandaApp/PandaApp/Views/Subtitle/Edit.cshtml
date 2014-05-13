@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Edit";
 }
-<h2>Edit</h2>
+<h2> @Model.Title - @Model.Language </h2>
 
 <h3>
     @foreach (var item in Model.Lines)
@@ -10,4 +10,4 @@
         Html.RenderPartial("EditPV", item);
     }
 </h3>
-<script src="~/Scripts/Pandascripts.js"></script>
+<script src="~/Scripts/EditScript.js"></script>
