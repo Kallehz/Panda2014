@@ -24,7 +24,13 @@ namespace PandaApp.Models
         {
             return db.Languages;
         }
-
+        public static string GetLanguageBySubID(int subtitleID)
+        {
+            PandaBase db = new PandaBase();
+            return (from t in db.Subtitles
+                    where t.ID == subtitleID
+                    select t.Language).FirstOrDefault();
+        }
         public List<SelectListItem> GetLanguageListItems()
         {
             List<SelectListItem> result = new List<SelectListItem>();
@@ -47,6 +53,13 @@ namespace PandaApp.Models
                           select s).SingleOrDefault();
 
             return result;
+        }
+        public static string GetTitleBySubID(int subtitleID)
+        {
+            PandaBase db = new PandaBase();
+            return (from t in db.Subtitles
+                    where t.ID == subtitleID
+                    select t.Title).FirstOrDefault();
         }
        public  static IEnumerable<SubtitleLine> GetLines(int subtitleID)
        {

@@ -18,9 +18,9 @@ namespace PandaApp.Models
         {
             SubtitleID = subtitleID;
             //TODO: title and language
-            Title = "test";
+            Title = PandaRepo.GetTitleBySubID(subtitleID);
 
-            Language = "English";
+            Language = PandaRepo.GetLanguageBySubID(subtitleID);
 
             Lines = PandaRepo.GetLines(subtitleID);
         }

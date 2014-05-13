@@ -54,7 +54,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Comments, new { @class = "control-label col-md2" })
             <div class="col-md-8">
-                @Html.TextAreaFor(model => model.Comments, new { @class = "form-control" })
+                @Html.TextAreaFor(model => model.Comments, new { @class = "form-control", value = "Give your oppinion here ..." })
                 @Html.ValidationMessageFor(model => model.Comments)
             </div>
         </div>
