@@ -24,7 +24,7 @@ namespace PandaApp.Models
         public string ExternalVideoLink { get; set; }
         public int Upvotes { get; set; }
 
-        [Display(Name = "Date Posted")]
+        [Display(Name = "Date Created")]
         public DateTime DateCreated { get; set; }
 
         public bool UpvotedByUser { get; set; }
