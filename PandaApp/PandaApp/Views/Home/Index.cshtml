@@ -95,7 +95,7 @@
                             @req.Upvotes
                         </td>
                         <td>
-                            @using (Html.BeginForm("Upvote", "Request"))
+                            @using (Html.BeginForm("Upvote", "Home"))
                             {
                                 if(req.UpvotedByUser)
                                 {
