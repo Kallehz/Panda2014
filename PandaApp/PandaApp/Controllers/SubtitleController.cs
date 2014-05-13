@@ -21,13 +21,6 @@ namespace PandaApp.Controllers
         }
         public void UpdateSubtitleLine(int id, string text)
         {
-            /*
-            PandaBase DB = new PandaBase();
-            PandaApp.Models.SubtitleLine newLine = DB.SubtitleLines.Find(id);
-            DB.SubtitleLines.Remove(newLine);
-            DB.SaveChanges();
-            PandaApp.Models.SubtitleLine test = DB.SubtitleLines.Find(id);
-            */
             using(var context = new PandaBase())
             {
                 SubtitleLine line = context.SubtitleLines.Where(l => l.ID == id).FirstOrDefault<SubtitleLine>();
@@ -179,6 +172,17 @@ namespace PandaApp.Controllers
             
 
             return View(SandR);
+        }
+        [HttpPost]
+        public ActionResult Details()
+        {
+            if (ModelState.IsValid)
+            {
+                
+                db.Save();
+                return RedirectToAction("Index");
+            }
+            return View();
         }
         [HttpGet]
         public ActionResult Details(int id)

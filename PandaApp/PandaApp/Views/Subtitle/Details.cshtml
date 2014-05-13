@@ -6,6 +6,8 @@
 
 <h2>Details</h2>
 
+<a href="/Subtitle/Edit/?subtitleID=@Model.ID">Edit</a>
+
 <div>
     <h4>Subtitle</h4>
     <hr />
@@ -45,15 +47,43 @@
     </dl>
 </div>
 
-<div>
-    @foreach (var item in Model.Comments)
-    {
-        
-    }
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Comments, new { @class = "control-label col-md2" })
+            <div class="col-md-8">
+                @Html.TextAreaFor(model => model.Comments, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Comments)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Lay down the truth!" class="btn btn-default" />
+            </div>
+        </div>
+    </div>   
+}
 
+<div>
+    <table class="table-striped" width="450">
+        <thead>
+            <tr>
+                <th>Author</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Comments)
+            {
+                @item.Text;
+            }
+        </tbody>
+
+    </table>
 </div>
 
 
 <p>
-    @Html.ActionLink("Back to List", "Index" , "Home")
+    @Html.ActionLink("Back to List", "Index", "Home")
 </p>
