@@ -155,9 +155,9 @@ namespace PandaApp.Controllers
             return View(item);
         }
 
-        public ActionResult SearchResult(string title, string language)
+        public ActionResult SubtitleSearch(string title, string language)
         {
-            SubAndReq SandR = new SubAndReq();
+            IEnumerable<Subtitle> sub;
 
             if (db.GetMediaByName(title) != null)
             {
@@ -165,36 +165,25 @@ namespace PandaApp.Controllers
                 return RedirectToAction("MediaProfile", "Media", new { id = med.ID });
             }
 
-            if (language == "")
+            if (language == "" || language == null)
             {
-                SandR.Subtitles = (from item in db.GetAllSubtitles()
-                                    where item.Title.ToLower().Contains(title.ToLower())
-                                    orderby item.DateCreated descending
-                                    select item).Take(15);
-
-                SandR.Requests = (from item in db.GetAllRequests()
-                                    where item.Title.ToLower().Contains(title.ToLower())
-                                    orderby item.Upvotes descending
-                                    select item).Take(15);
+                sub = (from item in db.GetAllSubtitles()
+                       where item.Title.ToLower().Contains(title.ToLower())
+                       orderby item.DateCreated descending
+                       select item).Take(15);
             }
             else
             {
-                SandR.Subtitles = (from item in db.GetAllSubtitles()
-                                   where (item.Title.ToLower().Contains(title.ToLower()) &&
-                                   (item.Language == language))
-                                   orderby item.DateCreated descending
-                                   select item).Take(15);
-
-                SandR.Requests = (from item in db.GetAllRequests()
-                                  where (item.Title.ToLower().Contains(title.ToLower()) &&
-                                  (item.Language == language))
-                                  orderby item.Upvotes descending
-                                  select item).Take(15);
+                sub = (from item in db.GetAllSubtitles()
+                       where (item.Title.ToLower().Contains(title.ToLower()) &&
+                       (item.Language == language))
+                       orderby item.DateCreated descending
+                       select item).Take(15);
             }
-            
+
 
             ViewBag.Languages = db.GetLanguageListItems();
-            return View(SandR);
+            return View(sub);
         }
         [HttpPost]
         public ActionResult PostComment(int subtitleId, string comment)

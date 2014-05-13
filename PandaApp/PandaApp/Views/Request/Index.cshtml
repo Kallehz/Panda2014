@@ -5,7 +5,7 @@
 
 <!-- Search -->
 <div class="row text-center">
-    @using (Html.BeginForm("SearchResult", "Subtitle"))
+    @using (Html.BeginForm("RequestSearch", "Request"))
     {
         <input type="text" class="form-control" id="input" name="title" size="21" maxlength="120" placeholder="Request search">
         @Html.DropDownList("Language", (IEnumerable<SelectListItem>)ViewBag.Languages, new { @class = "form-control" })
@@ -13,55 +13,52 @@
     }
 </div>
 <!-- search end-->
-
 <h4>View Requests</h4>
 <hr />
-<div class="row">
-    <div class="col-md-7 col-md-offset-2">
-        <table class="table-striped" width="747">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Language</th>
-                    <th>Author</th>
-                    <th>Upvotes</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            <!-- So the title links to its profile -->
-                            @Html.ActionLink(item.Title, "Details", "Request",new { id = item.ID }, null)
-                        </td>
-                        <td>
-                            @item.Language
-                        </td>
-                        <td>
-                            @item.Author
-                        </td>
-                        <td>
-                            @item.Upvotes 
-                        </td>
-                        <td>
-                            @using (Html.BeginForm("Upvote2", "Request", FormMethod.Post, new { @id = "Upvote"}))
-                            {
-                                if(item.UpvotedByUser)
-                                {
-                                    <input type="text" name="s" value="@Convert.ToString(item.ID)" style="display:none" />
-                                    <input type="submit" class="btn btn" value="+">
-                                }
-                            }
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-</div>
-
 
 @Html.ActionLink("Create Request", "Create", null, new { @class = "btn btn-default" })
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Language</th>
+            <th>Author</th>
+            <th>Upvotes</th>
+            <th> </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <!-- So the title links to its profile -->
+                    @Html.ActionLink(item.Title, "Details", "Request",new { id = item.ID }, null)
+                </td>
+                <td>
+                    @item.Language
+                </td>
+                <td>
+                    @item.Author
+                </td>
+                <td>
+                    @item.Upvotes 
+                </td>
+                <td>
+                    @using (Html.BeginForm("Upvote2", "Request", FormMethod.Post, new { @id = "Upvote"}))
+                    {
+                        if(item.UpvotedByUser)
+                        {
+                            <input type="text" name="s" value="@Convert.ToString(item.ID)" style="display:none" />
+                            <input type="submit" class="btn btn" value="+">
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
 <script src="~/Scripts/UpvoteScript.js"></script>
 

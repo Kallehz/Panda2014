@@ -10,10 +10,10 @@
 <p>You're logged in as <strong>@User.Identity.GetUserName()</strong>.</p>
 
 <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-6">
         @{ Html.RenderAction("MyRequests"); }
     </div>
-    <div class="col-md-7">
+    <div class="col-md-6">
         @if (ViewBag.HasLocalPassword)
         {
             @Html.Partial("_ChangePasswordPartial")

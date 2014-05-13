@@ -1,11 +1,11 @@
-﻿@model PandaApp.Models.SubAndReq
+﻿@model IEnumerable<PandaApp.Models.Subtitle>
 @{
     ViewBag.Title = "Home Page";
 }
 
 <!-- Search-->
 <div class="row text-center">
-    @using (Html.BeginForm("SearchResult", "Subtitle"))
+    @using (Html.BeginForm("SubtitleSearch", "Subtitle"))
     {
         <input type="text" class="form-control" id="input" name="title" size="21" maxlength="120" placeholder="Subtitle search">
         @Html.DropDownList("Language", (IEnumerable<SelectListItem>)ViewBag.Languages, new { @class = "form-control" })
@@ -15,119 +15,45 @@
 <!-- search end-->
 
 <hr />
-<div class="row">
-    <!-- div to the left -->
-    <div class="col-md-6">
-        <h3>Recently Added</h3>
-        <table class="table-striped" width="550">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Language</th>
-                    <th>Added</th>
-                    <th>Author</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var sub in Model.Subtitles)
-                {
-                    <tr>
-                        <td>
-                            <!-- So the title links to its media profile -->
-                            @Html.ActionLink(sub.Title, "Details", "Subtitle", new { id = sub.ID }, null)
-                        </td>
-                        <td>
-                            @sub.Language
-                        </td>
-                        <td>
-                            @sub.DateCreated.ToShortDateString()
-                        </td>
-                        <td>
-                            @if (@sub.Author == "Guest")
-                            {
-                                @sub.Author
-                            }
-                            else
-                            {
-                                @Html.ActionLink(sub.Author, "ViewUser", "Account", new { username = sub.Author }, null)
-                            }
-                        </td>     
-                        <td>
-                        <td>
-                            @using (Html.BeginForm("Upvote", "Home", FormMethod.Post, new { @id = "Upvote" }))
-                            {
-                               
-                                    <input type="text" name="s" value="@Convert.ToString(sub.ID)" style="display:none" />
-                                    <input type="submit" class="btn btn" value="download">
-                                
-                            }
-                        </td>
-                   
 
+<h3>Recently Added Subtitles</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Language</th>
+            <th>Added</th>
+            <th>Author</th>
+            <th> </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sub in Model)
+        {
+            <tr>
+                <td>
+                    <!-- So the title links to its media profile -->
+                    @Html.ActionLink(sub.Title, "Details", "Subtitle", new { id = sub.ID }, null)
+                </td>
+                <td>
+                    @sub.Language
+                </td>
+                <td>
+                    @sub.DateCreated.ToShortDateString()
+                </td>
+                <td>
+                    @if (@sub.Author == "Guest")
+                    {
+                        @sub.Author
+                    }
+                    else
+                    {
+                        @Html.ActionLink(sub.Author, "ViewUser", "Account", new { username = sub.Author }, null)
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
-                        </td>              
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-    <!--Div to the left ends-->
-    <!-- div to the right -->
-    <div class="col-md-6">
-        <h3>Most Upvoted Requests</h3>
-        <table class="table-striped" width="450">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Language</th>
-                    <th>Author</th>
-                    <th>Upvotes</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var req in Model.Requests)
-                {
-                    <tr>
-                        <td>
-                            <!-- So the title links to its profile -->
-                            @Html.ActionLink(req.Title, "Details", "Request",new { id = req.ID }, null)
-                        </td>
-                        <td>
-                            @req.Language
-                        </td>
-                        <td>
-                            @if (@req.Author == "Guest")
-                            {
-                                @req.Author
-                            }
-                            else
-                            {
-                                @Html.ActionLink(req.Author, "ViewUser", "Account", new { username = req.Author }, null)
-                            }
-                        </td> 
-                        <td>
-                            @req.Upvotes
-                        </td>
-                        <td>
-                            @using (Html.BeginForm("Upvote", "Home", FormMethod.Post, new { @id = "Upvote" }))
-                            {
-                                if(req.UpvotedByUser)
-                                {
-                                    <input type="text" name="s" value="@Convert.ToString(req.ID)" style="display:none" />
-                                    <input type="submit" class="btn btn" value="+">
-                                }
-                            }
-                        </td>
-                        
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-    <!--div to the right ends-->
-</div>
 <script src="~/Scripts/UpvoteScript.js"></script>
-<!--
-    <input onclick="CreateSrt(114)" type="submit" value="Download" />
--->
-

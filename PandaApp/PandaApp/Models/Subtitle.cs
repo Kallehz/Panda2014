@@ -19,6 +19,8 @@ namespace PandaApp.Models
         public string Title { get; set; }
 
         public int MediaID { get; set; }
+
+        [Display(Name = "Date Posted")]
         public DateTime DateCreated { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }

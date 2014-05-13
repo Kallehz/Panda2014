@@ -1,0 +1,44 @@
+﻿@model IEnumerable<PandaApp.Models.Subtitle>
+
+@{
+    ViewBag.Title = "Subtitle Search";
+}
+
+<h2>Subtitle Search</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Language</th>
+            <th>Author</th>
+            <th>Date Created</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sub in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(sub.Title, "Details", new { id = sub.ID }, null)
+                </td>
+                <td>
+                    @sub.Language
+                </td>
+                <td>
+                    @if (@sub.Author == "Guest")
+                    {
+                        @sub.Author
+                    }
+                    else
+                    {
+                        @Html.ActionLink(sub.Author, "ViewUser", "Account", new { username = sub.Author }, null)
+                    }
+                </td>
+                <td>
+                    @sub.DateCreated
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
