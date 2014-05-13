@@ -45,11 +45,10 @@
     </dl>
 </div>
 
-@Html.ActionLink("Edit", "Edit", new { subtitleId = Model.ID }, new { @class = "btn btn-default" })
 @Html.ActionLink("Download", "Download", new { subtitleId = Model.ID }, new { @class = "btn btn-default" })
+@Html.ActionLink("Edit", "Edit", new { subtitleId = Model.ID }, new { @class = "btn btn-default" })
 
 <hr />
-
 @if (User.Identity.IsAuthenticated)
 {
     using (Html.BeginForm("PostComment", "Subtitle", new { subtitleId = @Model.ID }))
