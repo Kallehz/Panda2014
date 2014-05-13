@@ -50,6 +50,7 @@ namespace PandaApp.Controllers
                 Media m = new Media();
                 m.Title = item.Title;
                 db.AddMedia(m);
+                item.MediaID = m.ID;
             }
 
             if (ModelState.IsValid)

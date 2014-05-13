@@ -64,7 +64,7 @@
 @if (Model.upvoted)
 {
     <div class="row text-center">
-        @using (Html.BeginForm("Upvote", "Request"))
+        @using (Html.BeginForm("Upvote", "Request", FormMethod.Post, new { @id = "Upvote" }))
         {
             <input type="text" name="s" value="@Convert.ToString(Model.request.ID)" style="display:none" />
             <input type="submit" class="btn btn" value="Upvote">
@@ -75,3 +75,4 @@
 <p>
     @Html.ActionLink("Back to List", "Index")
 </p>
+<script src="~/Scripts/UpvoteScript.js"></script>
