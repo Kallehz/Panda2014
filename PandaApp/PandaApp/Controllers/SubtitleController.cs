@@ -187,7 +187,7 @@ namespace PandaApp.Controllers
                 newComment.Author = User.Identity.Name;
                 newComment.SubtitleId = subtitleId;
                 db.AddComment(newComment);
-                return RedirectToAction("Details", "SubTitle", new { id = subtitleId });
+                return RedirectToAction("Details", "Subtitle", new { id = subtitleId });
             }
             return View();
         }
