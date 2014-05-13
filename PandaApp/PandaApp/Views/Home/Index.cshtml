@@ -53,7 +53,16 @@
                             }
                         </td>     
                         <td>
-                            @Html.ActionLink("Download", "CreateSrt", "SubtitleController", new { id = sub.ID }, null)
+                        <td>
+                            @using (Html.BeginForm("Upvote", "Home", FormMethod.Post, new { @id = "Upvote" }))
+                            {
+                               
+                                    <input type="text" name="s" value="@Convert.ToString(sub.ID)" style="display:none" />
+                                    <input type="submit" class="btn btn" value="download">
+                                
+                            }
+                        </td>
+                   
 
 
                         </td>              
