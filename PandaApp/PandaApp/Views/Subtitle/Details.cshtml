@@ -50,11 +50,11 @@
 @using (Html.BeginForm("PostComment", "Subtitle", new { subtitleId = @Model.ID }))
 {
     @Html.AntiForgeryToken()
-    <div class="row" >
+    <div class="row">
         <div>
-            @Html.LabelFor(model => model.Comments, new { @class = "control-label col-md2" })
+            @Html.LabelFor(model => model.Comments, new { @class = "control-label" })
             <div>
-                @Html.TextArea("Comment", new { @class = "form-control" })
+                @Html.TextArea("Comment", new { @class = "form-control", @rows = 4, @cols = 7 })
                 @Html.ValidationMessageFor(model => model.Comments)
             </div>
         </div>
