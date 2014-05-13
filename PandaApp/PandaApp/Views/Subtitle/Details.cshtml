@@ -4,10 +4,9 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h3>Subtitle Details</h3>
 
 <div>
-    <h4>Subtitle</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -23,7 +22,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Author)
+            @Html.ActionLink(Model.Author, "ViewUser", "Account", new { username = Model.Author }, null)
         </dd>
 
         <dt>
@@ -55,7 +54,7 @@
     {
         @Html.AntiForgeryToken()
         <div class="row col-md-offset-2">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 @Html.LabelFor(model => model.Comments, new { @class = "control-label" })
                 <div>
                     @Html.TextArea("Comment", new { @class = "form-control", @rows = 3 })
@@ -71,8 +70,6 @@
         </div>
     }
 }
-
-
 
 @foreach (var item in Model.Comments)
 {

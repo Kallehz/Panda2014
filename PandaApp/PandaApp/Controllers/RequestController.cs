@@ -15,8 +15,9 @@ namespace PandaApp.Controllers
         public ActionResult Index()
         {
             IEnumerable<Request> requests = (from item in db.GetAllRequests()
-                                             orderby item.Upvotes descending
+                                             orderby item.DateCreated descending
                                              select item).Take(15);
+
             if (db.GetUserByName(User.Identity.Name) != null)
             {
                 foreach (Request req in requests)

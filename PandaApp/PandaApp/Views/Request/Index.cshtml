@@ -13,7 +13,7 @@
     }
 </div>
 <!-- search end-->
-<h4>View Requests</h4>
+<h3>View Requests</h3>
 <hr />
 
 @Html.ActionLink("Create Request", "Create", null, new { @class = "btn btn-default" })
@@ -21,11 +21,21 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Language</th>
-            <th>Author</th>
-            <th>Upvotes</th>
-            <th> </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Language)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Upvotes)
+            </th>            
         </tr>
     </thead>
     <tbody>
@@ -40,21 +50,31 @@
                     @item.Language
                 </td>
                 <td>
-                    @item.Author
+                    @if (@item.Author == "Guest")
+                    {
+                        @item.Author
+                    }
+                    else
+                    {
+                        @Html.ActionLink(item.Author, "ViewUser", "Account", new { username = item.Author }, null)
+                    }
+                </td>
+                <td>
+                    @item.DateCreated
                 </td>
                 <td>
                     @item.Upvotes 
                 </td>
-                <td>
-                    @using (Html.BeginForm("Upvote2", "Request", FormMethod.Post, new { @id = "Upvote"}))
-                    {
-                        if(item.UpvotedByUser)
-                        {
-                            <input type="text" name="s" value="@Convert.ToString(item.ID)" style="display:none" />
-                            <input type="submit" class="btn btn" value="+">
-                        }
-                    }
-                </td>
+@*<td>
+@using (Html.BeginForm("Upvote2", "Request", FormMethod.Post, new { @id = "Upvote"}))
+{
+if(item.UpvotedByUser)
+{
+<input type="text" name="s" value="@Convert.ToString(item.ID)" style="display:none" />
+<input type="submit" class="btn btn" value="+">
+}
+}
+</td>*@
             </tr>
         }
     </tbody>

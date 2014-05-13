@@ -17,11 +17,21 @@ else
     <table class="table">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Language</th>
-            <th>Author</th>
-            <th>Date Created</th>
-            <th>Upvotes</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Language)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Upvotes)
+            </th>
         </tr>
     </thead>
     <tbody>
