@@ -190,6 +190,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\Media.cs" />
+    <Compile Include="Models\MediaAndSubtitles.cs" />
     <Compile Include="Models\PandaRepo.cs" />
     <Compile Include="Models\PandaBase.cs" />
     <Compile Include="Models\Request.cs" />

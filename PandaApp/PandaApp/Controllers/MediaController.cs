@@ -18,10 +18,14 @@ namespace PandaApp.Controllers
 
         public ActionResult MediaProfile(int id)
         {
-            Media m = db.GetMediaById(id);
-            if (m != null)
+            MediaAndSubtitles ms = new MediaAndSubtitles();
+
+            ms.m = db.GetMediaById(id);
+            ms.subs = db.GetSubtitlesForMedia(ms.m.ID);
+
+            if (ms.m != null)
             {
-                return View(m);
+                return View(ms);
             }
 
             return View("NotFound");
