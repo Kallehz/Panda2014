@@ -4,7 +4,7 @@
     ViewBag.Title = "MediaProfile";
 }
 
-<h2>MediaProfile</h2>
+<h2>@Model.m.Title</h2>
 
 <table class="table">
     <thead>
@@ -12,6 +12,7 @@
             <th>Title</th>
             <th>Language</th>
             <th>Date Created</th>
+            <th>Author</th>
         </tr>
     </thead>
     <tbody>
@@ -19,13 +20,16 @@
             @foreach (var item in Model.subs)
             {
                 <td>
-                    @item.Title
+                    @Html.ActionLink(item.Title, "Details", "Subtitle", new { id = item.ID }, null)
                 </td>
                 <td>
                     @item.Language
                 </td>
                 <td>
                     @item.DateCreated
+                </td>
+                <td>
+                    @Html.ActionLink(item.Author, "ViewUser", "Account", new { username = item.Author }, null)
                 </td>
             }
         </tr>
