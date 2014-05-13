@@ -51,15 +51,6 @@
                         @Html.ActionLink(sub.Author, "ViewUser", "Account", new { username = sub.Author }, null)
                     }
                 </td>
-                <td>
-                    @using (Html.BeginForm("Upvote", "Home", FormMethod.Post, new { @id = "Upvote" }))
-                    {
-
-                        <input type="text" name="s" value="@Convert.ToString(sub.ID)" style="display:none" />
-                        <input type="submit" class="btn btn" value="Upvote">
-
-                    }
-                </td>
             </tr>
         }
     </tbody>
