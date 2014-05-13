@@ -97,55 +97,37 @@ namespace PandaApp.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Upvote(string s)
+        public ActionResult Upvote(int id, string view)
         {
-            int id = Convert.ToInt32(s);
             PandaBase panda = new PandaBase();
-            Debug.WriteLine("TESTING: " + id);
-            Request req = panda.Requests.Single(re => re.ID == id);
-            req.Upvotes++;
-
-            Upvoter upvoter = new Upvoter() { RequestID = id, UserID = db.GetUserByName(User.Identity.Name).ID };
-            panda.Upvoters.Add(upvoter);
+            ReqUp requp = new ReqUp();
+            requp.request = db.GetRequestById(id);
 
             if(db.GetReqUpBool(id, db.GetUserByName(User.Identity.Name).ID))
             {
+                Request req = panda.Requests.Single(re => re.ID == id);
+                req.Upvotes++;
+
+                Upvoter upvoter = new Upvoter() { RequestID = id, UserID = db.GetUserByName(User.Identity.Name).ID };
+                panda.Upvoters.Add(upvoter);
+
                 panda.SaveChanges();
+
+                requp.upvoted = false;
             }
             
-            ReqUp r = new ReqUp();
-            r.request = db.GetRequestById(id);
-            Account acc = db.GetUserByName(User.Identity.Name);
-
-            r.upvoted = db.GetReqUpBool(id, acc.ID);
-
-            return View(r);
-        }
-
-        [HttpPost]
-        public ActionResult Upvote2(string s)
-        {
-            int id = Convert.ToInt32(s);
-            PandaBase panda = new PandaBase();
-            Debug.WriteLine("TESTING: " + id);
-            Request req = panda.Requests.Single(re => re.ID == id);
-            req.Upvotes++;
-
-            Upvoter upvoter = new Upvoter() { RequestID = id, UserID = db.GetUserByName(User.Identity.Name).ID };
-            panda.Upvoters.Add(upvoter);
-
-            if (db.GetReqUpBool(id, db.GetUserByName(User.Identity.Name).ID))
+            if(view == "Details")
             {
-                panda.SaveChanges();
+                return View("Details", requp);
             }
-
-            ReqUp r = new ReqUp();
-            r.request = db.GetRequestById(id);
-            Account acc = db.GetUserByName(User.Identity.Name);
-
-            r.upvoted = db.GetReqUpBool(id, acc.ID);
-
-            return RedirectToAction("Index");
+            else if(view == "Index")
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 	}
 }
