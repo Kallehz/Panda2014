@@ -45,11 +45,11 @@
                             @item.Upvotes 
                         </td>
                         <td>
-                            @using (Html.BeginForm("Upvote", "Request"))
-                                {
+                            @using (Html.BeginForm("Upvote", "Request", FormMethod.Post, new { @id = "Upvote"}))
+                            {
                                     <input type="text" name="s" value="@Convert.ToString(item.ID)" style="display:none"/>
                                      <input type="submit" class="btn btn" value="+">
-                                }
+                            }
                         </td>
                     </tr>
                 }
@@ -60,6 +60,6 @@
 
 
 @Html.ActionLink("Create Request", "Create", null, new { @class = "btn btn-default" })
-
+<script src="~/Scripts/UpvoteScript.js"></script>
 
 <input type="button" value="Download" onclick="location.href='@Url.Action("DownloadController", "Download")'" />
