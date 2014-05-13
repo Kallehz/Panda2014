@@ -35,14 +35,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MediaID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MediaID)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.DateCreated)
         </dt>
 
@@ -56,12 +48,12 @@
 <div>
     @foreach (var item in Model.Comments)
     {
-
+        
     }
 
 </div>
 
 
 <p>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index" , "Home")
 </p>
