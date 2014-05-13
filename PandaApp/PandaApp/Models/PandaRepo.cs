@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace PandaApp.Models
 {
@@ -9,14 +10,34 @@ namespace PandaApp.Models
     {
         PandaBase db = new PandaBase();
 
-        public IQueryable<Subtitle> GetAllSubtitles()
+        public IEnumerable<Subtitle> GetAllSubtitles()
         {
             return db.Subtitles;
         }
 
-        public IQueryable<Request> GetAllRequests()
+        public IEnumerable<Request> GetAllRequests()
         {
             return db.Requests;
+        }
+
+        public IEnumerable<Language> GetAllLanguages()
+        {
+            return db.Languages;
+        }
+
+        public List<SelectListItem> GetLanguageListItems()
+        {
+            List<SelectListItem> result = new List<SelectListItem>();
+            var allLanguages = GetAllLanguages();
+
+            result.Add(new SelectListItem() { Value = "all", Text = "--- Select ---" });
+
+            foreach (var language in allLanguages)
+            {
+                result.Add(new SelectListItem() { Value = language.LanguageName, Text = language.LanguageName });
+            }
+
+            return result;
         }
 
         public Subtitle GetSubtitleById(int id)

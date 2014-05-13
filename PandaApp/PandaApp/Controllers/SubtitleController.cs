@@ -41,6 +41,8 @@ namespace PandaApp.Controllers
 
             if(language != "all")
             {
+                // This should redirect to the proper mediaID
+                // of the media that was searched for.
                 SandR.Subtitles = (from item in db.GetAllSubtitles()
                                    where (item.Title.Contains(title) &&
                                    (item.Language == language))
@@ -80,5 +82,4 @@ namespace PandaApp.Controllers
             return View("NotFound");
         }
 	}
-
 }
