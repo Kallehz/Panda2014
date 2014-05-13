@@ -71,6 +71,7 @@ namespace PandaApp.Controllers
         {
             int id = Convert.ToInt32(s);
             PandaBase panda = new PandaBase();
+            Debug.WriteLine("TESTING: " + id);
             Request req = panda.Requests.Single(re => re.ID == id);
             req.Upvotes++;
 
