@@ -146,44 +146,50 @@ namespace PandaApp.Controllers
                 // This should redirect to the proper mediaID
                 // of the media that was searched for.
                 SandR.Subtitles = (from item in db.GetAllSubtitles()
-                                   where (item.Title.Contains(title) &&
-                                   (item.Language == language))
+                                   where (item.Title.ToLower().Contains(title.ToLower()) &&
+                                   (item.Language.ToLower() == language.ToLower()))
                                    orderby item.DateCreated descending
                                    select item).Take(15);
 
                 SandR.Requests = (from item in db.GetAllRequests()
-                                  where (item.Title.Contains(title) &&
-                                  (item.Language == language))
+                                  where (item.Title.ToLower().Contains(title.ToLower()) &&
+                                   (item.Language.ToLower() == language.ToLower()))
                                   orderby item.Upvotes descending
                                   select item).Take(15);
             }
             else
             {
                 SandR.Subtitles = (from item in db.GetAllSubtitles()
-                                   where (item.Title.Contains(title))
+                                   where item.Title.ToLower().Contains(title.ToLower())
                                    orderby item.DateCreated descending
                                    select item).Take(15);
 
                 SandR.Requests = (from item in db.GetAllRequests()
-                                  where (item.Title.Contains(title))
+                                  where item.Title.ToLower().Contains(title.ToLower())
                                   orderby item.Upvotes descending
                                   select item).Take(15);
             }
-            
 
+            ViewBag.Languages = db.GetLanguageListItems();
             return View(SandR);
         }
-        [HttpPost]
-        public ActionResult Details()
+
+        [HttpGet]
+        public ActionResult Comments(int subID)
         {
-            if (ModelState.IsValid)
-            {
-                
-                db.Save();
-                return RedirectToAction("Index");
-            }
+            var subtitleComments = db.GetSubtitleComments(subID);
+
+            return PartialView(subtitleComments);
+        }
+
+        [HttpPost]
+        public ActionResult PostComment(Comment c)
+        {
+
+
             return View();
         }
+
         [HttpGet]
         public ActionResult Details(int id)
         {

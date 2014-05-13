@@ -8,16 +8,7 @@
     @using (Html.BeginForm("SearchResult", "Subtitle"))
     {
         <input type="text" class="form-control" id="input" name="title" size="21" maxlength="120" placeholder="Subtitle search">
-        <select class="form-control" id="select" name="language">
-            <option value="all" selected>Language</option>
-            <option value="icelandic">Icelandic</option>
-            <option value="english">English</option>
-            <option value="danish">Danish</option>
-            <option value="spanish">Spanish</option>
-            <option value="swedish">Swedish</option>
-            <option value="klingon">Klingon</option>
-            <option value="hungarian">Hungarian</option>
-        </select>
+        @Html.DropDownList("Language", (IEnumerable<SelectListItem>)ViewBag.Languages, new { @class = "form-control" })
         <input type="submit" class="btn btn" value="Search">
     }
 </div>

@@ -47,7 +47,7 @@
     </dl>
 </div>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Upload", "Subtitle", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <div class="row">
@@ -67,20 +67,7 @@
 }
 
 <div>
-    <table class="table-striped" width="450">
-        <thead>
-            <tr>
-                <th>Author</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Comments)
-            {
-                @item.Text;
-            }
-        </tbody>
-
-    </table>
+    @Partial
 </div>
 
 

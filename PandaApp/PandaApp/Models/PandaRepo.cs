@@ -114,6 +114,12 @@ namespace PandaApp.Models
             db.SaveChanges();
         }
 
+        public void AddComment(Comment c)
+        {
+            db.Comments.Add(c);
+            db.SaveChanges();
+        }
+
         public void AddSubtitleLine(SubtitleLine sl)
         {
 
@@ -143,7 +149,7 @@ namespace PandaApp.Models
         {
             var result = (from user in db.Accounts
                           where user.ID == id
-                          select user).First();
+                          select user).FirstOrDefault();
             return result;
         }
 
@@ -172,6 +178,15 @@ namespace PandaApp.Models
             {
                 return false;
             }
+        }
+
+        public IEnumerable<Comment> GetSubtitleComments(int subID)
+        {
+            var result = (from c in db.Comments
+                          where c.SubtitleId == subID
+                          select c);
+
+            return result;
         }
     }
 }
