@@ -31,7 +31,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Title)
+            @Html.ActionLink(Model.Title, "MediaProfile", "Media", new { id = Model.MediaID }, null)
         </dd>
 
         <dt>

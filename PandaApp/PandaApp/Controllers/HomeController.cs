@@ -28,6 +28,18 @@ namespace PandaApp.Controllers
                                orderby item.DateCreated descending
                                select item).Take(15);
 
+            foreach(Request req in SandR.Requests)
+            {
+                if(db.GetReqUpBool(req.ID, db.GetUserByName(User.Identity.Name).ID))
+                {
+                    req.UpvotedByUser = true;
+                }
+                else
+                {
+                    req.UpvotedByUser = false;
+                }
+            }
+
             ViewBag.Languages = db.GetLanguageListItems();
             return View(SandR);
         }

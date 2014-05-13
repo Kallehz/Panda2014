@@ -75,7 +75,7 @@ namespace PandaApp.Models
         {
             var result = (from m in db.Medias
                           where m.ID == id
-                          select m).SingleOrDefault();
+                          select m).FirstOrDefault();
 
             return result;
         }
@@ -134,6 +134,24 @@ namespace PandaApp.Models
             db.SaveChanges();
         }
 
+        public IEnumerable<Subtitle> GetSubtitlesForMedia(int mediaID)
+        {
+            var result = (from s in db.Subtitles
+                          where s.MediaID == mediaID
+                          select s);
+
+            return result;
+        }
+
+        public Media GetMediaByName(string title)
+        {
+            var result = (from m in db.Medias
+                          where m.Title.ToLower().Contains(title.ToLower())
+                          select m).FirstOrDefault();
+
+            return result;
+        }
+
         public Account GetUserByName(string username)
         {
             var result = (from user in db.Accounts
@@ -176,5 +194,18 @@ namespace PandaApp.Models
                 return false;
             }
         }
+
+        public bool MediaExists(int mediaID)
+        {
+            foreach (var item in db.Medias)
+            {
+                if (item.ID == mediaID)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 }
