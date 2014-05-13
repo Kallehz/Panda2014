@@ -146,7 +146,7 @@ namespace PandaApp.Models
         public Media GetMediaByName(string title)
         {
             var result = (from m in db.Medias
-                          where m.Title.ToLower() == title.ToLower()
+                          where m.Title.ToLower().Contains(title.ToLower())
                           select m).FirstOrDefault();
 
             return result;
