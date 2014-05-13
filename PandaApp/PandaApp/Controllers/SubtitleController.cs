@@ -15,10 +15,13 @@ namespace PandaApp.Controllers
     {
         PandaRepo db = new PandaRepo();
 
+        [Authorize]
         public ActionResult Edit(int subtitleID)
         {
             return View(new EditViewModel(subtitleID));
         }
+
+        [Authorize]
         public void UpdateSubtitleLine(int id, string text, string timeStart, string timeStop)
         {
             using (var context = new PandaBase())
@@ -156,27 +159,41 @@ namespace PandaApp.Controllers
         {
             SubAndReq SandR = new SubAndReq();
 
-            if(language != "all")
+            if (db.GetMediaByName(title) != null)
+            {
+                var med = db.GetMediaByName(title);
+                return RedirectToAction("MediaProfile", "Media", new { id = med.ID });
+            }
+
+            if (language == "")
             {
                 SandR.Subtitles = (from item in db.GetAllSubtitles()
-                                   where (item.Title.Contains(title) &&
+                                    where item.Title.ToLower().Contains(title.ToLower())
+                                    orderby item.DateCreated descending
+                                    select item).Take(15);
+
+                SandR.Requests = (from item in db.GetAllRequests()
+                                    where item.Title.ToLower().Contains(title.ToLower())
+                                    orderby item.Upvotes descending
+                                    select item).Take(15);
+            }
+            else
+            {
+                SandR.Subtitles = (from item in db.GetAllSubtitles()
+                                   where (item.Title.ToLower().Contains(title.ToLower()) &&
                                    (item.Language == language))
                                    orderby item.DateCreated descending
                                    select item).Take(15);
 
                 SandR.Requests = (from item in db.GetAllRequests()
-                                  where (item.Title.Contains(title) &&
+                                  where (item.Title.ToLower().Contains(title.ToLower()) &&
                                   (item.Language == language))
                                   orderby item.Upvotes descending
                                   select item).Take(15);
             }
-            else
-            {
-                var med = db.GetMediaByName(title);
-                return RedirectToAction("MediaProfile", "Media", new { id = med.ID });
-            }
             
 
+            ViewBag.Languages = db.GetLanguageListItems();
             return View(SandR);
         }
         [HttpPost]
