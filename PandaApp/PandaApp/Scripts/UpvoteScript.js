@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $('#Upvote').submit(function (e) {
+    $('form[id=Upvote]').submit(function (e) {
         var s = $("#" + this.id + " input[name=s]").val();
         $.ajax({
             type: 'post',
