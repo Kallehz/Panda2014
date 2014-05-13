@@ -30,7 +30,7 @@ namespace PandaApp.Models
             List<SelectListItem> result = new List<SelectListItem>();
             var allLanguages = GetAllLanguages();
 
-            result.Add(new SelectListItem() { Value = "all", Text = "--- Select ---" });
+            result.Add(new SelectListItem() { Value = "", Text = "--- Select ---" });
 
             foreach (var language in allLanguages)
             {
@@ -146,7 +146,7 @@ namespace PandaApp.Models
         public Media GetMediaByName(string title)
         {
             var result = (from m in db.Medias
-                          where m.Title.ToLower().Contains(title.ToLower())
+                          where m.Title.ToLower() == title.ToLower()
                           select m).FirstOrDefault();
 
             return result;

@@ -74,6 +74,7 @@ namespace PandaApp.Controllers
             return View("NotFound");
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Upvote(string s)
         {
