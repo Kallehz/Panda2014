@@ -56,23 +56,21 @@ namespace PandaApp.Models
                     orderby item.Index ascending
                     select item);
        }
-        //TODO: Language and title linq requests
-        /*public EditViewModel GetEditViewModel(int subtitleID)
-        {
-            
-            EditViewModel viewModel = new EditViewModel();
-            viewModel.SubtitleID = subtitleID;
-            viewModel.Title = "test";
-            viewModel.Language = "English";
+       public static string GetLanguageBySubID(int subtitleID)
+       {
+           PandaBase db = new PandaBase();
+           return (from t in db.Subtitles
+                   where t.ID == subtitleID
+                   select t.Language).FirstOrDefault();
+       }
 
-            viewModel.Lines = (from item in db.SubtitleLines
-                               orderby item. descending
-                               where db. = SubtitleID
-                               select item);
-            return viewModel;
-            return EditViewModel();
-        }*/
-
+       public static string GetTitleBySubID(int subtitleID)
+       {
+           PandaBase db = new PandaBase();
+           return (from t in db.Subtitles
+                   where t.ID == subtitleID
+                   select t.Title).FirstOrDefault();
+       }
         public Media GetMediaById(int id)
         {
             var result = (from m in db.Medias

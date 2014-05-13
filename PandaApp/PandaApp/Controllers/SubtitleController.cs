@@ -19,14 +19,17 @@ namespace PandaApp.Controllers
         {
             return View(new EditViewModel(subtitleID));
         }
-        public void UpdateSubtitleLine(int id, string text)
+        public void UpdateSubtitleLine(int id, string text, string timeStart, string timeStop)
         {
-            using(var context = new PandaBase())
+            using (var context = new PandaBase())
             {
                 SubtitleLine line = context.SubtitleLines.Where(l => l.ID == id).FirstOrDefault<SubtitleLine>();
                 line.Text = text;
+                line.TimeFrom = timeStart;
+                line.TimeTo = timeStop;
+                Debug.Write(timeStart + "-" + timeStop);
                 context.Entry(line).State = System.Data.Entity.EntityState.Modified;
-                context.SaveChanges();  
+                context.SaveChanges();
             }
         }
 
