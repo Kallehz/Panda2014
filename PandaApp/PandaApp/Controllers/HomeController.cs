@@ -35,8 +35,7 @@ namespace PandaApp.Controllers
         [HttpGet]
         public ActionResult Upload()
         {
-            ViewBag.Message = "Upload subtitle";    
-
+            ViewBag.Languages = db.GetLanguageListItems();
             return View(new Subtitle());
         }
 
@@ -88,63 +87,59 @@ namespace PandaApp.Controllers
             {
                 //first instance in the str format is always empty
                 if ( counter == 1)
-                    {
-                        srtLine.Index = 0;
-                        srtLine.TimeFrom = null;
-                        srtLine.TimeTo = null;
-                        srtLine.Text = null;
-                    }
+                {
+                    srtLine.Index = 0;
+                    srtLine.TimeFrom = null;
+                    srtLine.TimeTo = null;
+                    srtLine.Text = null;
+                }
 
                 //second instance is "subtitle number this"
                 if (counter == 2)
-                    {
-                        srtLine.Index = Convert.ToInt32(result);
-                    }
+                {
+                    srtLine.Index = Convert.ToInt32(result);
+                }
 
                 //tird instance is TC in
                 if (counter == 3)
-                    {
-                        srtLine.TimeFrom = result;
-                    }
+                {
+                    srtLine.TimeFrom = result;
+                }
+
                 //fourth is TC out
                 if (counter == 4)
-                    {
-                        srtLine.TimeTo = result;
-                    }
+                {
+                    srtLine.TimeTo = result;
+                }
+
                 //fifth is the actual onscreen text
                 if (counter == 5)
-                    {
-                        srtLine.Text = result;
-                        srtLine.SubtitleID = item.ID;
-                        counter = 0;
-                    }
+                {
+                    srtLine.Text = result;
+                    srtLine.SubtitleID = item.ID;
+                    counter = 0;
+                }
 
                 counter++;
 
                 // checks to see if all columns in srtLine have been populated before adding a line to the database.
-                if (srtLine.Index != 0
-                    && srtLine.TimeFrom != null
-                    && srtLine.TimeTo != null
-                    && srtLine.Text != null
-                    && srtLine.SubtitleID != 0)
-                        {
-                            db.AddSubtitleLine(srtLine);
-                            db.Save();
-                        }
+                if (srtLine.Index != 0 && srtLine.TimeFrom != null && srtLine.TimeTo != null
+                    && srtLine.Text != null && srtLine.SubtitleID != 0)
+                {
+                    db.AddSubtitleLine(srtLine);
+                    db.Save();
+                }
             }
 
-            
-                
                 return RedirectToAction("Index");
             }
 
+            ViewBag.Languages = db.GetLanguageListItems();
             return View(item);
         }
 
         public ActionResult FAQ()
         {
-            ViewBag.Message = "FAQ";
-
             return View();
         }
     }

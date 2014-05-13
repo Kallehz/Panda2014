@@ -3,7 +3,7 @@
     ViewBag.Title = "Requests";
 }
 
-<!-- Search-->
+<!-- Search <%=Html.DropDownListFor(m => m.CourseId, new SelectList((ViewBag.Courses) as SelectList, "Value", "Text"), "Select")%>-->
 <div class="row text-center">
     @using (Html.BeginForm("SearchResult", "Subtitle"))
     {
@@ -18,15 +18,17 @@
             <option value="klingon">Klingon</option>
             <option value="hungarian">Hungarian</option>
         </select>
+        @* Dropdown list that fetches data from database, not working as of now. - Egill
+        Html.DropDownList("Languages", new SelectList((ViewBag.Languages) as SelectList, "Value", "Text"), "--- Select ---", new { @class = "form-control" });*@
         <input type="submit" class="btn btn" value="Search">
     }
 </div>
 <!-- search end-->
 
+<h4>View Requests</h4>
 <hr />
 <div class="row">
     <div class="col-md-7 col-md-offset-2">
-        <h4>View Requests</h4>
         <table class="table-striped" width="747">
             <thead>
                 <tr>

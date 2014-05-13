@@ -17,12 +17,15 @@ namespace PandaApp.Controllers
             IEnumerable<Request> requests = (from item in db.GetAllRequests()
                                             orderby item.Upvotes descending
                                             select item).Take(15);
+
+            ViewBag.Languages = db.GetLanguageListItems();
             return View(requests);
         }
 
         [HttpGet]
         public ActionResult Create()
         {
+            ViewBag.Languages = db.GetLanguageListItems();
             return View(new Request());
         }
 
@@ -43,6 +46,7 @@ namespace PandaApp.Controllers
                 db.Save();
                 return RedirectToAction("Index");
             }
+            ViewBag.Languages = db.GetLanguageListItems();
             return View();
         }
 
