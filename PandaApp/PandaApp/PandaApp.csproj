@@ -52,6 +52,10 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.0.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -195,7 +199,6 @@
     <Compile Include="Models\PandaBase.cs" />
     <Compile Include="Models\Request.cs" />
     <Compile Include="Models\ReqUp.cs" />
-    <Compile Include="Models\SubAndReq.cs" />
     <Compile Include="Models\Subtitle.cs" />
     <Compile Include="Models\SubtitleLine.cs" />
     <Compile Include="Models\EditViewModel.cs" />
@@ -257,7 +260,6 @@
     <Content Include="Views\Account\LoginPV.cshtml" />
     <Content Include="Views\Subtitle\Edit.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Subtitle\SearchResult.cshtml" />
     <Content Include="Views\Account\_ChangeEmailPartial.cshtml" />
     <Content Include="Views\Media\MediaProfile.cshtml" />
     <Content Include="Views\Request\Create.cshtml" />
@@ -272,6 +274,8 @@
     <Content Include="Views\Subtitle\Details.cshtml" />
     <Content Include="Views\Subtitle\EditPV.cshtml" />
     <Content Include="Views\Subtitle\Comments.cshtml" />
+    <Content Include="Views\Request\RequestSearch.cshtml" />
+    <Content Include="Views\Subtitle\SubtitleSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

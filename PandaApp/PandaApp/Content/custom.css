@@ -9,6 +9,11 @@ h1 a:hover
     text-decoration: none;
 }
 
+.page-nav
+{
+    text-align: center;
+}
+
 .navbar-nav 
 {
     padding-left: 0;
@@ -17,7 +22,8 @@ h1 a:hover
     border-bottom-right-radius: 5px;
 }
 
-.navbar-nav .btn {
+.navbar-nav .btn
+{
     padding: 8px 30px;
 }
 
@@ -32,7 +38,8 @@ h1 a:hover
     float: none !important;
 }
 
-.footer-left {
+.footer-left
+{
     float: left;
 }
 
@@ -45,4 +52,14 @@ h1 a:hover
 .footer-right {
     color: #eb6864;
     float: right;
+}
+
+#edit_msg 
+{
+    display: none;
+    font-size: medium;
+}
+label
+{
+    font-size: medium;
 }

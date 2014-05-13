@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace PandaApp.Controllers
 {
@@ -12,11 +13,20 @@ namespace PandaApp.Controllers
     {
         PandaRepo db = new PandaRepo();
 
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             IEnumerable<Request> requests = (from item in db.GetAllRequests()
-                                            orderby item.Upvotes descending
-                                            select item).Take(15);
+                                             orderby item.DateCreated descending
+                                             select item);
+
+            if (Request.HttpMethod != "GET")
+            {
+                page = 1;
+            }
+
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
+
             if (db.GetUserByName(User.Identity.Name) != null)
             {
                 foreach (Request req in requests)
@@ -40,7 +50,32 @@ namespace PandaApp.Controllers
             }
 
             ViewBag.Languages = db.GetLanguageListItems();
-            return View(requests);
+            return View(requests.ToPagedList(pageNumber, pageSize));
+        }        
+
+        public ActionResult RequestSearch(string title, string language)
+        {
+            IEnumerable<Request> req;
+
+            if (language == "" || language == null)
+            {
+                req = (from item in db.GetAllRequests()
+                       where item.Title.ToLower().Contains(title.ToLower())
+                       orderby item.Upvotes descending
+                       select item).Take(15);
+            }
+            else
+            {
+                req = (from item in db.GetAllRequests()
+                       where (item.Title.ToLower().Contains(title.ToLower()) &&
+                       (item.Language == language))
+                       orderby item.Upvotes descending
+                       select item).Take(15);
+            }
+
+
+            ViewBag.Languages = db.GetLanguageListItems();
+            return View(req);
         }
 
         [HttpGet]

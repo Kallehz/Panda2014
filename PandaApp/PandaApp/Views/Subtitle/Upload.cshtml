@@ -9,7 +9,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Subtitle upload</h4>
+        <h3>Subtitle upload</h3>
         <hr />
         @Html.ValidationSummary(true)
 
@@ -35,7 +35,6 @@
                 <form id="Form1" method="post" enctype="multipart/form-data"  >
                     <input type=file id=file name=file required />
                     <br>
-
                     <input type="submit" id="Submit1" value="Upload" class="btn btn-default" />
                 </form>
                 </div>

@@ -46,23 +46,25 @@ namespace PandaApp.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Upload(Subtitle item, HttpPostedFileBase file, SubtitleLine srtLine)
+        public ActionResult Upload(Subtitle item, HttpPostedFileBase file)
         {
-            if (!db.MediaExists(item.MediaID))
+            Media med = db.GetMediaByName(item.Title);
+            Media newMedia = new Media();
+            if (med == null)
             {
-                Media m = new Media();
-                m.Title = item.Title;
-                db.AddMedia(m);
-                item.MediaID = m.ID;
+                newMedia.Title = item.Title;
+                db.AddMedia(newMedia);
+                med = newMedia;
             }
 
             if (ModelState.IsValid)
             {
+                item.MediaID = med.ID;
                 item.Author = User.Identity.Name;
                 db.AddSubtitle(item);
                 db.Save();
 
-                //Code that checks if uploaded file has content. Originally from an MS tutorial but modified to our needs
+                //Code that checks if uploaded file has content.
                 if ((file != null) && (file.ContentLength > 0))
                 {
                     string fn = System.IO.Path.GetFileName(file.FileName);
@@ -84,7 +86,7 @@ namespace PandaApp.Controllers
                 {
                     Debug.Write("Please select a file to upload.");
                 }
-                //Code from MS tutorial ends.
+                SubtitleLine srtLine = new SubtitleLine();
 
                 //Turn file to string
                 string srtString = new StreamReader(file.InputStream).ReadToEnd();
@@ -137,15 +139,12 @@ namespace PandaApp.Controllers
                     counter++;
 
                     // checks to see if all columns in srtLine have been populated before adding a line to the database.
-                    if (   srtLine.Index != 0 
-                        && srtLine.TimeFrom != null 
-                        && srtLine.TimeTo != null
-                        && srtLine.Text != null 
-                        && srtLine.SubtitleID != 0)
-                            {
-                                db.AddSubtitleLine(srtLine);
-                                db.Save();
-                            }
+                    if (srtLine.Index != 0 && srtLine.TimeFrom != null && srtLine.TimeTo != null
+                        && srtLine.Text != null && srtLine.SubtitleID != 0)
+                    {
+                        db.AddSubtitleLine(srtLine);
+                        db.Save();
+                    }
                 }
 
                 return RedirectToAction("Index", "Home");
@@ -155,9 +154,9 @@ namespace PandaApp.Controllers
             return View(item);
         }
 
-        public ActionResult SearchResult(string title, string language)
+        public ActionResult SubtitleSearch(string title, string language)
         {
-            SubAndReq SandR = new SubAndReq();
+            IEnumerable<Subtitle> sub;
 
             if (db.GetMediaByName(title) != null)
             {
@@ -165,36 +164,25 @@ namespace PandaApp.Controllers
                 return RedirectToAction("MediaProfile", "Media", new { id = med.ID });
             }
 
-            if (language == "")
+            if (language == "" || language == null)
             {
-                SandR.Subtitles = (from item in db.GetAllSubtitles()
-                                    where item.Title.ToLower().Contains(title.ToLower())
-                                    orderby item.DateCreated descending
-                                    select item).Take(15);
-
-                SandR.Requests = (from item in db.GetAllRequests()
-                                    where item.Title.ToLower().Contains(title.ToLower())
-                                    orderby item.Upvotes descending
-                                    select item).Take(15);
+                sub = (from item in db.GetAllSubtitles()
+                       where item.Title.ToLower().Contains(title.ToLower())
+                       orderby item.DateCreated descending
+                       select item).Take(15);
             }
             else
             {
-                SandR.Subtitles = (from item in db.GetAllSubtitles()
-                                   where (item.Title.ToLower().Contains(title.ToLower()) &&
-                                   (item.Language == language))
-                                   orderby item.DateCreated descending
-                                   select item).Take(15);
-
-                SandR.Requests = (from item in db.GetAllRequests()
-                                  where (item.Title.ToLower().Contains(title.ToLower()) &&
-                                  (item.Language == language))
-                                  orderby item.Upvotes descending
-                                  select item).Take(15);
+                sub = (from item in db.GetAllSubtitles()
+                       where (item.Title.ToLower().Contains(title.ToLower()) &&
+                       (item.Language == language))
+                       orderby item.DateCreated descending
+                       select item).Take(15);
             }
-            
+
 
             ViewBag.Languages = db.GetLanguageListItems();
-            return View(SandR);
+            return View(sub);
         }
         [HttpPost]
         public ActionResult PostComment(int subtitleId, string comment)

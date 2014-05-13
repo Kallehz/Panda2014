@@ -4,10 +4,9 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h3>Subtitle Details</h3>
 
 <div>
-    <h4>Subtitle</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -23,7 +22,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Author)
+            @Html.ActionLink(Model.Author, "ViewUser", "Account", new { username = Model.Author }, null)
         </dd>
 
         <dt>
@@ -45,18 +44,17 @@
     </dl>
 </div>
 
-@Html.ActionLink("Edit", "Edit", new { subtitleId = Model.ID }, new { @class = "btn btn-default" })
 @Html.ActionLink("Download", "Download", new { subtitleId = Model.ID }, new { @class = "btn btn-default" })
+@Html.ActionLink("Edit", "Edit", new { subtitleId = Model.ID }, new { @class = "btn btn-default" })
 
 <hr />
-
 @if (User.Identity.IsAuthenticated)
 {
     using (Html.BeginForm("PostComment", "Subtitle", new { subtitleId = @Model.ID }))
     {
         @Html.AntiForgeryToken()
         <div class="row col-md-offset-2">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 @Html.LabelFor(model => model.Comments, new { @class = "control-label" })
                 <div>
                     @Html.TextArea("Comment", new { @class = "form-control", @rows = 3 })
@@ -73,13 +71,11 @@
     }
 }
 
-
-
 @foreach (var item in Model.Comments)
 {
     <dl class="dl-horizontal">
         <dt>
-            @item.Author
+            @Html.ActionLink(item.Author, "ViewUser", "Account", new { username = item.Author }, null)
         </dt>
         <dd>
             @item.Text

@@ -2,12 +2,12 @@
 @{
     ViewBag.Title = "Edit";
 }
-<h2> @Model.Title - @Model.Language </h2>
+<h2>Title: @Model.Title</h2>
+<h4>Language: @Model.Language</h4>
+<hr />
 
-<h3>
-    @foreach (var item in Model.Lines)
-    {
-        Html.RenderPartial("EditPV", item);
-    }
-</h3>
+@foreach (var item in Model.Lines)
+{
+    Html.RenderPartial("EditPV", item);
+}
 <script src="~/Scripts/EditScript.js"></script>

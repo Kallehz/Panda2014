@@ -6,14 +6,14 @@
 }
 
 <h2>@ViewBag.Title.</h2>
-
 <p>You're logged in as <strong>@User.Identity.GetUserName()</strong>.</p>
+<hr />
 
 <div class="row">
     <div class="col-md-5">
         @{ Html.RenderAction("MyRequests"); }
     </div>
-    <div class="col-md-7">
+    <div class="col-md-6 col-md-offset-1">
         @if (ViewBag.HasLocalPassword)
         {
             @Html.Partial("_ChangePasswordPartial")

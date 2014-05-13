@@ -1,14 +1,24 @@
 ﻿@model IEnumerable<PandaApp.Models.Request>
 
-<h2>My requests</h2>
+<h4>My requests</h4>
+<hr />
+
 <div>
-    <table class="table-striped" width="400">
+    <table class="table">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Language</th>
-                <th>Date Created</th>
-                <th>Upvotes</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Language)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateCreated)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Upvotes)
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -16,7 +26,7 @@
             {
                 <tr>
                     <td>
-                        @prof.Title
+                        @Html.ActionLink(prof.Title, "Details", "Request", new { id = prof.ID }, null)
                     </td>
                     <td>
                         @prof.Language

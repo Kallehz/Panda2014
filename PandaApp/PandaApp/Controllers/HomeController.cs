@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 
 namespace PandaApp.Controllers
@@ -16,43 +17,22 @@ namespace PandaApp.Controllers
     {
         PandaRepo db = new PandaRepo();
 
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            SubAndReq SandR = new SubAndReq();
-
-            SandR.Requests = (from item in db.GetAllRequests()
-                              orderby item.Upvotes descending
-                              select item).Take(15);
-
-            SandR.Subtitles = (from item in db.GetAllSubtitles()
+            var subs = (from item in db.GetAllSubtitles()
                                orderby item.DateCreated descending
-                               select item).Take(15);
+                               select item);
 
-            if(db.GetUserByName(User.Identity.Name) != null)
+            if (Request.HttpMethod != "GET")
             {
-                foreach (Request req in SandR.Requests)
-                {
-                    if (db.GetReqUpBool(req.ID, db.GetUserByName(User.Identity.Name).ID))
-                    {
-                        req.UpvotedByUser = true;
-                    }
-                    else
-                    {
-                        req.UpvotedByUser = false;
-                    }
-                }
+                page = 1;
             }
-            else
-            {
-                foreach (Request req in SandR.Requests)
-                {
-                    req.UpvotedByUser = false;
-                }
-            }
-            
+
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
 
             ViewBag.Languages = db.GetLanguageListItems();
-            return View(SandR);
+            return View(subs.ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult FAQ()

@@ -1,68 +1,116 @@
-﻿@model IEnumerable<PandaApp.Models.Request>
+﻿@model PagedList.IPagedList<PandaApp.Models.Request>
+
 @{
     ViewBag.Title = "Requests";
 }
 
-<!-- Search -->
+<!-- Search begins -->
 <div class="row text-center">
-    @using (Html.BeginForm("SearchResult", "Subtitle"))
+    @using (Html.BeginForm("RequestSearch", "Request"))
     {
         <input type="text" class="form-control" id="input" name="title" size="21" maxlength="120" placeholder="Request search">
         @Html.DropDownList("Language", (IEnumerable<SelectListItem>)ViewBag.Languages, new { @class = "form-control" })
         <input type="submit" class="btn btn" value="Search">
     }
 </div>
-<!-- search end-->
+<!-- Search ends -->
 
-<h4>View Requests</h4>
+<h3>View Requests</h3>
 <hr />
-<div class="row">
-    <div class="col-md-7 col-md-offset-2">
-        <table class="table-striped" width="747">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Language</th>
-                    <th>Author</th>
-                    <th>Upvotes</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            <!-- So the title links to its profile -->
-                            @Html.ActionLink(item.Title, "Details", "Request",new { id = item.ID }, null)
-                        </td>
-                        <td>
-                            @item.Language
-                        </td>
-                        <td>
-                            @item.Author
-                        </td>
-                        <td>
-                            @item.Upvotes 
-                        </td>
-                        <td>
-                            @using (Html.BeginForm("Upvote", "Request", FormMethod.Post))
-                            {
-                                if(item.UpvotedByUser)
-                                {
-                                    <input type="hidden" name="id" value="@item.ID" />
-                                    <input type="hidden" name="view" value="Index" />
-                                    <input type="submit" class="btn btn" value="+">
-                                }
-                            }
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-</div>
-
 
 @Html.ActionLink("Create Request", "Create", null, new { @class = "btn btn-default" })
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Language)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().DateCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Upvotes)
+            </th>            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <!-- So the title links to its profile -->
+                    @Html.ActionLink(item.Title, "Details", "Request",new { id = item.ID }, null)
+                </td>
+                <td>
+                    @item.Language
+                </td>
+                <td>
+                    @if (@item.Author == "Guest")
+                    {
+                        @item.Author
+                    }
+                    else
+                    {
+                        @Html.ActionLink(item.Author, "ViewUser", "Account", new { username = item.Author }, null)
+                    }
+                </td>
+                <td>
+                    @item.DateCreated
+                </td>
+                <td>
+                    @item.Upvotes 
+                </td>
+@*<td>
+@using (Html.BeginForm("Upvote2", "Request", FormMethod.Post, new { @id = "Upvote"}))
+{
+if(item.UpvotedByUser)
+{
+<input type="text" name="s" value="@Convert.ToString(item.ID)" style="display:none" />
+<input type="submit" class="btn btn" value="+">
+}
+}
+</td>*@
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="page-nav">
+    @if (Model.HasPreviousPage)
+    {
+        @Html.ActionLink("<<", "Index", new { page = 1 })
+        @Html.Raw(" ")
+        @Html.ActionLink("< Prev", "Index", new { page = Model.PageNumber - 1 })
+    }
+    else
+    {
+        @:<<
+        @Html.Raw(" ")
+        @:< Prev
+    }
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+
+    @if (Model.HasNextPage)
+    {
+        @Html.ActionLink("Next >", "Index", new { page = Model.PageNumber + 1 })
+        @Html.Raw(" ")
+        @Html.ActionLink(">>", "Index", new { page = Model.PageCount })
+    }
+    else
+    {
+        @:Next >
+        @Html.Raw(" ")
+        @:>>
+    }
+</div>
+
 <script src="~/Scripts/UpvoteScript.js"></script>
 

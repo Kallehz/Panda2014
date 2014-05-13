@@ -71,6 +71,7 @@ namespace PandaApp.Models
                    where t.ID == subtitleID
                    select t.Title).FirstOrDefault();
        }
+
         public Media GetMediaById(int id)
         {
             var result = (from m in db.Medias
@@ -146,7 +147,7 @@ namespace PandaApp.Models
         public Media GetMediaByName(string title)
         {
             var result = (from m in db.Medias
-                          where m.Title.ToLower().Contains(title.ToLower())
+                          where m.Title.ToLower() == title.ToLower()
                           select m).FirstOrDefault();
 
             return result;
@@ -191,18 +192,5 @@ namespace PandaApp.Models
                 return false;
             }
         }
-
-        public bool MediaExists(int mediaID)
-        {
-            foreach (var item in db.Medias)
-            {
-                if (item.ID == mediaID)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
     }
 }

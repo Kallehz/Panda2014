@@ -1,14 +1,30 @@
 ﻿$(document).ready(function () {
     $('form').submit(function (e) {
-        var text = $("#" + this.id + " #lineText").val();
-        var id = $("#" + this.id + " #lineID").val();
-        var timeStart = $("#" + this.id + " #lineStart").val();
-        var timeStop = $("#" + this.id + " #lineStop").val();
-        $.ajax({
-            type: 'post',
-            url: '/Subtitle/UpdateSubtitleLine',
-            data: { id: id, text: text, timeStart: timeStart, timeStop: timeStop },
-        });
+        var selectorPrefix = "#" + this.id;
+        var text = $(selectorPrefix + " #lineText").val();
+        var id = $(selectorPrefix + " #lineID").val();
+        var timeStart = $(selectorPrefix + " #lineStart").val();
+        var timeStop = $(selectorPrefix + " #lineStop").val();
+        if (text == "") {
+            $(selectorPrefix + " div[id=\"submit_div\"] #edit_msg").html("Text field must not be empty");
+            $(selectorPrefix + " div[id=\"submit_div\"] #edit_msg").fadeIn(600);
+            $(selectorPrefix + " div[id=\"submit_div\"] #edit_msg").css({ display: "inline-table", color: "#eb6864" });
+        }
+        else {
+            $.ajax({
+                type: 'post',
+                url: '/Subtitle/UpdateSubtitleLine',
+                data: { id: id, text: text, timeStart: timeStart, timeStop: timeStop },
+                success: function () {
+                    var selector = "input[value=\"" + id + "\"] ~ div[id=\"submit_div\"] #edit_msg";
+                    $(selector).css({ display: "none" });
+                    $(selector).html("Your changes have been saved");
+                    $(selector).fadeIn(600);
+                    $(selector).css({ display: "inline-table", color: "lightgreen" });
+                    $(selector).fadeOut(2000);
+                }
+            });
+        }
         e.preventDefault();
     });
 });
