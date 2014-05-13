@@ -59,7 +59,7 @@
             <div class="col-md-6">
                 @Html.LabelFor(model => model.Comments, new { @class = "control-label" })
                 <div>
-                    @Html.TextArea("Comment", new { @class = "form-control", @rows = 4, @cols = 20 })
+                    @Html.TextArea("Comment", new { @class = "form-control", @rows = 3 })
                     @Html.ValidationMessageFor(model => model.Comments)
                 </div>
             </div>
