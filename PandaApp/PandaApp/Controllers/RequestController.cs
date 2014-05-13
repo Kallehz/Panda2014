@@ -17,6 +17,27 @@ namespace PandaApp.Controllers
             IEnumerable<Request> requests = (from item in db.GetAllRequests()
                                             orderby item.Upvotes descending
                                             select item).Take(15);
+            if (db.GetUserByName(User.Identity.Name) != null)
+            {
+                foreach (Request req in requests)
+                {
+                    if (db.GetReqUpBool(req.ID, db.GetUserByName(User.Identity.Name).ID))
+                    {
+                        req.UpvotedByUser = true;
+                    }
+                    else
+                    {
+                        req.UpvotedByUser = false;
+                    }
+                }
+            }
+            else
+            {
+                foreach (Request req in requests)
+                {
+                    req.UpvotedByUser = false;
+                }
+            }
 
             ViewBag.Languages = db.GetLanguageListItems();
             return View(requests);
@@ -95,6 +116,29 @@ namespace PandaApp.Controllers
             r.upvoted = db.GetReqUpBool(id, acc.ID);
 
             return View(r);
+        }
+
+        [HttpPost]
+        public ActionResult Upvote2(string s)
+        {
+            int id = Convert.ToInt32(s);
+            PandaBase panda = new PandaBase();
+            Debug.WriteLine("TESTING: " + id);
+            Request req = panda.Requests.Single(re => re.ID == id);
+            req.Upvotes++;
+
+            Upvoter upvoter = new Upvoter() { RequestID = id, UserID = db.GetUserByName(User.Identity.Name).ID };
+            panda.Upvoters.Add(upvoter);
+
+            panda.SaveChanges();
+
+            ReqUp r = new ReqUp();
+            r.request = db.GetRequestById(id);
+            Account acc = db.GetUserByName(User.Identity.Name);
+
+            r.upvoted = db.GetReqUpBool(id, acc.ID);
+
+            return RedirectToAction("Index");
         }
 	}
 }
