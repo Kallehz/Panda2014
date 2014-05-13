@@ -46,7 +46,7 @@ namespace PandaApp.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Upload(Subtitle item, HttpPostedFileBase file, SubtitleLine srtLine)
+        public ActionResult Upload(Subtitle item, HttpPostedFileBase file)
         {
             Media med = db.GetMediaByName(item.Title);
             Media newMedia = new Media();
@@ -54,11 +54,12 @@ namespace PandaApp.Controllers
             {
                 newMedia.Title = item.Title;
                 db.AddMedia(newMedia);
+                med = newMedia;
             }
 
             if (ModelState.IsValid)
             {
-                item.MediaID = newMedia.ID;
+                item.MediaID = med.ID;
                 item.Author = User.Identity.Name;
                 db.AddSubtitle(item);
                 db.Save();
@@ -85,6 +86,7 @@ namespace PandaApp.Controllers
                 {
                     Debug.Write("Please select a file to upload.");
                 }
+                SubtitleLine srtLine = new SubtitleLine();
 
                 //Turn file to string
                 string srtString = new StreamReader(file.InputStream).ReadToEnd();
