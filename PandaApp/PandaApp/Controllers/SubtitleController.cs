@@ -48,7 +48,7 @@ namespace PandaApp.Controllers
                 db.AddSubtitle(item);
                 db.Save();
 
-                //Code that checks if uploaded file has content.
+                //Code that checks if uploaded file has content. Originally from an MS tutorial but modified to our needs
                 if ((file != null) && (file.ContentLength > 0))
                 {
                     string fn = System.IO.Path.GetFileName(file.FileName);
@@ -70,6 +70,7 @@ namespace PandaApp.Controllers
                 {
                     Debug.Write("Please select a file to upload.");
                 }
+                //Code from MS tutorial ends.
 
                 //Turn file to string
                 string srtString = new StreamReader(file.InputStream).ReadToEnd();
@@ -122,12 +123,15 @@ namespace PandaApp.Controllers
                     counter++;
 
                     // checks to see if all columns in srtLine have been populated before adding a line to the database.
-                    if (srtLine.Index != 0 && srtLine.TimeFrom != null && srtLine.TimeTo != null
-                        && srtLine.Text != null && srtLine.SubtitleID != 0)
-                    {
-                        db.AddSubtitleLine(srtLine);
-                        db.Save();
-                    }
+                    if (srtLine.Index != 0 
+                        && srtLine.TimeFrom != null 
+                        && srtLine.TimeTo != null
+                        && srtLine.Text != null 
+                        && srtLine.SubtitleID != 0)
+                            {
+                                db.AddSubtitleLine(srtLine);
+                                db.Save();
+                            }
                 }
 
                 return RedirectToAction("Index", "Home");
