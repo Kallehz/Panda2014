@@ -48,7 +48,7 @@ namespace PandaApp.Controllers
                 db.AddSubtitle(item);
                 db.Save();
 
-                //Code that checks if uploaded file has content.
+                //Code that checks if uploaded file has content. Originally from an MS tutorial but modified to our needs
                 if ((file != null) && (file.ContentLength > 0))
                 {
                     string fn = System.IO.Path.GetFileName(file.FileName);
@@ -70,6 +70,7 @@ namespace PandaApp.Controllers
                 {
                     Debug.Write("Please select a file to upload.");
                 }
+                //Code from MS tutorial ends.
 
                 //Turn file to string
                 string srtString = new StreamReader(file.InputStream).ReadToEnd();
@@ -122,12 +123,15 @@ namespace PandaApp.Controllers
                     counter++;
 
                     // checks to see if all columns in srtLine have been populated before adding a line to the database.
-                    if (srtLine.Index != 0 && srtLine.TimeFrom != null && srtLine.TimeTo != null
-                        && srtLine.Text != null && srtLine.SubtitleID != 0)
-                    {
-                        db.AddSubtitleLine(srtLine);
-                        db.Save();
-                    }
+                    if (   srtLine.Index != 0 
+                        && srtLine.TimeFrom != null 
+                        && srtLine.TimeTo != null
+                        && srtLine.Text != null 
+                        && srtLine.SubtitleID != 0)
+                            {
+                                db.AddSubtitleLine(srtLine);
+                                db.Save();
+                            }
                 }
 
                 return RedirectToAction("Index", "Home");
@@ -146,50 +150,47 @@ namespace PandaApp.Controllers
                 // This should redirect to the proper mediaID
                 // of the media that was searched for.
                 SandR.Subtitles = (from item in db.GetAllSubtitles()
-                                   where (item.Title.ToLower().Contains(title.ToLower()) &&
-                                   (item.Language.ToLower() == language.ToLower()))
+                                   where (item.Title.Contains(title) &&
+                                   (item.Language == language))
                                    orderby item.DateCreated descending
                                    select item).Take(15);
 
                 SandR.Requests = (from item in db.GetAllRequests()
-                                  where (item.Title.ToLower().Contains(title.ToLower()) &&
-                                   (item.Language.ToLower() == language.ToLower()))
+                                  where (item.Title.Contains(title) &&
+                                  (item.Language == language))
                                   orderby item.Upvotes descending
                                   select item).Take(15);
             }
             else
             {
                 SandR.Subtitles = (from item in db.GetAllSubtitles()
-                                   where item.Title.ToLower().Contains(title.ToLower())
+                                   where (item.Title.Contains(title))
                                    orderby item.DateCreated descending
                                    select item).Take(15);
 
                 SandR.Requests = (from item in db.GetAllRequests()
-                                  where item.Title.ToLower().Contains(title.ToLower())
+                                  where (item.Title.Contains(title))
                                   orderby item.Upvotes descending
                                   select item).Take(15);
             }
+            
 
-            ViewBag.Languages = db.GetLanguageListItems();
             return View(SandR);
         }
-
-        [HttpGet]
-        public ActionResult Comments(int subID)
-        {
-            var subtitleComments = db.GetSubtitleComments(subID);
-
-            return PartialView(subtitleComments);
-        }
-
         [HttpPost]
-        public ActionResult PostComment(Comment c)
+        public ActionResult PostComment(int subtitleId, string comment)
         {
-
-
+            if (ModelState.IsValid)
+            {
+                Comment newComment = new Comment();
+                newComment.Text = comment;
+                newComment.Author = User.Identity.Name;
+                newComment.SubtitleId = subtitleId;
+                db.AddComment(newComment);
+                return RedirectToAction("Details", "SubTitle", new { id = subtitleId });
+            }
             return View();
         }
-
         [HttpGet]
         public ActionResult Details(int id)
         {

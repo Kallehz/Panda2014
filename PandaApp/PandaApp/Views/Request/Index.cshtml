@@ -44,6 +44,13 @@
                         <td>
                             @item.Upvotes
                         </td>
+                        <td>
+                            @using (Html.BeginForm("Upvote", "Request"))
+                                {
+                                    <input type="text" name="s" value="@Convert.ToString(item.ID)" style="display:none" />
+                                    <input type="submit" class="btn btn" value="Upvote">
+                                }
+                        </td>
                     </tr>
                 }
             </tbody>

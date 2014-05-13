@@ -6,8 +6,6 @@
 
 <h2>Details</h2>
 
-<a href="/Subtitle/Edit/?subtitleID=@Model.ID">Edit</a>
-
 <div>
     <h4>Subtitle</h4>
     <hr />
@@ -47,28 +45,40 @@
     </dl>
 </div>
 
-@using (Html.BeginForm("Upload", "Subtitle", FormMethod.Post, new { enctype = "multipart/form-data" }))
+<a href="/Subtitle/Edit/?subtitleID=@Model.ID">Edit subtitle</a>
+
+@using (Html.BeginForm("PostComment", "Subtitle", new { subtitleId = @Model.ID }))
 {
     @Html.AntiForgeryToken()
-    <div class="row">
-        <div class="form-group">
+    <div class="row" >
+        <div>
             @Html.LabelFor(model => model.Comments, new { @class = "control-label col-md2" })
-            <div class="col-md-8">
-                @Html.TextAreaFor(model => model.Comments, new { @class = "form-control" })
+            <div>
+                @Html.TextArea("Comment", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Comments)
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-10">
-                <input type="submit" value="Lay down the truth!" class="btn btn-default" />
+                <input type="submit" value="Submit" class="btn btn-default" />
             </div>
         </div>
-    </div>   
+    </div>
 }
 
-<div>
-    @Partial
-</div>
+
+@foreach (var item in Model.Comments)
+{
+    <dl class="dl-horizontal">
+        <dt>
+            @item.Author
+        </dt>
+        <dd>
+            @item.Text
+        </dd>
+    </dl>
+}
+
 
 
 <p>

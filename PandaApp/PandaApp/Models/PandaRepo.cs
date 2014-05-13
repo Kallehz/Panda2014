@@ -113,7 +113,6 @@ namespace PandaApp.Models
             db.Medias.Add(med);
             db.SaveChanges();
         }
-
         public void AddComment(Comment c)
         {
             db.Comments.Add(c);
@@ -178,15 +177,6 @@ namespace PandaApp.Models
             {
                 return false;
             }
-        }
-
-        public IEnumerable<Comment> GetSubtitleComments(int subID)
-        {
-            var result = (from c in db.Comments
-                          where c.SubtitleId == subID
-                          select c);
-
-            return result;
         }
     }
 }
