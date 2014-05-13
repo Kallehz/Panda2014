@@ -10,6 +10,7 @@ namespace PandaApp.Models
     {
         public int ID { get; set; }
 
+        [Required]
         [Display(Name = "Language")]
         public string Language { get; set; }
         public string Author { get; set; }

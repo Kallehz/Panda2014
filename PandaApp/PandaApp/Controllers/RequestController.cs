@@ -107,8 +107,11 @@ namespace PandaApp.Controllers
             Upvoter upvoter = new Upvoter() { RequestID = id, UserID = db.GetUserByName(User.Identity.Name).ID };
             panda.Upvoters.Add(upvoter);
 
-            panda.SaveChanges();
-
+            if(!db.GetReqUpBool(id, db.GetUserByName(User.Identity.Name).ID))
+            {
+                panda.SaveChanges();
+            }
+            
             ReqUp r = new ReqUp();
             r.request = db.GetRequestById(id);
             Account acc = db.GetUserByName(User.Identity.Name);
@@ -130,7 +133,10 @@ namespace PandaApp.Controllers
             Upvoter upvoter = new Upvoter() { RequestID = id, UserID = db.GetUserByName(User.Identity.Name).ID };
             panda.Upvoters.Add(upvoter);
 
-            panda.SaveChanges();
+            if (!db.GetReqUpBool(id, db.GetUserByName(User.Identity.Name).ID))
+            {
+                panda.SaveChanges();
+            }
 
             ReqUp r = new ReqUp();
             r.request = db.GetRequestById(id);
