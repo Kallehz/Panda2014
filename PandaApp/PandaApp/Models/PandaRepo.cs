@@ -24,13 +24,7 @@ namespace PandaApp.Models
         {
             return db.Languages;
         }
-        public static string GetLanguageBySubID(int subtitleID)
-        {
-            PandaBase db = new PandaBase();
-            return (from t in db.Subtitles
-                    where t.ID == subtitleID
-                    select t.Language).FirstOrDefault();
-        }
+
         public List<SelectListItem> GetLanguageListItems()
         {
             List<SelectListItem> result = new List<SelectListItem>();
@@ -54,20 +48,13 @@ namespace PandaApp.Models
 
             return result;
         }
-        public static string GetTitleBySubID(int subtitleID)
-        {
-            PandaBase db = new PandaBase();
-            return (from t in db.Subtitles
-                    where t.ID == subtitleID
-                    select t.Title).FirstOrDefault();
-        }
-       public  static IEnumerable<SubtitleLine> GetLines(int subtitleID)
+       public static IEnumerable<SubtitleLine> GetLines(int subtitleID)
        {
            PandaBase db = new PandaBase();
            return  (from item in db.SubtitleLines
-                               where item.SubtitleID == subtitleID
-                               orderby item.Index ascending
-                               select item);
+                    where item.SubtitleID == subtitleID
+                    orderby item.Index ascending
+                    select item);
        }
         //TODO: Language and title linq requests
         /*public EditViewModel GetEditViewModel(int subtitleID)
@@ -126,12 +113,18 @@ namespace PandaApp.Models
             db.Medias.Add(med);
             db.SaveChanges();
         }
+        public void AddComment(Comment c)
+        {
+            db.Comments.Add(c);
+            db.SaveChanges();
+        }
 
         public void AddSubtitleLine(SubtitleLine sl)
         {
+
             // Update-ar SubtitleLine með Sql skipun
-          //  db.SubtitleLines.SqlQuery("UPDATE SubtitleLines SET Text = @NewText WHERE ID = @ID"
-          //                              ,sl.Text, sl.SubtitleID);
+            //  db.SubtitleLines.SqlQuery("UPDATE SubtitleLines SET Text = @NewText WHERE ID = @ID"
+            //                              ,sl.Text, sl.SubtitleID);
 
             PandaBase db = new PandaBase();
             db.SubtitleLines.Add(sl);
@@ -155,7 +148,7 @@ namespace PandaApp.Models
         {
             var result = (from user in db.Accounts
                           where user.ID == id
-                          select user).First();
+                          select user).FirstOrDefault();
             return result;
         }
 
@@ -171,8 +164,10 @@ namespace PandaApp.Models
                            where a.UserID == uId
                            select a.UserID).First();
             }
-            catch(Exception e)
-            { }
+            catch(Exception)
+            {
+
+            }
             
             if(GetRequestById(req) == null || GetUserById(acc) == null)
             {

@@ -166,7 +166,6 @@
     <Compile Include="Controllers\MediaController.cs" />
     <Compile Include="Controllers\RequestController.cs" />
     <Compile Include="Controllers\SubtitleController.cs" />
-    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -251,7 +250,7 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\FAQ.cshtml" />
-    <Content Include="Views\Home\Upload.cshtml" />
+    <Content Include="Views\Subtitle\Upload.cshtml" />
     <Content Include="Views\Account\RegisterPV.cshtml" />
     <Content Include="Views\Account\LoginPV.cshtml" />
     <Content Include="Views\Subtitle\Edit.cshtml" />
@@ -270,6 +269,7 @@
     <Content Include="Views\Account\UserTranslations.cshtml" />
     <Content Include="Views\Subtitle\Details.cshtml" />
     <Content Include="Views\Subtitle\EditPV.cshtml" />
+    <Content Include="Views\Subtitle\Comments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

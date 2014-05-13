@@ -3,23 +3,12 @@
     ViewBag.Title = "Requests";
 }
 
-<!-- Search <%=Html.DropDownListFor(m => m.CourseId, new SelectList((ViewBag.Courses) as SelectList, "Value", "Text"), "Select")%>-->
+<!-- Search -->
 <div class="row text-center">
     @using (Html.BeginForm("SearchResult", "Subtitle"))
     {
         <input type="text" class="form-control" id="input" name="title" size="21" maxlength="120" placeholder="Request search">
-        <select class="form-control" id="select" name="language">
-            <option value="all" selected>Language</option>
-            <option value="icelandic">Icelandic</option>
-            <option value="english">English</option>
-            <option value="danish">Danish</option>
-            <option value="spanish">Spanish</option>
-            <option value="swedish">Swedish</option>
-            <option value="klingon">Klingon</option>
-            <option value="hungarian">Hungarian</option>
-        </select>
-        @* Dropdown list that fetches data from database, not working as of now. - Egill
-        Html.DropDownList("Languages", new SelectList((ViewBag.Languages) as SelectList, "Value", "Text"), "--- Select ---", new { @class = "form-control" });*@
+        @Html.DropDownList("Language", (IEnumerable<SelectListItem>)ViewBag.Languages, new { @class = "form-control" })
         <input type="submit" class="btn btn" value="Search">
     }
 </div>
@@ -54,6 +43,13 @@
                         </td>
                         <td>
                             @item.Upvotes
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("Upvote", "Request"))
+                                {
+                                    <input type="text" name="s" value="@Convert.ToString(item.ID)" style="display:none" />
+                                    <input type="submit" class="btn btn" value="Upvote">
+                                }
                         </td>
                     </tr>
                 }
