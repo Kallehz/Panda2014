@@ -40,26 +40,6 @@ namespace PandaApp.Models
             return result;
         }
 
-        public IEnumerable<Request> GetRequestsWithSubstring(string str)
-        {
-            var result = (from item in db.Requests
-                          where item.Title.ToLower().Contains(str.ToLower())
-                          orderby item.Upvotes descending
-                          select item).Take(15);
-
-            return result;
-        }
-
-        public IEnumerable<Subtitle> GetSubsWithSubstring(string str)
-        {
-            var result = (from item in db.Subtitles
-                          where item.Title.ToLower().Contains(str.ToLower())
-                          orderby item.DateCreated descending
-                          select item).Take(15);
-
-            return result;
-        }
-
         public Subtitle GetSubtitleById(int id)
         {
             var result = (from s in db.Subtitles
@@ -91,6 +71,7 @@ namespace PandaApp.Models
                    where t.ID == subtitleID
                    select t.Title).FirstOrDefault();
        }
+
         public Media GetMediaById(int id)
         {
             var result = (from m in db.Medias
@@ -211,18 +192,5 @@ namespace PandaApp.Models
                 return false;
             }
         }
-
-        public bool MediaExists(int mediaID)
-        {
-            foreach (var item in db.Medias)
-            {
-                if (item.ID == mediaID)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
     }
 }

@@ -48,21 +48,22 @@ namespace PandaApp.Controllers
         [HttpPost]
         public ActionResult Upload(Subtitle item, HttpPostedFileBase file, SubtitleLine srtLine)
         {
-            if (!db.MediaExists(item.MediaID))
+            Media med = db.GetMediaByName(item.Title);
+            Media newMedia = new Media();
+            if (med == null)
             {
-                Media m = new Media();
-                m.Title = item.Title;
-                db.AddMedia(m);
-                item.MediaID = m.ID;
+                newMedia.Title = item.Title;
+                db.AddMedia(newMedia);
             }
 
             if (ModelState.IsValid)
             {
+                item.MediaID = newMedia.ID;
                 item.Author = User.Identity.Name;
                 db.AddSubtitle(item);
                 db.Save();
 
-                //Code that checks if uploaded file has content. Originally from an MS tutorial but modified to our needs
+                //Code that checks if uploaded file has content.
                 if ((file != null) && (file.ContentLength > 0))
                 {
                     string fn = System.IO.Path.GetFileName(file.FileName);
@@ -84,7 +85,6 @@ namespace PandaApp.Controllers
                 {
                     Debug.Write("Please select a file to upload.");
                 }
-                //Code from MS tutorial ends.
 
                 //Turn file to string
                 string srtString = new StreamReader(file.InputStream).ReadToEnd();
@@ -137,15 +137,12 @@ namespace PandaApp.Controllers
                     counter++;
 
                     // checks to see if all columns in srtLine have been populated before adding a line to the database.
-                    if (   srtLine.Index != 0 
-                        && srtLine.TimeFrom != null 
-                        && srtLine.TimeTo != null
-                        && srtLine.Text != null 
-                        && srtLine.SubtitleID != 0)
-                            {
-                                db.AddSubtitleLine(srtLine);
-                                db.Save();
-                            }
+                    if (srtLine.Index != 0 && srtLine.TimeFrom != null && srtLine.TimeTo != null
+                        && srtLine.Text != null && srtLine.SubtitleID != 0)
+                    {
+                        db.AddSubtitleLine(srtLine);
+                        db.Save();
+                    }
                 }
 
                 return RedirectToAction("Index", "Home");

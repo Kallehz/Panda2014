@@ -195,7 +195,6 @@
     <Compile Include="Models\PandaBase.cs" />
     <Compile Include="Models\Request.cs" />
     <Compile Include="Models\ReqUp.cs" />
-    <Compile Include="Models\SubAndReq.cs" />
     <Compile Include="Models\Subtitle.cs" />
     <Compile Include="Models\SubtitleLine.cs" />
     <Compile Include="Models\EditViewModel.cs" />
