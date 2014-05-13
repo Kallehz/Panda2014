@@ -95,7 +95,7 @@
                             @req.Upvotes
                         </td>
                         <td>
-                            @using (Html.BeginForm("Upvote", "Home"))
+                            @using (Html.BeginForm("Upvote", "Request", FormMethod.Post, new { @id = "Upvote" }))
                             {
                                 if(req.UpvotedByUser)
                                 {
@@ -111,3 +111,4 @@
     </div>
     <!--div to the right ends-->
 </div>
+<script src="~/Scripts/UpvoteScript.js"></script>
