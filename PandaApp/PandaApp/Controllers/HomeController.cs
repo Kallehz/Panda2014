@@ -28,6 +28,7 @@ namespace PandaApp.Controllers
                                orderby item.DateCreated descending
                                select item).Take(15);
 
+            ViewBag.Languages = db.GetLanguageListItems();
             return View(SandR);
         }
 

@@ -178,13 +178,16 @@ namespace PandaApp.Controllers
             return View(SandR);
         }
         [HttpPost]
-        public ActionResult Details()
+        public ActionResult PostComment(int subtitleId, string comment)
         {
             if (ModelState.IsValid)
             {
-                
-                db.Save();
-                return RedirectToAction("Index");
+                Comment newComment = new Comment();
+                newComment.Text = comment;
+                newComment.Author = User.Identity.Name;
+                newComment.SubtitleId = subtitleId;
+                db.AddComment(newComment);
+                return RedirectToAction("Details", "Subtitle", new { id = subtitleId });
             }
             return View();
         }

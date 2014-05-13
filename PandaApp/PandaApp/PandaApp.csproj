@@ -166,7 +166,6 @@
     <Compile Include="Controllers\MediaController.cs" />
     <Compile Include="Controllers\RequestController.cs" />
     <Compile Include="Controllers\SubtitleController.cs" />
-    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -270,6 +269,7 @@
     <Content Include="Views\Account\UserTranslations.cshtml" />
     <Content Include="Views\Subtitle\Details.cshtml" />
     <Content Include="Views\Subtitle\EditPV.cshtml" />
+    <Content Include="Views\Subtitle\Comments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
