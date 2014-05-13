@@ -19,14 +19,17 @@ namespace PandaApp.Controllers
         {
             return View(new EditViewModel(subtitleID));
         }
-        public void UpdateSubtitleLine(int id, string text)
+        public void UpdateSubtitleLine(int id, string text, string timeStart, string timeStop)
         {
-            using(var context = new PandaBase())
+            using (var context = new PandaBase())
             {
                 SubtitleLine line = context.SubtitleLines.Where(l => l.ID == id).FirstOrDefault<SubtitleLine>();
                 line.Text = text;
+                line.TimeFrom = timeStart;
+                line.TimeTo = timeStop;
+                Debug.Write(timeStart + "-" + timeStop);
                 context.Entry(line).State = System.Data.Entity.EntityState.Modified;
-                context.SaveChanges();  
+                context.SaveChanges();
             }
         }
 
@@ -42,6 +45,14 @@ namespace PandaApp.Controllers
         [HttpPost]
         public ActionResult Upload(Subtitle item, HttpPostedFileBase file, SubtitleLine srtLine)
         {
+            if (!db.MediaExists(item.MediaID))
+            {
+                Media m = new Media();
+                m.Title = item.Title;
+                db.AddMedia(m);
+                item.MediaID = m.ID;
+            }
+
             if (ModelState.IsValid)
             {
                 item.Author = User.Identity.Name;
@@ -147,8 +158,6 @@ namespace PandaApp.Controllers
 
             if(language != "all")
             {
-                // This should redirect to the proper mediaID
-                // of the media that was searched for.
                 SandR.Subtitles = (from item in db.GetAllSubtitles()
                                    where (item.Title.Contains(title) &&
                                    (item.Language == language))
@@ -163,15 +172,8 @@ namespace PandaApp.Controllers
             }
             else
             {
-                SandR.Subtitles = (from item in db.GetAllSubtitles()
-                                   where (item.Title.Contains(title))
-                                   orderby item.DateCreated descending
-                                   select item).Take(15);
-
-                SandR.Requests = (from item in db.GetAllRequests()
-                                  where (item.Title.Contains(title))
-                                  orderby item.Upvotes descending
-                                  select item).Take(15);
+                var med = db.GetMediaByName(title);
+                return RedirectToAction("MediaProfile", "Media", new { id = med.ID });
             }
             
 

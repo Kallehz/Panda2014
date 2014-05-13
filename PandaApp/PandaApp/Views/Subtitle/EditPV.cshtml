@@ -7,9 +7,15 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-    @Html.LabelFor(m => m.Text)
-    <input type="hidden" id="lineID" value="@Model.ID" />
-    @Html.TextBoxFor(m => m.Text, new { @rows = 4, cols = 40, id = "lineText"})
+    <input type="hidden" id="lineID" value="@Model.ID" />   
+    <label for="Text">@Model.Index</label>
+    @Html.TextBoxFor(m => m.Text, new {id = "lineText"})
     @Html.ValidationMessageFor(m => m.Text)
+    <label for="lineStart">Time start</label>
+    @Html.TextBoxFor(m => m.TimeFrom, new { id = "lineStart", })
+    @Html.ValidationMessageFor(m => m.TimeFrom)
+    <label for="lineStart">Time stop</label>
+    @Html.TextBoxFor(m => m.TimeTo, new { id = "lineStop"})
+    @Html.ValidationMessageFor(m => m.TimeTo)
     <input type="submit" value="Edit" id="form_submit" />
 }

@@ -1,33 +1,40 @@
-﻿@model PandaApp.Models.Media
+﻿@model PandaApp.Models.MediaAndSubtitles
 
 @{
     ViewBag.Title = "MediaProfile";
 }
 
-<h2>MediaProfile</h2>
+<h2>@Model.m.Title</h2>
 
-<div>
-    <h4>Media</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Language</th>
+            <th>Date Created</th>
+            <th>Author</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @foreach (var item in Model.subs)
+            {
+                <td>
+                    @Html.ActionLink(item.Title, "Details", "Subtitle", new { id = item.ID }, null)
+                </td>
+                <td>
+                    @item.Language
+                </td>
+                <td>
+                    @item.DateCreated
+                </td>
+                <td>
+                    @Html.ActionLink(item.Author, "ViewUser", "Account", new { username = item.Author }, null)
+                </td>
+            }
+        </tr>
+            
+    </tbody>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IMDB)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IMDB)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Back to List", "Index", "Home")
-</p>
+</table>

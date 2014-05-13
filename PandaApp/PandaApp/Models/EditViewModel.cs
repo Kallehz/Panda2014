@@ -11,16 +11,13 @@ namespace PandaApp.Models
         public string Title { get; set; }
         public string Language { get; set; }
         public IEnumerable<SubtitleLine> Lines { get; set; }
-        public string TimeFrom { get; set; }
-        public string TImeTO { get; set; }
-
         public EditViewModel(int subtitleID)
         {
             SubtitleID = subtitleID;
             //TODO: title and language
-            Title = "test";
+            Title = PandaRepo.GetTitleBySubID(subtitleID);
 
-            Language = "English";
+            Language = PandaRepo.GetLanguageBySubID(subtitleID);
 
             Lines = PandaRepo.GetLines(subtitleID);
         }

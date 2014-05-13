@@ -95,10 +95,13 @@
                             @req.Upvotes
                         </td>
                         <td>
-                            @using (Html.BeginForm("Upvote", "Request"))
+                            @using (Html.BeginForm("Upvote", "Request", FormMethod.Post, new { @id = "Upvote" }))
                             {
-                                <input type="text" name="s" value="@Convert.ToString(req.ID)" style="display:none" />
-                                <input type="submit" class="btn btn" value="+">
+                                if(req.UpvotedByUser)
+                                {
+                                    <input type="text" name="s" value="@Convert.ToString(req.ID)" style="display:none" />
+                                    <input type="submit" class="btn btn" value="+">
+                                }
                             }
                         </td>
                     </tr>
@@ -108,3 +111,4 @@
     </div>
     <!--div to the right ends-->
 </div>
+<script src="~/Scripts/UpvoteScript.js"></script>

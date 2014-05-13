@@ -57,7 +57,15 @@ namespace PandaApp.Controllers
             r.request = db.GetRequestById(id);
             Account acc = db.GetUserByName(User.Identity.Name);
 
-            r.upvoted = db.GetReqUpBool(id, acc.ID);
+            if (db.GetUserByName(User.Identity.Name) != null)
+            {
+                r.upvoted = db.GetReqUpBool(id, acc.ID);
+            }
+            else
+            {
+                r.upvoted = false;
+            }
+            
 
             if (r != null)
             {
@@ -71,6 +79,7 @@ namespace PandaApp.Controllers
         {
             int id = Convert.ToInt32(s);
             PandaBase panda = new PandaBase();
+            Debug.WriteLine("TESTING: " + id);
             Request req = panda.Requests.Single(re => re.ID == id);
             req.Upvotes++;
 
