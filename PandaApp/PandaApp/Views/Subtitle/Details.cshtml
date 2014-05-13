@@ -45,11 +45,10 @@
     </dl>
 </div>
 
-@Html.ActionLink("Edit", "Edit", new { subtitleId = Model.ID }, new { @class = "btn btn-default" })
 @Html.ActionLink("Download", "Download", new { subtitleId = Model.ID }, new { @class = "btn btn-default" })
+@Html.ActionLink("Edit", "Edit", new { subtitleId = Model.ID }, new { @class = "btn btn-default" })
 
 <hr />
-
 @if (User.Identity.IsAuthenticated)
 {
     using (Html.BeginForm("PostComment", "Subtitle", new { subtitleId = @Model.ID }))
@@ -59,7 +58,7 @@
             <div class="col-md-6">
                 @Html.LabelFor(model => model.Comments, new { @class = "control-label" })
                 <div>
-                    @Html.TextArea("Comment", new { @class = "form-control", @rows = 4, @cols = 20 })
+                    @Html.TextArea("Comment", new { @class = "form-control", @rows = 3 })
                     @Html.ValidationMessageFor(model => model.Comments)
                 </div>
             </div>
