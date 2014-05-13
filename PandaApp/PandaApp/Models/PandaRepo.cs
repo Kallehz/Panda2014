@@ -48,13 +48,13 @@ namespace PandaApp.Models
 
             return result;
         }
-       public  static IEnumerable<SubtitleLine> GetLines(int subtitleID)
+       public static IEnumerable<SubtitleLine> GetLines(int subtitleID)
        {
            PandaBase db = new PandaBase();
            return  (from item in db.SubtitleLines
-                               where item.SubtitleID == subtitleID
-                               orderby item.Index ascending
-                               select item);
+                    where item.SubtitleID == subtitleID
+                    orderby item.Index ascending
+                    select item);
        }
         //TODO: Language and title linq requests
         /*public EditViewModel GetEditViewModel(int subtitleID)
@@ -116,9 +116,10 @@ namespace PandaApp.Models
 
         public void AddSubtitleLine(SubtitleLine sl)
         {
+
             // Update-ar SubtitleLine með Sql skipun
-          //  db.SubtitleLines.SqlQuery("UPDATE SubtitleLines SET Text = @NewText WHERE ID = @ID"
-          //                              ,sl.Text, sl.SubtitleID);
+            //  db.SubtitleLines.SqlQuery("UPDATE SubtitleLines SET Text = @NewText WHERE ID = @ID"
+            //                              ,sl.Text, sl.SubtitleID);
 
             PandaBase db = new PandaBase();
             db.SubtitleLines.Add(sl);
@@ -158,8 +159,10 @@ namespace PandaApp.Models
                            where a.UserID == uId
                            select a.UserID).First();
             }
-            catch(Exception e)
-            { }
+            catch(Exception)
+            {
+
+            }
             
             if(GetRequestById(req) == null || GetUserById(acc) == null)
             {
