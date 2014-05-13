@@ -14,7 +14,7 @@ namespace PandaApp.Models
         public EditViewModel(int subtitleID)
         {
             SubtitleID = subtitleID;
-            //TODO: title and language
+            
             Title = PandaRepo.GetTitleBySubID(subtitleID);
 
             Language = PandaRepo.GetLanguageBySubID(subtitleID);

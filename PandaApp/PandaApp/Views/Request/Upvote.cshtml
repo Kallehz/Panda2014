@@ -64,7 +64,7 @@
 @if (Model.upvoted)
 {
     <div class="row text-center">
-        @using (Html.BeginForm("Upvote", "Request"))
+        @using (Html.BeginForm("Upvote", "Index"))
         {
             <input type="text" name="s" value="@Convert.ToString(Model.request.ID)" style="display:none" />
             <input type="submit" class="btn btn" value="Upvote">
