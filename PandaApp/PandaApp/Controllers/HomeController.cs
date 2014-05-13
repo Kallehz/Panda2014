@@ -48,5 +48,27 @@ namespace PandaApp.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Upvote(string s)
+        {
+            int id = Convert.ToInt32(s);
+            PandaBase panda = new PandaBase();
+            Request req = panda.Requests.Single(re => re.ID == id);
+            req.Upvotes++;
+
+            Upvoter upvoter = new Upvoter() { RequestID = id, UserID = db.GetUserByName(User.Identity.Name).ID };
+            panda.Upvoters.Add(upvoter);
+
+            panda.SaveChanges();
+
+            ReqUp r = new ReqUp();
+            r.request = db.GetRequestById(id);
+            Account acc = db.GetUserByName(User.Identity.Name);
+
+            r.upvoted = db.GetReqUpBool(id, acc.ID);
+
+            return RedirectToAction("Index");
+        }
     }
 }
