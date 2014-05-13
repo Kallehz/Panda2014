@@ -123,7 +123,7 @@ namespace PandaApp.Controllers
                     counter++;
 
                     // checks to see if all columns in srtLine have been populated before adding a line to the database.
-                    if (srtLine.Index != 0 
+                    if (   srtLine.Index != 0 
                         && srtLine.TimeFrom != null 
                         && srtLine.TimeTo != null
                         && srtLine.Text != null 
