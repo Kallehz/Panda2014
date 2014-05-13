@@ -42,6 +42,13 @@ h1 a:hover
 }
 
 
-.footer-right {
+.footer-right 
+{
     color: #eb6864;
     float: right;
+}
+
+#edit_msg 
+{
+    display: none;
+}

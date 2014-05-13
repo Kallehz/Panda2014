@@ -11,7 +11,7 @@
     <input type="hidden" id="lineID" value="@Model.ID" />   
     
     <div class="form-group">
-        @Html.LabelFor(m => m.Index, new { @class = "col-md-2 control-label" })
+        <label for="Text" class="col-md-2 control-label">Line @Model.Index</label>
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.Text, new { id = "lineText", @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Text)
@@ -19,7 +19,7 @@
     </div>
     
     <div class="form-group">
-        @Html.LabelFor(m => m.TimeFrom, new { @class = "col-md-2 control-label" })
+        <label for="TimeFrom" class="col-md-2 control-label">Start</label>
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.TimeFrom, new { id = "lineStart", @class = "form-control" })
             @Html.ValidationMessageFor(m => m.TimeFrom)
@@ -27,7 +27,7 @@
     </div>
     
         <div class="form-group">
-        @Html.LabelFor(m => m.TimeTo, new { @class = "col-md-2 control-label" })
+            <label for="TimeTo" class="col-md-2 control-label">Stop</label>
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.TimeTo, new { id = "lineStop", @class = "form-control" })
             @Html.ValidationMessageFor(m => m.TimeTo)
@@ -35,8 +35,9 @@
     </div>
 
     <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-offset-2 col-md-8">
                 <input type="submit" value="Save" id="form_submit" class="btn btn-default" />
+                <p id="edit_msg">testing</p>
             </div>
         </div>
 }
