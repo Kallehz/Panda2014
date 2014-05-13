@@ -25,6 +25,8 @@ namespace PandaApp.Models
         public int Upvotes { get; set; }
         public DateTime DateCreated { get; set; }
 
+        public bool UpvotedByUser { get; set; }
+
         public Request()
 		{
 			DateCreated = DateTime.Now;
