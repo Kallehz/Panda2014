@@ -135,8 +135,8 @@ namespace PandaApp.Controllers
         public ActionResult Upvote(int id, string view)
         {
             PandaBase panda = new PandaBase();
-            ReqUp requp = new ReqUp();
-            requp.request = db.GetRequestById(id);
+            /*ReqUp requp = new ReqUp();
+            requp.request = db.GetRequestById(id);*/
 
             if(db.GetReqUpBool(id, db.GetUserByName(User.Identity.Name).ID))
             {
@@ -148,12 +148,12 @@ namespace PandaApp.Controllers
 
                 panda.SaveChanges();
 
-                requp.upvoted = false;
+                //requp.upvoted = false;
             }
             
             if(view == "Details")
             {
-                return View("Details", requp);
+                return Details(id);
             }
             else if(view == "Index")
             {
