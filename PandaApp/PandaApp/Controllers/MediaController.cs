@@ -31,16 +31,6 @@ namespace PandaApp.Controllers
             return View("NotFound");
         }
 
-        public void GetAvailableSubtitles(int mediaID)
-        {
-
-        }
-
-        public void GetIMDBInfo(int mediaID)
-        {
-            // USE IMDB API
-        }
-
         [HttpGet]
         public ActionResult Create()
         {
