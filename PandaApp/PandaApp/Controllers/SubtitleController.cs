@@ -216,32 +216,28 @@ namespace PandaApp.Controllers
 
             PandaBase db = new PandaBase();
 
+            //Calling the variables we need from the database tables.
+
             var subtitleLines = (from line in db.SubtitleLines
                                  where id == line.SubtitleID
                                  select line);
+
             var filename = (from title in db.Subtitles
-                            where id == title.ID
-                            select title.Title).SingleOrDefault();
+                                where id == title.ID
+                                select title.Title).SingleOrDefault();
             
             var language = (from lang in db.Subtitles
-                            where id == lang.ID
-                            select lang.Language).SingleOrDefault();
+                                where id == lang.ID
+                                select lang.Language).SingleOrDefault();
 
-            Debug.Write(filename);
-            Debug.Write(language);
 
-            
-            // string output = " ";
-
+            //Building string in the right srt format.
             StringBuilder output = new StringBuilder();
-            //sb.Append(someString);
-
-            // Debug.Write("Subtitle should star here:    ");
-
+          
             foreach (SubtitleLine line in subtitleLines)
             {
-                int indexint = line.Index;
-                string index = indexint.ToString();
+                int indexInt = line.Index;
+                string index = indexInt.ToString();
                 output.Append(index);
                 output.Append("\r\n");
                 string tcIn = line.TimeFrom.ToString();
@@ -252,33 +248,23 @@ namespace PandaApp.Controllers
                 output.Append("\r\n");
                 string onScreen = line.Text;
                 output.Append(onScreen);
-                output.Append("\r\n");
-                output.Append("\r\n");
+               
             }
 
+            //Makes a string from the stringbuilder. Closing the string
             var finalOutput = output.ToString();
 
+            //making the string that contains the filename and language.
             var finalname = filename + "_" + language + ".srt";
 
+            //creating the file from the string.
             var byteArray = Encoding.UTF8.GetBytes(finalOutput);
-            var stream = new MemoryStream(byteArray);
 
+            var stream = new MemoryStream(byteArray);
+            //return file to user.
             return File(stream, "text/plain", finalname);
 
         }
 
-
-        [HttpGet]
-        public ActionResult CreateSrt(SubtitleLine srtLine, int id)
-        {
-            PandaBase db = new PandaBase();
-            var index = (from item in db.SubtitleLines
-                         where item.ID == id
-                         select item);
-
-            Debug.Write(index);
-
-            return View("Home");
-        }
 	}
 }
