@@ -5,6 +5,17 @@
     ViewBag.Title = "Search results";
 }
 
+<!-- Search begins -->
+<div class="row text-center">
+    @using (Html.BeginForm("RequestSearch", "Request"))
+    {
+        <input type="text" class="form-control" id="input" name="title" size="21" maxlength="120" placeholder="Request search">
+        @Html.DropDownList("Language", (IEnumerable<SelectListItem>)ViewBag.Languages, new { @class = "form-control" })
+        <input type="submit" class="btn btn" value="Search">
+    }
+</div>
+<!-- Search ends -->
+
 <h3>Search results</h3>
 <hr />
 
@@ -18,50 +29,68 @@ else
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.First().Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Language)
+                @Html.DisplayNameFor(model => model.First().Language)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Author)
+                @Html.DisplayNameFor(model => model.First().Author)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DateCreated)
+                @Html.DisplayNameFor(model => model.First().DateCreated)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Upvotes)
-            </th>
+                @Html.DisplayNameFor(model => model.First().Upvotes)
+            </th>            
         </tr>
     </thead>
     <tbody>
-        @foreach (var req in Model)
+        @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    @Html.ActionLink(req.Title, "Details", "Request", new { id = req.ID }, null)
+                    <!-- So the title links to its profile -->
+                    @Html.ActionLink(item.Title, "Details", "Request",new { id = item.ID }, null)
                 </td>
                 <td>
-                    @req.Language
+                    @item.Language
                 </td>
                 <td>
-                    @if (@req.Author == "Guest")
+                    @if (@item.Author == "Guest")
                     {
-                        @req.Author
+                        @item.Author
                     }
                     else
                     {
-                        @Html.ActionLink(req.Author, "ViewUser", "Account", new { username = req.Author }, null)
+                        @Html.ActionLink(item.Author, "ViewUser", "Account", new { username = item.Author }, null)
                     }
                 </td>
                 <td>
-                    @req.DateCreated.ToShortDateString()
+                    @item.DateCreated
                 </td>
                 <td>
-                    @req.Upvotes
+                        @if (item.UpvotedByUser)
+                        {
+                            using (Html.BeginForm("Upvote", "Request", FormMethod.Post, new { @id = "upvote" }))
+                            {
+                                <input type="hidden" name="id" value="@item.ID" />
+                                <input type="hidden" name="view" value="Index" />
+                                <button type="submit" class="btn btn-mini" value="+">
+                                    @item.Upvotes
+                                    <span class="glyphicon glyphicon-arrow-up"></span>
+                                </button>
+                            }
+                        }
+                        else
+                        {
+                            <button type="submit" class="btn btn-mini" value="">
+                                @item.Upvotes
+                            </button>
+                        }
                 </td>
             </tr>
         }
-        </tbody>    
-    </table>
+    </tbody>
+</table>
 }

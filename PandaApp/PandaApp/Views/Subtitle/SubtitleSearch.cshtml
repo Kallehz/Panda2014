@@ -4,6 +4,17 @@
     ViewBag.Title = "Subtitle Search";
 }
 
+<!-- Search-->
+<div class="row text-center">
+    @using (Html.BeginForm("SubtitleSearch", "Subtitle"))
+    {
+        <input type="text" class="form-control" id="input" name="title" size="21" maxlength="120" placeholder="Subtitle search">
+        @Html.DropDownList("Language", (IEnumerable<SelectListItem>)ViewBag.Languages, new { @class = "form-control" })
+        <input type="submit" class="btn btn" value="Search">
+    }
+</div>
+<!-- search end-->
+
 <h3>Subtitle Search</h3>
 <hr />
 
@@ -27,6 +38,9 @@ else
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            <th>
+                Download
             </th>
         </tr>
     </thead>
@@ -52,6 +66,16 @@ else
                 </td>
                 <td>
                     @sub.DateCreated
+                </td>
+                <td>
+                    @using (Html.BeginForm("Download", "Subtitle", FormMethod.Post))
+                    {
+                        <input type="hidden" name="id" value="@sub.ID" />
+                        <input type="hidden" name="view" value="Details" />
+                        <button type="submit" class="btn btn-mini" value="Download">
+                            <span class="glyphicon glyphicon-save"></span>
+                        </button>
+                    }
                 </td>
             </tr>
         }
