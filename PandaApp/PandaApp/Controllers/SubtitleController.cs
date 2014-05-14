@@ -8,6 +8,7 @@ using PandaApp.Models;
 using System.Text.RegularExpressions;
 using System.IO;
 using System.Text;
+using PagedList;
 
 
 namespace PandaApp.Controllers
@@ -17,9 +18,21 @@ namespace PandaApp.Controllers
         PandaRepo db = new PandaRepo();
 
         [Authorize]
-        public ActionResult Edit(int subtitleID)
+        public ActionResult Edit(int? page, int id)
         {
-            return View(new EditViewModel(subtitleID));
+            var mdl = new EditViewModel(id);
+
+            if (Request.HttpMethod != "GET")
+            {
+                page = 1;
+            }
+
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
+
+            mdl.Lines = db.GetLines(id).ToPagedList(pageNumber, pageSize);
+
+            return View(mdl);
         }
 
         [Authorize]

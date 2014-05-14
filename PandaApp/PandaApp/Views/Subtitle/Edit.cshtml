@@ -1,7 +1,9 @@
 ﻿@model PandaApp.Models.EditViewModel
+
 @{
     ViewBag.Title = "Edit";
 }
+
 <h2>Title: @Model.Title</h2>
 <h4>Language: @Model.Language</h4>
 <hr />
@@ -10,4 +12,35 @@
 {
     Html.RenderPartial("EditPV", item);
 }
+
+<div class="page-nav">
+        @if (Model.Lines.HasPreviousPage)
+        {
+            @Html.ActionLink("<<", "Edit", new { page = 1 })
+            @Html.Raw(" ")
+            @Html.ActionLink("< Prev", "Edit", new { page = Model.Lines.PageNumber - 1 })
+        }
+        else
+        {
+            @:<<
+            @Html.Raw(" ")
+            @:< Prev
+        }
+
+        Page @(Model.Lines.PageCount < Model.Lines.PageNumber ? 0 : Model.Lines.PageNumber)
+
+        @if (Model.Lines.HasNextPage)
+        {
+            @Html.ActionLink("Next >", "Edit", new { page = Model.Lines.PageNumber + 1 })
+            @Html.Raw(" ")
+            @Html.ActionLink(">>", "Edit", new { page = Model.Lines.PageCount })
+        }
+        else
+        {
+            @:Next >
+            @Html.Raw(" ")
+            @:>>
+        }
+    </div>
+
 <script src="~/Scripts/EditScript.js"></script>
