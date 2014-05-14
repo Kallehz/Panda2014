@@ -266,18 +266,5 @@ namespace PandaApp.Controllers
 
         }
 
-
-        [HttpGet]
-        public ActionResult CreateSrt(SubtitleLine srtLine, int id)
-        {
-            PandaBase db = new PandaBase();
-            var index = (from item in db.SubtitleLines
-                         where item.ID == id
-                         select item);
-
-            Debug.Write(index);
-
-            return View("Home");
-        }
 	}
 }
