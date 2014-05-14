@@ -248,7 +248,7 @@ namespace PandaApp.Controllers
 
             var finalOutput = output.ToString();
 
-            var byteArray = Encoding.ASCII.GetBytes(finalOutput);
+            var byteArray = Encoding.UTF8.GetBytes(finalOutput);
             var stream = new MemoryStream(byteArray);
 
             return File(stream, "text/plain", "your_subtitle.str");
