@@ -219,8 +219,18 @@ namespace PandaApp.Controllers
             var subtitleLines = (from line in db.SubtitleLines
                                  where id == line.SubtitleID
                                  select line);
+            var filename = (from title in db.Subtitles
+                            where id == title.ID
+                            select title.Title).SingleOrDefault();
+            
+            var language = (from lang in db.Subtitles
+                            where id == lang.ID
+                            select lang.Language).SingleOrDefault();
 
+            Debug.Write(filename);
+            Debug.Write(language);
 
+            
             // string output = " ";
 
             StringBuilder output = new StringBuilder();
@@ -248,15 +258,12 @@ namespace PandaApp.Controllers
 
             var finalOutput = output.ToString();
 
-            var byteArray = Encoding.ASCII.GetBytes(finalOutput);
+            var finalname = filename + "_" + language + ".srt";
+
+            var byteArray = Encoding.UTF8.GetBytes(finalOutput);
             var stream = new MemoryStream(byteArray);
 
-            return File(stream, "text/plain", "your_subtitle.str");
-
-            //Debug.Write("Subtitle should star here:    ");
-            //Debug.Write(indexList);
-
-            // return RedirectToAction("Index", "Home");
+            return File(stream, "text/plain", finalname);
 
         }
 
