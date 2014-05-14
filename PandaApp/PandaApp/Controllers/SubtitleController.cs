@@ -44,7 +44,7 @@ namespace PandaApp.Controllers
             using (var context = new PandaBase())
             {
                 SubtitleLine line = context.SubtitleLines.Where(l => l.ID == id).FirstOrDefault<SubtitleLine>();
-                line.Text = text;
+                line.Text = text + "\r\n" + "\r\n";
                 line.TimeFrom = timeStart;
                 line.TimeTo = timeStop;
                 Debug.Write(timeStart + "-" + timeStop);
