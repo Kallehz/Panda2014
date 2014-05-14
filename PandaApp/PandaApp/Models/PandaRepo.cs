@@ -48,14 +48,16 @@ namespace PandaApp.Models
 
             return result;
         }
-       public static IEnumerable<SubtitleLine> GetLines(int subtitleID)
+       public IEnumerable<SubtitleLine> GetLines(int subtitleID)
        {
-           PandaBase db = new PandaBase();
-           return  (from item in db.SubtitleLines
-                    where item.SubtitleID == subtitleID
-                    orderby item.Index ascending
-                    select item);
+           var result = (from item in db.SubtitleLines
+                         where item.SubtitleID == subtitleID
+                         orderby item.Index ascending
+                         select item);
+
+           return result;
        }
+
        public static string GetLanguageBySubID(int subtitleID)
        {
            PandaBase db = new PandaBase();

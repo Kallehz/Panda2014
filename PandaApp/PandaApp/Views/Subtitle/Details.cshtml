@@ -51,7 +51,7 @@
         <input type="hidden" name="view" value="Details" />
         <input type="submit" class="btn btn-default" value="Download">
     }
-    @Html.ActionLink("Edit", "Edit", new { subtitleId = Model.ID }, new { @class = "btn btn-default" })
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-default" })
 </div>
 
 
@@ -78,6 +78,8 @@
         </div>
     }
 }
+
+<hr />
 
 @foreach (var item in Model.Comments)
 {

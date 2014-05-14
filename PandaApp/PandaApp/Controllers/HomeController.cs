@@ -20,8 +20,8 @@ namespace PandaApp.Controllers
         public ActionResult Index(int? page)
         {
             var subs = (from item in db.GetAllSubtitles()
-                               orderby item.DateCreated descending
-                               select item);
+                        orderby item.DateCreated descending
+                        select item);
 
             if (Request.HttpMethod != "GET")
             {
