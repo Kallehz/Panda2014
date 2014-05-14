@@ -242,8 +242,6 @@ namespace PandaApp.Controllers
                 output.Append("\r\n");
                 string onScreen = line.Text;
                 output.Append(onScreen);
-                output.Append("\r\n");
-                output.Append("\r\n");
             }
 
             var finalOutput = output.ToString();
