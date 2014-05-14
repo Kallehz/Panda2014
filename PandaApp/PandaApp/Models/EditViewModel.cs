@@ -14,11 +14,11 @@ namespace PandaApp.Models
         public EditViewModel(int subtitleID)
         {
             SubtitleID = subtitleID;
-            
             Title = PandaRepo.GetTitleBySubID(subtitleID);
-
             Language = PandaRepo.GetLanguageBySubID(subtitleID);
 
+            // This needs to have .Take(30) or something
+            // and it should have a page indexer
             Lines = PandaRepo.GetLines(subtitleID);
         }
     }

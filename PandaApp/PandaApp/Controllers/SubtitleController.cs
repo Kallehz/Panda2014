@@ -90,7 +90,7 @@ namespace PandaApp.Controllers
                 SubtitleLine srtLine = new SubtitleLine();
 
                 //Turn file to string
-                string srtString = new StreamReader(file.InputStream).ReadToEnd();
+                string srtString = new StreamReader(file.InputStream, Encoding.Default, true).ReadToEnd();
 
                 //regex for srt files from http://www.codeproject.com/Articles/32834/Subtitle-Synchronization-with-C
                 string pattern =
@@ -211,52 +211,9 @@ namespace PandaApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Download(int id, string view)
+        public ActionResult Download(int subtitleID)
         {
-            PandaBase db = new PandaBase();
-
-            var subtitleLines = (from line in db.SubtitleLines
-                                     where id == line.SubtitleID
-                                     select line);
-
-          
-           // string output = " ";
-
-            StringBuilder output = new StringBuilder();
-            //sb.Append(someString);
-
-           // Debug.Write("Subtitle should star here:    ");
-
-            foreach(SubtitleLine line in subtitleLines)
-            {
-                 int indexint =line.Index; 
-                 string index = indexint.ToString();
-                 output.Append(index);
-                 output.Append("\r\n");
-                 string tcIn = line.TimeFrom.ToString();
-                 output.Append(tcIn);
-                 output.Append(" --> ");
-                 string tcOut = line.TimeTo.ToString();
-                 output.Append(tcOut);
-                 output.Append("\r\n");
-                 string onScreen = line.Text;
-                 output.Append(onScreen);
-                 output.Append("\r\n");
-                 output.Append("\r\n");
-            }
-
-            var finalOutput = output.ToString();
-
-            var byteArray = Encoding.ASCII.GetBytes(finalOutput);
-            var stream = new MemoryStream(byteArray);
-
-            return File(stream, "text/plain", "your_subtitle.str");  
-            
-            //Debug.Write("Subtitle should star here:    ");
-            //Debug.Write(indexList);
-
-               // return RedirectToAction("Index", "Home");
-            
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
