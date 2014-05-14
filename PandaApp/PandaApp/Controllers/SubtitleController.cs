@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using PandaApp.Models;
 using System.Text.RegularExpressions;
 using System.IO;
+using System.Text;
 
 
 namespace PandaApp.Controllers
@@ -89,7 +90,7 @@ namespace PandaApp.Controllers
                 SubtitleLine srtLine = new SubtitleLine();
 
                 //Turn file to string
-                string srtString = new StreamReader(file.InputStream).ReadToEnd();
+                string srtString = new StreamReader(file.InputStream, Encoding.Default, true).ReadToEnd();
 
                 //regex for srt files from http://www.codeproject.com/Articles/32834/Subtitle-Synchronization-with-C
                 string pattern =
