@@ -67,16 +67,17 @@
                 <td>
                     @item.Upvotes 
                 </td>
-@*<td>
-@using (Html.BeginForm("Upvote2", "Request", FormMethod.Post, new { @id = "Upvote"}))
-{
-if(item.UpvotedByUser)
-{
-<input type="text" name="s" value="@Convert.ToString(item.ID)" style="display:none" />
-<input type="submit" class="btn btn" value="+">
-}
-}
-</td>*@
+                <td>
+                @if (item.UpvotedByUser)
+                {
+                    using (Html.BeginForm("Upvote", "Request", FormMethod.Post))
+                    {
+                        <input type="hidden" name="id" value="@item.ID" />
+                        <input type="hidden" name="view" value="Index" />
+                        <input type="submit" class="btn" value="+">
+                    }
+                }
+                </td>
             </tr>
         }
     </tbody>
