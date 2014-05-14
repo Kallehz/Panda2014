@@ -56,6 +56,7 @@ h1 a:hover
 
 #edit_msg 
 {
+    margin-left: 0.3em;
     display: none;
     font-size: medium;
 }
