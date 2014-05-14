@@ -58,20 +58,22 @@ namespace PandaApp.Models
            return result;
        }
 
-       public static string GetLanguageBySubID(int subtitleID)
+       public string GetLanguageBySubID(int subtitleID)
        {
-           PandaBase db = new PandaBase();
-           return (from t in db.Subtitles
-                   where t.ID == subtitleID
-                   select t.Language).FirstOrDefault();
+           var result = (from t in db.Subtitles
+                         where t.ID == subtitleID
+                         select t.Language).FirstOrDefault();
+
+           return result;
        }
 
-       public static string GetTitleBySubID(int subtitleID)
+       public string GetTitleBySubID(int subtitleID)
        {
-           PandaBase db = new PandaBase();
-           return (from t in db.Subtitles
-                   where t.ID == subtitleID
-                   select t.Title).FirstOrDefault();
+           var result = (from t in db.Subtitles
+                         where t.ID == subtitleID
+                         select t.Title).FirstOrDefault();
+
+           return result;
        }
 
         public Media GetMediaById(int id)
@@ -88,12 +90,12 @@ namespace PandaApp.Models
             var result = (from s in db.Requests
                           where s.ID == id
                           select s).SingleOrDefault();
+
             return result;
         }
 
-        public static void AddAccount(Account acc)
+        public void AddAccount(Account acc)
         {
-            PandaBase db = new PandaBase();
             db.Accounts.Add(acc);
             db.SaveChanges();
         }
@@ -122,18 +124,7 @@ namespace PandaApp.Models
 
         public void AddSubtitleLine(SubtitleLine sl)
         {
-
-            // Update-ar SubtitleLine með Sql skipun
-            //  db.SubtitleLines.SqlQuery("UPDATE SubtitleLines SET Text = @NewText WHERE ID = @ID"
-            //                              ,sl.Text, sl.SubtitleID);
-
-            PandaBase db = new PandaBase();
             db.SubtitleLines.Add(sl);
-            db.SaveChanges();
-        }
-
-        public void Save()
-        {
             db.SaveChanges();
         }
 
@@ -173,26 +164,11 @@ namespace PandaApp.Models
 
         public bool GetReqUpBool(int rId, int uId)
         {
-            int item = 0;
-            try
-            {
-                item = (from r in db.Upvoters
+            var item = (from r in db.Upvoters
                         where r.RequestID == rId && r.UserID == uId
-                        select r.ID).First();
-            }
-            catch(Exception)
-            {
+                        select r.ID).FirstOrDefault();
 
-            }
-            
-            if(item == 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return !Convert.ToBoolean(item);
         }
     }
 }

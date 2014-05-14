@@ -99,7 +99,7 @@ namespace PandaApp.Controllers
                     item.Author = User.Identity.Name;
                 }
                 db.AddRequest(item);
-                db.Save();
+
                 return RedirectToAction("Index");
             }
             ViewBag.Languages = db.GetLanguageListItems();

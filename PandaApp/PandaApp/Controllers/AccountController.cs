@@ -95,7 +95,7 @@ namespace PandaApp.Controllers
                     //HUGE SECURITY RISK RIGHT HERE!
                     //DO NOT, DO NOT! UNDER ANY CIRCUMSTANCES ADD Password = model.Password TO THE ACCOUNT REGISTRATION.
                     Account newAccount = new Account() { Username = model.UserName, Email = model.Email /*This is where you would add it but do not*/ };
-                    PandaRepo.AddAccount(newAccount);
+                    db.AddAccount(newAccount);
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }
