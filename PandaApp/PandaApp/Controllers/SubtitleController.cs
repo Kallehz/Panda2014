@@ -20,7 +20,7 @@ namespace PandaApp.Controllers
         [Authorize]
         public ActionResult Edit(int? page, int id)
         {
-            var mdl = new EditViewModel(id);
+            EditViewModel mdl = new EditViewModel();
 
             if (Request.HttpMethod != "GET")
             {
@@ -30,6 +30,9 @@ namespace PandaApp.Controllers
             int pageSize = 15;
             int pageNumber = (page ?? 1);
 
+            mdl.SubtitleID = id;
+            mdl.Title = db.GetTitleBySubID(id);
+            mdl.Language = db.GetLanguageBySubID(id);
             mdl.Lines = db.GetLines(id).ToPagedList(pageNumber, pageSize);
 
             return View(mdl);
