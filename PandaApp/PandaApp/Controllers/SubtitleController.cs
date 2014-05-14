@@ -79,7 +79,6 @@ namespace PandaApp.Controllers
                 item.MediaID = med.ID;
                 item.Author = User.Identity.Name;
                 db.AddSubtitle(item);
-                db.Save();
 
                 //Code that checks if uploaded file has content.
                 if ((file != null) && (file.ContentLength > 0))
@@ -160,7 +159,6 @@ namespace PandaApp.Controllers
                         && srtLine.Text != null && srtLine.SubtitleID != 0)
                     {
                         db.AddSubtitleLine(srtLine);
-                        db.Save();
                     }
                 }
 

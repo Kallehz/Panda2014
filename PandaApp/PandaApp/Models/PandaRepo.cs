@@ -128,11 +128,6 @@ namespace PandaApp.Models
             db.SaveChanges();
         }
 
-        public void Save()
-        {
-            db.SaveChanges();
-        }
-
         public IEnumerable<Subtitle> GetSubtitlesForMedia(int mediaID)
         {
             var result = (from s in db.Subtitles
