@@ -44,8 +44,17 @@
     </dl>
 </div>
 
-@Html.ActionLink("Download", "Download", new { subtitleId = Model.ID }, new { @class = "btn btn-default" })
-@Html.ActionLink("Edit", "Edit", new { subtitleId = Model.ID }, new { @class = "btn btn-default" })
+<div>
+    @using (Html.BeginForm("Download", "Subtitle", FormMethod.Post))
+    {
+        <input type="hidden" name="id" value="@Model.ID" />
+        <input type="hidden" name="view" value="Details" />
+        <input type="submit" class="btn btn-default" value="Download">
+    }
+    @*@Html.ActionLink("Download", "CreateSrt", new { subtitleId = Model.ID }, new { @class = "btn btn-default" })*@
+    @Html.ActionLink("Edit", "Edit", new { subtitleId = Model.ID }, new { @class = "btn btn-default" })
+</div>
+
 
 <hr />
 @if (User.Identity.IsAuthenticated)

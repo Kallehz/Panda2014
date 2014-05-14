@@ -209,11 +209,15 @@ namespace PandaApp.Controllers
             return View("NotFound");
         }
 
+        [HttpPost]
+        public ActionResult Download(int subtitleID)
+        {
+            return RedirectToAction("Index");
+        }
+
         [HttpGet]
         public ActionResult CreateSrt(SubtitleLine srtLine, int id)
         {
-
-
             PandaBase db = new PandaBase();
             var index = (from item in db.SubtitleLines
                          where item.ID == id
