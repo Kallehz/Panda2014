@@ -132,7 +132,7 @@ namespace PandaApp.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Upvote(int id, string view)
+        public void Upvote(int id)
         {
             PandaBase panda = new PandaBase();
             /*ReqUp requp = new ReqUp();
@@ -149,19 +149,6 @@ namespace PandaApp.Controllers
                 panda.SaveChanges();
 
                 //requp.upvoted = false;
-            }
-            
-            if(view == "Details")
-            {
-                return Details(id);
-            }
-            else if(view == "Index")
-            {
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
             }
         }
 	}

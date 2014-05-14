@@ -65,7 +65,7 @@
 @if (Model.upvoted)
 {
     <div class="row text-center">
-        @using (Html.BeginForm("Upvote", "Request", FormMethod.Post))
+        @using (Html.BeginForm("Upvote", "Request", FormMethod.Post, new { @id = "upvote" }))
         {
             <input type="hidden" name="id" value="@Model.request.ID" />
             <input type="hidden" name="view" value="Details" />

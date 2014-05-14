@@ -1,11 +1,14 @@
 ﻿$(document).ready(function () {
-    $('form[id=Upvote]').submit(function (e) {
-        var s = $("#" + this.id + " input[name=s]").val();
+    $('form[id=\"upvote\"]').submit(function (e) {
+        e.preventDefault();
+        var id = $("input[name=\"id\"]").val();
         $.ajax({
             type: 'post',
             url: '/Request/Upvote',
-            data: { s: s },
+            data: { id: id },
         });
-        e.preventDefault();
+        $(this).html("Upvoted!");
+        $(this).css({ color: "lightgreen" })
+        $(this).fadeOut(1000);
     });
 });
