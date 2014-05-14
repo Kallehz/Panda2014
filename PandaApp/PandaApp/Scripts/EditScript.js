@@ -5,8 +5,8 @@
         var id = $(selectorPrefix + " #lineID").val();
         var timeStart = $(selectorPrefix + " #lineStart").val();
         var timeStop = $(selectorPrefix + " #lineStop").val();
-        if (text == "") {
-            $(selectorPrefix + " div[id=\"submit_div\"] #edit_msg").html("Text field must not be empty");
+        if (text == "" || timeStart =="" || timeStop =="") {
+            $(selectorPrefix + " div[id=\"submit_div\"] #edit_msg").html("None of the fields can be empy");
             $(selectorPrefix + " div[id=\"submit_div\"] #edit_msg").fadeIn(600);
             $(selectorPrefix + " div[id=\"submit_div\"] #edit_msg").css({ display: "inline-table", color: "#eb6864" });
         }
