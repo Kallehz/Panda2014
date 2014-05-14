@@ -22,7 +22,11 @@ namespace PandaApp.Models
 
         public IEnumerable<Language> GetAllLanguages()
         {
-            return db.Languages;
+            var result = (from l in db.Languages
+                          orderby l.LanguageName ascending
+                          select l);
+
+            return result;
         }
 
         public List<SelectListItem> GetLanguageListItems()
