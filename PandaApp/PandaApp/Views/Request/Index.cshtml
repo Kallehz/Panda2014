@@ -64,13 +64,13 @@
                 <td>
                     @item.DateCreated
                 </td>
-                <td>
+                <td id="upvote_column">
                     @item.Upvotes 
                 </td>
                 <td>
                 @if (item.UpvotedByUser)
                 {
-                    using (Html.BeginForm("Upvote", "Request", FormMethod.Post))
+                    using (Html.BeginForm("Upvote", "Request", FormMethod.Post, new { @id = "upvote" }))
                     {
                         <input type="hidden" name="id" value="@item.ID" />
                         <input type="hidden" name="view" value="Index" />

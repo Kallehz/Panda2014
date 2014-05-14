@@ -59,6 +59,16 @@
                         @Html.ActionLink(sub.Author, "ViewUser", "Account", new { username = sub.Author }, null)
                     }
                 </td>
+                <td>
+                    @using (Html.BeginForm("Download", "Subtitle", FormMethod.Post))
+                    {
+                        <input type="hidden" name="id" value="@sub.ID" />
+                        <input type="hidden" name="view" value="Details" />
+                        <button type="submit" class="btn btn-mini" value="Download">
+                            <span class="glyphicon glyphicon-save"></span>
+                            </button>
+                    }
+                </td>
             </tr>
         }
     </tbody>
