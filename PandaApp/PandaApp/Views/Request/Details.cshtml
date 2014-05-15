@@ -62,19 +62,28 @@
     </dl>
 </div>
 
-@if (Model.upvoted)
-{
-    <div class="row text-center">
-        @using (Html.BeginForm("Upvote", "Request", FormMethod.Post, new { @id = "upvote" }))
-        {
-            <input type="hidden" name="id" value="@Model.request.ID" />
-            <input type="hidden" name="view" value="Details" />
-            <input type="submit" class="btn btn" value="Upvote">
-        }
-    </div>
-}
+<table>
+    <tbody>
+        <tr>
+            <td id="margin_1">
+                <p id="return_link_1">
+                    @Html.ActionLink("Back to List", "Index")
+                </p>
+            </td>
+            @if (Model.upvoted)
+            {
+                <td>
+                    <div class="row text-center">
+                        @using (Html.BeginForm("Upvote", "Request", FormMethod.Post, new { @id = "upvote" }))
+                        {
+                            <input type="hidden" name="id" value="@Model.request.ID" />
+                            <input type="submit" class="btn btn" value="Upvote">
+                        }
+                    </div>
+                </td>
+            }
+        </tr>
+    </tbody>
+</table>
 
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>
 <script src="~/Scripts/UpvoteScript.js"></script>

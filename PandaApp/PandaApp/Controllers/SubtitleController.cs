@@ -65,6 +65,16 @@ namespace PandaApp.Controllers
         [HttpPost]
         public ActionResult Upload(Subtitle item, HttpPostedFileBase file)
         {
+
+            var filename = Path.GetFileName(file.FileName);
+            var extension = Path.GetExtension(filename);
+            
+            //Checks if the file extension is correct and redirects user to error page if required.
+            if ((extension != ".srt" && extension != ".txt"))
+            {
+                return View("UploadError");
+            }
+
             Media med = db.GetMediaByName(item.Title);
             Media newMedia = new Media();
             if (med == null)
@@ -80,28 +90,15 @@ namespace PandaApp.Controllers
                 item.Author = User.Identity.Name;
                 db.AddSubtitle(item);
 
+
                 //Code that checks if uploaded file has content.
                 if ((file != null) && (file.ContentLength > 0))
                 {
                     string fn = System.IO.Path.GetFileName(file.FileName);
                     string SaveLocation = Server.MapPath("~/App_Data/" + fn);
-                    try
-                    {
-                        file.SaveAs(SaveLocation);
-                        Debug.Write("The file has been uploaded.");
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.Write("Error: " + ex.Message);
-                        //Note: Exception.Message returns detailed message that describes the current exception. 
-                        //For security reasons, we do not recommend you return Exception.Message to end users in 
-                        //production environments. It would be better just to put a generic error message. 
-                    }
+                    file.SaveAs(SaveLocation);
                 }
-                else
-                {
-                    Debug.Write("Please select a file to upload.");
-                }
+                
                 SubtitleLine srtLine = new SubtitleLine();
 
                 //Turn file to string
@@ -112,8 +109,8 @@ namespace PandaApp.Controllers
                   @"(?<sequence>\d+)\r\n(?<start>\d{2}\:\d{2}\:\d{2},\d{3}) --\> " +
                   @"(?<end>\d{2}\:\d{2}\:\d{2},\d{3})\r\n(?<text>[\s\S]*?\r\n\r\n)";
 
+               
                 //parse string and send to database
-
                 int counter = 1;
                 foreach (string result in Regex.Split(srtString, pattern))
                 {
@@ -151,12 +148,15 @@ namespace PandaApp.Controllers
                         srtLine.SubtitleID = item.ID;
                         counter = 0;
                     }
-
+                   
                     counter++;
 
                     // checks to see if all columns in srtLine have been populated before adding a line to the database.
-                    if (srtLine.Index != 0 && srtLine.TimeFrom != null && srtLine.TimeTo != null
-                        && srtLine.Text != null && srtLine.SubtitleID != 0)
+                    if (srtLine.Index != 0 
+                        && srtLine.TimeFrom != null 
+                        && srtLine.TimeTo != null
+                        && srtLine.Text != null 
+                        && srtLine.SubtitleID != 0)
                     {
                         db.AddSubtitleLine(srtLine);
                     }
