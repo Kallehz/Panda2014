@@ -135,9 +135,7 @@ namespace PandaApp.Controllers
         public void Upvote(int id)
         {
             PandaBase panda = new PandaBase();
-            /*ReqUp requp = new ReqUp();
-            requp.request = db.GetRequestById(id);*/
-
+            
             if(db.GetReqUpBool(id, db.GetUserByName(User.Identity.Name).ID))
             {
                 Request req = panda.Requests.Single(re => re.ID == id);
@@ -147,9 +145,16 @@ namespace PandaApp.Controllers
                 panda.Upvoters.Add(upvoter);
 
                 panda.SaveChanges();
-
-                //requp.upvoted = false;
             }
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult FillRequest(int requestID, string subtitleLink)
+        {
+            db.FillReq(requestID, subtitleLink);
+
+            return RedirectToAction("Details/" + requestID);
         }
 	}
 }

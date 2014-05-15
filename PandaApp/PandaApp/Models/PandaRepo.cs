@@ -52,6 +52,7 @@ namespace PandaApp.Models
 
             return result;
         }
+
        public IEnumerable<SubtitleLine> GetLines(int subtitleID)
        {
            var result = (from item in db.SubtitleLines
@@ -126,6 +127,17 @@ namespace PandaApp.Models
             db.SaveChanges();
         }
 
+        public void FillReq(int id, string link)
+        {
+            Request r = GetRequestById(id);
+
+            if (r != null)
+            {
+                r.SubtitleLink = link;
+                db.SaveChanges();
+            }
+        }
+
         public void AddSubtitleLine(SubtitleLine sl)
         {
             db.SubtitleLines.Add(sl);
@@ -173,6 +185,18 @@ namespace PandaApp.Models
                         select r.ID).FirstOrDefault();
 
             return !Convert.ToBoolean(item);
+        }
+
+        public void DeleteSubtitle(Subtitle sub)
+        {
+            db.Subtitles.Remove(sub);
+            db.SaveChanges();
+        }
+
+        public void DeleteMedia(Media med)
+        {
+            db.Medias.Remove(med);
+            db.SaveChanges();
         }
     }
 }
