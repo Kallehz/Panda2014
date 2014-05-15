@@ -75,7 +75,7 @@ namespace PandaApp.Controllers
                 return View("UploadError");
             }
 
-            //TODO! check if file follows srt standar before going further in function!
+            
             Media med = db.GetMediaByName(item.Title);
             Media newMedia = new Media();
             if (med == null)
@@ -84,7 +84,6 @@ namespace PandaApp.Controllers
                 db.AddMedia(newMedia);
                 med = newMedia;
             }
-
             if (ModelState.IsValid)
             {
                 item.MediaID = med.ID;
@@ -109,10 +108,11 @@ namespace PandaApp.Controllers
                 string pattern =
                   @"(?<sequence>\d+)\r\n(?<start>\d{2}\:\d{2}\:\d{2},\d{3}) --\> " +
                   @"(?<end>\d{2}\:\d{2}\:\d{2},\d{3})\r\n(?<text>[\s\S]*?\r\n\r\n)";
-
-               
+                
                 //parse string and send to database
                 int counter = 1;
+                bool srtTrue = false;
+
                 foreach (string result in Regex.Split(srtString, pattern))
                 {
                     //first instance in the str format is always empty
@@ -160,10 +160,21 @@ namespace PandaApp.Controllers
                         && srtLine.SubtitleID != 0)
                     {
                         db.AddSubtitleLine(srtLine);
+                        srtTrue = true;
                     }
+
                 }
 
-                return RedirectToAction("Index", "Home");
+            if (srtTrue)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            else
+                {
+                    //TODO! delete entries in MEDIA if upload fails.
+
+                    return View("UploadError");
+                }
             }
 
             ViewBag.Languages = db.GetLanguageListItems();
