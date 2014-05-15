@@ -19,6 +19,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Upvotes)
                 </th>
+                <th>
+                    Filled
+                </th> 
             </tr>
         </thead>
         <tbody>
@@ -36,6 +39,16 @@
                     </td>
                     <td>
                         @prof.Upvotes
+                    </td>
+                    <td>
+                        @if (prof.SubtitleLink.IsEmpty())
+                        {
+                            @:No
+                        }
+                        else
+                        {
+                            @:Yes
+                        }
                     </td>
                 </tr>
             }

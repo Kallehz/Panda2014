@@ -23,15 +23,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.request.Author)
-            @*@if (Model.request.Author == "Guest")
+            @if (Model.request.Author == "Guest")
             {
                 @Model.request.Author
             }
             else
             {
                 @Html.ActionLink(Model.request.Author, "ViewUser", "Account", new { username = Model.request.Author }, null)
-            }*@
+            }
         </dd>
 
         <dt>
@@ -41,6 +40,7 @@
         <dd>
             @Html.DisplayFor(model => model.request.Language)
         </dd>
+        
         @* Hides video link if its empty *@
         @if (Model.request.ExternalVideoLink != null)
         {
@@ -67,6 +67,7 @@
         <dd>
             @Html.DisplayFor(model => model.request.DateCreated)
         </dd>
+
         @if (Model.request.SubtitleLink != null)
         {
         <dt>
@@ -83,17 +84,14 @@
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-        @if (User.Identity.IsAuthenticated)
+        @if (Model.request.SubtitleLink == null)
         {
-            if (Model.request.SubtitleLink == null)
+            using (Html.BeginForm("FillRequest", "Request", FormMethod.Post))
             {
-                using (Html.BeginForm("FillRequest", "Request", FormMethod.Post))
-                {
-                    <label class="col-md-2 control-label">Fill request</label>
-                    <input type="hidden" name="requestID" value="@Model.request.ID" />
-                    <input type="text" name="subtitleLink" class="form-control" placeholder="Enter subtitle link" />
-                    <input type="submit" class="btn btn-default" value="Fill">
-                }
+                <label class="col-md-2 control-label">Fill request</label>
+                <input type="hidden" name="requestID" value="@Model.request.ID" />
+                <input type="text" name="subtitleLink" class="form-control" placeholder="Enter subtitle link" />
+                <input type="submit" class="btn btn-default" value="Fill">
             }
         }
     </div>

@@ -22,7 +22,7 @@ namespace PandaApp.Controllers
         {
             EditViewModel mdl = new EditViewModel();
 
-            if (Request.HttpMethod != "GET")
+            if (!page.HasValue)
             {
                 page = 1;
             }
