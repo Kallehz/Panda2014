@@ -18,12 +18,10 @@
                 data: { id: id, text: text, timeStart: timeStart, timeStop: timeStop },
                 success: function () {
                     var selector = "input[value=\"" + id + "\"] ~ div.submit_div .edit_msg";
-                    /*
                     $(selector).css({ display: "none" });
-                    $(selector).fadeIn(600);
-                    */
-                    $(selector).css({ display: "inline-table", color: "lightgreen" });
                     $(selector).html("Your changes have been saved");
+                    $(selector).fadeIn(600);
+                    $(selector).css({ display: "inline-table", color: "lightgreen" });
                     $(selector).fadeOut(2000);
                 }
             });
