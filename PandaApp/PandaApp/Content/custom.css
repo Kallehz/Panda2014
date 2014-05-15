@@ -80,3 +80,10 @@ form > #Language
     padding-right: 2em;
     padding-bottom: 10px;
 }
+
+.welcome
+{
+    font-size: 14px;
+    float: right;
+    padding-right: 20px;
+}
