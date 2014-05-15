@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $('form').submit(function (e) {
+    $('form.form-horizontal').submit(function (e) {
         e.preventDefault();
         var selectorPrefix = "[name=\"" + this.name + "\"]";
         var text = $(selectorPrefix + " [name=\"lineText\"]").val();
