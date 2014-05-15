@@ -28,7 +28,10 @@ namespace PandaApp.Models
         public DateTime DateCreated { get; set; }
 
         public bool UpvotedByUser { get; set; }
-
+        
+        [Display(Name = "Subtitle link")]
+        public string SubtitleLink { get; set; }
+        
         public Request()
 		{
 			DateCreated = DateTime.Now;

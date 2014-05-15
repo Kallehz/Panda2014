@@ -3,38 +3,38 @@
 @{
     ViewBag.Title = "EditPV";
 }
-@using (Html.BeginForm("UpdateSubtitleLine", "Subtitle", FormMethod.Post, new { @class = "form-horizontal", @id = "line_" + @Model.Index, role = "form" }))
+@using (Html.BeginForm("UpdateSubtitleLine", "Subtitle", FormMethod.Post, new { @class = "form-horizontal line_" + @Model.Index, role = "form" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
     
-    <input type="hidden" id="lineID" value="@Model.ID" />   
+    <input type="hidden" class="lineID" value="@Model.ID" />   
     
     <div class="form-group">
-        <label for="Text" class="col-md-2 control-label">Line @Model.Index</label>
+        <label class="col-md-2 control-label">Line @Model.Index</label>
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Text, new { id = "lineText", @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Text)
+            <input class="form-control lineText Text" data-val="true" data-val-required="The Text field is required." name="Text" type="text" value="@Model.Text" />
         </div>
     </div>
+    
     <div class="form-group">
-        <label for="TimeFrom" class="col-md-2 control-label">Start</label>
+        <label class="col-md-2 control-label">Start</label>
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.TimeFrom, new { id = "lineStart", @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.TimeFrom)
+            <input class="form-control lineStart TimeTo" data-val="true" data-val-required="The TimeFrom field is required." type="text" value="@Model.TimeFrom" />
         </div>
     </div>
-        <div class="form-group">
-            <label for="TimeTo" class="col-md-2 control-label">Stop</label>
+    
+    <div class="form-group">
+        <label class="col-md-2 control-label">Stop</label>
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.TimeTo, new { id = "lineStop", @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.TimeTo)
+            <input class="form-control lineStart TimeFrom" data-val="true" data-val-required="The TimeTo field is required." type="text" value="@Model.TimeTo" />
         </div>
     </div>
-    <div class="form-group" id="submit_div">
-            <div class="col-md-offset-2 col-md-8">
-                <input type="submit" value="Save" id="form_submit" class="btn btn-default" />
-                <p id="edit_msg">Your changes have been saved</p>
-            </div>
+    
+    <div class="form-group submit_div">
+        <div class="col-md-offset-2 col-md-8">
+            <input type="submit" value="Save" class="form_submit btn btn-default" />
+            <p class="edit_msg">Your changes have been saved</p>
+        </div>
     </div>
 }
