@@ -74,3 +74,9 @@ form > #Language
 {
     width: 135px;
 }
+
+#margin_1
+{
+    padding-right: 2em;
+    padding-bottom: 10px;
+}

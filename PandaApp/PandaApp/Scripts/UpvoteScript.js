@@ -2,7 +2,7 @@
     $('form[id=\"upvote\"] button[type=\"submit\"]').click(function (e) {
         var upvotes = parseInt($(this).html()[37]);
         $(this).html(upvotes + 1 + " <span class=\"glyphicon glyphicon-arrow-up\"></span>");
-        $(this).children().css({ "color": "lightgreen" });
+        $(this).children().css({ "color": "rgb(85, 207, 85)" });
         $(this).children().fadeOut(1000);
         var id = $(this).siblings("input").val();
         $.ajax({
@@ -12,4 +12,19 @@
         });
         e.preventDefault();
     });
+
+    $('form[id=\"upvote\"]').submit(function (e) {
+        $("[type=\"submit\"]").attr("value", "Upvoted!");
+        $("input").css({ "color": "rgb(85, 207, 85)" });
+        $(this).fadeOut(3000);
+        var id = $("[name=\"id\"").val();
+            /*
+        $.ajax({
+            type: 'post',
+            url: '/Request/Upvote',
+            data: { id: id },
+        });
+            */
+        e.preventDefault();
+    });     
 });
