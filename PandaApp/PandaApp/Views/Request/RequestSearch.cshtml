@@ -26,71 +26,83 @@
 else
 {
     <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.First().Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.First().Language)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.First().Author)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.First().DateCreated)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.First().Upvotes)
-            </th>            
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+        <thead>
             <tr>
-                <td>
-                    <!-- So the title links to its profile -->
-                    @Html.ActionLink(item.Title, "Details", "Request",new { id = item.ID }, null)
-                </td>
-                <td>
-                    @item.Language
-                </td>
-                <td>
-                    @if (@item.Author == "Guest")
-                    {
-                        @item.Author
-                    }
-                    else
-                    {
-                        @Html.ActionLink(item.Author, "ViewUser", "Account", new { username = item.Author }, null)
-                    }
-                </td>
-                <td>
-                    @item.DateCreated
-                </td>
-                <td>
-                        @if (item.UpvotedByUser)
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Language)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Author)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().DateCreated)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Upvotes)
+                </th>    
+                <th>
+                    Filled
+                </th>        
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <!-- So the title links to its profile -->
+                        @Html.ActionLink(item.Title, "Details", "Request",new { id = item.ID }, null)
+                    </td>
+                    <td>
+                        @item.Language
+                    </td>
+                    <td>
+                        @if (@item.Author == "Guest")
                         {
-                            using (Html.BeginForm("Upvote", "Request", FormMethod.Post, new { @id = "upvote" }))
-                            {
-                                <input type="hidden" name="id" value="@item.ID" />
-                                <input type="hidden" name="view" value="Index" />
-                                <button type="submit" class="btn btn-mini" value="+">
-                                    @item.Upvotes
-                                    <span class="glyphicon glyphicon-arrow-up"></span>
-                                </button>
-                            }
+                            @item.Author
                         }
                         else
                         {
-                            <button type="submit" class="btn btn-mini" value="">
-                                @item.Upvotes
-                            </button>
+                            @Html.ActionLink(item.Author, "ViewUser", "Account", new { username = item.Author }, null)
                         }
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                    </td>
+                    <td>
+                        @item.DateCreated
+                    </td>
+                    <td>
+                            @if (item.UpvotedByUser)
+                            {
+                                using (Html.BeginForm("Upvote", "Request", FormMethod.Post, new { @class = "upvote" }))
+                                {
+                                    <input type="hidden" name="id" value="@item.ID" />
+                                    <button type="submit" class="btn btn-mini" value="+">
+                                        @item.Upvotes
+                                        <span class="glyphicon glyphicon-arrow-up"></span>
+                                    </button>
+                                }
+                            }
+                            else
+                            {
+                                <button type="button" class="btn btn-mini" value="">
+                                    @item.Upvotes
+                                </button>
+                            }
+                    </td>
+                    <td>
+                        @if (item.SubtitleLink.IsEmpty())
+                        {
+                            @:No
+                        }
+                        else
+                        {
+                            @:Yes
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
