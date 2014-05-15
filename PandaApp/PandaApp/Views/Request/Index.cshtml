@@ -67,7 +67,7 @@
                 <td>
                         @if (item.UpvotedByUser)
                         {
-                            using (Html.BeginForm("Upvote", "Request", FormMethod.Post, new { @id = "upvote" }))
+                            using (Html.BeginForm("Upvote", "Request", FormMethod.Post, new { @class = "upvote" }))
                             {
                                 <input type="hidden" name="id" value="@item.ID" />
                                 <input type="hidden" name="view" value="Index" />
@@ -98,9 +98,9 @@
     }
     else
     {
-        @:<<
+        @:&lt;&lt;
         @Html.Raw(" ")
-        @:< Prev
+        @:&lt; Prev
     }
 
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
@@ -113,9 +113,9 @@
     }
     else
     {
-        @:Next >
+        @:Next &gt;
         @Html.Raw(" ")
-        @:>>
+        @:&gt;&gt;
     }
 </div>
 
