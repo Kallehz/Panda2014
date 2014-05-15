@@ -186,5 +186,17 @@ namespace PandaApp.Models
 
             return !Convert.ToBoolean(item);
         }
+
+        public void DeleteSubtitle(Subtitle sub)
+        {
+            db.Subtitles.Remove(sub);
+            db.SaveChanges();
+        }
+
+        public void DeleteMedia(Media med)
+        {
+            db.Medias.Remove(med);
+            db.SaveChanges();
+        }
     }
 }
