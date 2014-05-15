@@ -18,6 +18,7 @@
         $("input").css({ "color": "rgb(85, 207, 85)" });
         $(this).fadeOut(3000);
         var id = $("[name=\"id\"").val();
+        $(".d_upvotes").html(parseInt($(".d_upvotes").html()) + 1);
         $.ajax({
             type: 'post',
             url: '/Request/Upvote',
