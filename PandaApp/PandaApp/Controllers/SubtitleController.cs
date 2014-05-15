@@ -75,6 +75,7 @@ namespace PandaApp.Controllers
                 return View("UploadError");
             }
 
+            //TODO! check if file follows srt standar before going further in function!
             Media med = db.GetMediaByName(item.Title);
             Media newMedia = new Media();
             if (med == null)
