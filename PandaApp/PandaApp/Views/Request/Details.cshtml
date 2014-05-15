@@ -109,7 +109,7 @@
             {
                 <td>
                     <div class="row text-center">
-                        @using (Html.BeginForm("Upvote", "Request", FormMethod.Post, new { @id = "upvote" }))
+                        @using (Html.BeginForm("Upvote", "Request", FormMethod.Post, new { @class = "upvote" }))
                         {
                             <input type="hidden" name="id" value="@Model.request.ID" />
                             <input type="submit" class="btn btn" value="Upvote">
