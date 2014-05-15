@@ -171,8 +171,8 @@ namespace PandaApp.Controllers
                 }
             else
                 {
-                    //TODO! delete entries in MEDIA if upload fails.
-
+                    //TODO! delete entries in SUBTITLE if upload fails.
+                    db.DeleteSubtitle(item);
                     return View("UploadError");
                 }
             }
