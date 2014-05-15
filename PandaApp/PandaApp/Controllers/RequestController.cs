@@ -151,5 +151,14 @@ namespace PandaApp.Controllers
                 //requp.upvoted = false;
             }
         }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult FillRequest(int requestID, string subtitleLink)
+        {
+            db.FillReq(requestID, subtitleLink);
+
+            return RedirectToAction("Details/" + requestID);
+        }
 	}
 }
