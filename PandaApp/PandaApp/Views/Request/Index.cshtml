@@ -70,7 +70,6 @@
                             using (Html.BeginForm("Upvote", "Request", FormMethod.Post, new { @id = "upvote" }))
                             {
                                 <input type="hidden" name="id" value="@item.ID" />
-                                <input type="hidden" name="view" value="Index" />
                                 <button type="submit" class="btn btn-mini" value="+">
                                     @item.Upvotes
                                     <span class="glyphicon glyphicon-arrow-up"></span>
@@ -79,7 +78,7 @@
                         }
                         else
                         {
-                            <button type="submit" class="btn btn-mini" value="">
+                            <button type="button" class="btn btn-mini" value="">
                                 @item.Upvotes
                             </button>
                         }
