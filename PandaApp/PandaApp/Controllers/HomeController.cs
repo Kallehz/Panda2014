@@ -23,7 +23,12 @@ namespace PandaApp.Controllers
                         orderby item.DateCreated descending
                         select item);
 
-            if (Request.HttpMethod != "GET")
+            /*if (Request.HttpMethod != "GET")
+            {
+                page = 1;
+            }*/
+
+            if (!page.HasValue)
             {
                 page = 1;
             }
