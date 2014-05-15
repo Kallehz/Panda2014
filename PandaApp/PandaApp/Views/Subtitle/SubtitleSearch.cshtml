@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PandaApp.Models.Subtitle>
+﻿@model PagedList.IPagedList<PandaApp.Models.Subtitle>
 
 @{
     ViewBag.Title = "Subtitle Search";
@@ -28,16 +28,16 @@ else
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.First().Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Language)
+                @Html.DisplayNameFor(model => model.First().Language)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Author)
+                @Html.DisplayNameFor(model => model.First().DateCreated)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DateCreated)
+                @Html.DisplayNameFor(model => model.First().Author)
             </th>
             <th>
                 Download
@@ -55,6 +55,9 @@ else
                     @sub.Language
                 </td>
                 <td>
+                    @sub.DateCreated
+                </td>
+                <td>
                     @if (@sub.Author == "Guest")
                     {
                         @sub.Author
@@ -63,9 +66,6 @@ else
                     {
                         @Html.ActionLink(sub.Author, "ViewUser", "Account", new { username = sub.Author }, null)
                     }
-                </td>
-                <td>
-                    @sub.DateCreated
                 </td>
                 <td>
                     @using (Html.BeginForm("Download", "Subtitle", FormMethod.Post))
@@ -81,4 +81,37 @@ else
         }
     </tbody>
 </table>
+}
+
+@if (Model.HasPreviousPage && Model.HasNextPage)
+{
+    <div class="page-nav">
+    @if (Model.HasPreviousPage)
+    {
+        @Html.ActionLink("<<", "Index", new { page = 1 })
+        @Html.Raw(" ")
+        @Html.ActionLink("< Prev", "Index", new { page = Model.PageNumber - 1 })
+    }
+    else
+    {
+        @:&lt;&lt;
+        @Html.Raw(" ")
+        @:&lt; Prev
+    }
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+
+    @if (Model.HasNextPage)
+    {
+        @Html.ActionLink("Next >", "Index", new { page = Model.PageNumber + 1 })
+        @Html.Raw(" ")
+        @Html.ActionLink(">>", "Index", new { page = Model.PageCount })
+    }
+    else
+    {
+        @:Next &gt;
+        @Html.Raw(" ")
+        @:&gt;&gt;
+    }
+</div>
 }

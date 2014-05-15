@@ -19,7 +19,9 @@
     Html.RenderPartial("EditPV", item);
 }
 
-<div class="page-nav">
+@if (Model.Lines.HasPreviousPage && Model.Lines.HasNextPage)
+{
+    <div class="page-nav">
         @if (Model.Lines.HasPreviousPage)
         {
             @Html.ActionLink("<<", "Edit", new { page = 1 })
@@ -48,9 +50,10 @@
             @:&gt;&gt;
         }
 </div>
+}
 
 <p>
-    @Html.ActionLink("Back to subtitle", "Details", "Subtitle")
+    @Html.ActionLink("Back to subtitle", "Details", "Subtitle", new { id = Model.SubtitleID }, null)
 </p>
 
 <script src="~/Scripts/EditScript.js"></script>
