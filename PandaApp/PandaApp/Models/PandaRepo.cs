@@ -180,5 +180,11 @@ namespace PandaApp.Models
             db.Subtitles.Remove(sub);
             db.SaveChanges();
         }
+
+        public void DeleteMedia(Media med)
+        {
+            db.Medias.Remove(med);
+            db.SaveChanges();
+        }
     }
 }
