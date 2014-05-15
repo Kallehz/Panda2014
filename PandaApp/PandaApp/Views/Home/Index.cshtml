@@ -86,9 +86,9 @@
     }
     else
     {
-        @:<<
+        @:&lt;&lt;
         @Html.Raw(" ")
-        @:< Prev
+        @:&lt; Prev
     }
 
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
@@ -101,9 +101,9 @@
     }
     else
     {
-        @:Next >
+        @:Next &gt;
         @Html.Raw(" ")
-        @:>>
+        @:&gt;&gt;
     }
 </div>
 

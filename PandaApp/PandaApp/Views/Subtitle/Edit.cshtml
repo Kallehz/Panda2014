@@ -22,9 +22,9 @@
         }
         else
         {
-            @:<<
+            @:&lt;&lt;
             @Html.Raw(" ")
-            @:< Prev
+            @:&lt; Prev
         }
 
         Page @(Model.Lines.PageCount < Model.Lines.PageNumber ? 0 : Model.Lines.PageNumber)
@@ -37,9 +37,9 @@
         }
         else
         {
-            @:Next >
+            @:Next &gt;
             @Html.Raw(" ")
-            @:>>
+            @:&gt;&gt;
         }
     </div>
 
