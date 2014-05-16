@@ -48,10 +48,17 @@ namespace PandaApp.Controllers
         {
             using (var context = new PandaBase())
             {
-                SubtitleLine line = context.SubtitleLines.Where(l => l.ID == id).FirstOrDefault<SubtitleLine>();
+                // Locates a SubtitleLine in the database with
+                // a given id
+                SubtitleLine line = (context.SubtitleLines.Where(l => l.ID == id)
+                                    .FirstOrDefault<SubtitleLine>());
+                // This adds two line breaks at the end of the text,
+                // this is necessary for the .srt standard
                 line.Text = text + "\r\n" + "\r\n";
                 line.TimeFrom = timeStart;
                 line.TimeTo = timeStop;
+                // Marks the entry 'line' in the database as modified,
+                // this way code-first knows it should update this entry in the database
                 context.Entry(line).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
             }
@@ -248,7 +255,7 @@ namespace PandaApp.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            // Gets the subtitle mode with 'id'
+            // Gets the subtitle model with 'id'
             Subtitle r = db.GetSubtitleById(id);
             if (r != null)
             {
