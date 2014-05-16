@@ -152,16 +152,21 @@ namespace PandaApp.Controllers
         [HttpPost]
         public void Upvote(int id)
         {
+            //Búið til eintak af PandaBase
             PandaBase panda = new PandaBase();
             
+            //Tékkað á því hvort það sé til Upvote með þessari ákveðnu beiðni og notanda. Ef 'true' þá er það ekki til og haldið er áfram.
             if(db.GetReqUpBool(id, db.GetUserByName(User.Identity.Name).ID))
             {
+                //fundið viðeigandi beiðni og hækkað 'upvotes' um 1.
                 Request req = panda.Requests.Single(re => re.ID == id);
                 req.Upvotes++;
 
+                //Bætt við línu í Upvoters töfluna sem inniheldur ID frá beiðni og notanda
                 Upvoter upvoter = new Upvoter() { RequestID = id, UserID = db.GetUserByName(User.Identity.Name).ID };
                 panda.Upvoters.Add(upvoter);
 
+                //PandaBase er uppfært
                 panda.SaveChanges();
             }
         }
