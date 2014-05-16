@@ -1,79 +1,65 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
   dslVersion="1.0.0.0"
-  Id="a7040105-fc51-4b5a-85b1-6d50ca2cc9b0"
-  name="Web"
+  Id="c8163f9a-8c90-43d3-a39a-d2a3bd928caa"
+  name="Security"
   visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
   <referencesInternal>
     <reference
-      Id="e57ee2ef-51c9-4870-a660-5e42c24ce3e7"
-      handle="viewcode://./CodeSchema_Namespace?Namespace%3DSystem.Web"
+      Id="4341dbdd-f066-4861-bd12-181817518017"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DMicrosoft.Owin.Security"
       tag="ViewCode" />
   </referencesInternal>
   <packagedElements>
     <packageHasNamedElement>
-      <packageMoniker
-        Id="efee0fc0-8c58-45ab-9bcc-94f51c64408e"
-        LastKnownName="Mvc"
-        LastKnownLocation="Package11_1708.uml" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
-        Id="7f8b8e4b-9ecb-4dd6-8cef-c687873e0e16"
-        name="HttpPostedFileBase"
-        isAbstract="true"
-        isLeaf="false"
-        isActiveClass="false">
+      <Interface
+        Id="38c56d42-6a5e-4cbc-a6b1-0b3e53d0fa69"
+        name="IAuthenticationManager"
+        isAbstract="false"
+        isLeaf="false">
         <referencesInternal>
           <reference
-            Id="632da26c-5172-413b-b415-045b509cb1a6"
-            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FSystem.Web.dll&quot; Namespace%3DSystem.Web Type%3DHttpPostedFileBase"
+            Id="b6b9e78d-9069-47fd-93fa-48b675620b74"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FEgill%2FSource%2FRepos%2FPanda2014%2FPandaApp%2Fpackages%2FMicrosoft.Owin.2.0.0%2Flib%2Fnet45%2FMicrosoft.Owin.dll Namespace%3DMicrosoft.Owin.Security Type%3DIAuthenticationManager"
             tag="ViewCode" />
         </referencesInternal>
         <appliedStereotypesInternal>
           <stereotypeInstance
-            Id="ee09d060-1b2d-4e49-aa1d-4abefb42fc39"
-            name="class"
+            Id="43613ec9-8078-444b-8f32-7f0ea1f0ecea"
+            name="interface"
             profile="CSharpProfile">
             <propertyInstances>
               <stereotypeInstanceHasPropertyInstances
-                Id="12d15fd8-c164-4ffb-8198-efad436a1dff">
+                Id="74a7f5a7-6f18-4adf-ae87-7918c24033d5">
                 <propertyInstance
-                  Id="ce149528-93e0-46fa-92d8-ea70275becf2"
+                  Id="142d3ec1-3b15-4b5d-9551-350c6e56feb6"
                   name="ClrAttributes" />
               </stereotypeInstanceHasPropertyInstances>
               <stereotypeInstanceHasPropertyInstances
-                Id="777b3e12-d305-4ce0-888e-6a9cbe0b341d">
+                Id="3ddbfeae-58df-4859-9212-0ecf856062c7">
                 <propertyInstance
-                  Id="6f05cefb-f68d-4ef6-a6f3-45f261d5c9d3"
+                  Id="2404bc71-acb6-4b6d-8ba1-3ad2b19802f0"
                   name="IsPartial"
                   value="false" />
               </stereotypeInstanceHasPropertyInstances>
               <stereotypeInstanceHasPropertyInstances
-                Id="0c7b45c4-02f4-4996-bfd0-a69431883e5f">
+                Id="db5c6b3c-82a7-4ff0-ae6b-060adbe2e1b2">
                 <propertyInstance
-                  Id="95489b03-db0c-441b-a253-f5425176212e"
-                  name="IsStatic"
-                  value="False" />
-              </stereotypeInstanceHasPropertyInstances>
-              <stereotypeInstanceHasPropertyInstances
-                Id="9b0484bb-f2df-4942-a70e-fae4171517c6">
-                <propertyInstance
-                  Id="fb0cc153-44fd-44a5-8210-0f625c5319b4"
+                  Id="1a98b9c4-e905-41ed-b0d0-7134b7bb08a9"
                   name="IsUnsafe"
                   value="false" />
               </stereotypeInstanceHasPropertyInstances>
               <stereotypeInstanceHasPropertyInstances
-                Id="3f9e1c5f-7922-4644-806a-7bb8b92e61da">
+                Id="ff99068f-f412-4b06-b1b0-93ad75a01f25">
                 <propertyInstance
-                  Id="57b93bbf-0186-4a3a-a63a-aa49b2b62ba0"
+                  Id="3a7162f3-0e00-43d0-8417-bc39cd050522"
                   name="PackageVisibility"
                   value="internal" />
               </stereotypeInstanceHasPropertyInstances>
             </propertyInstances>
           </stereotypeInstance>
         </appliedStereotypesInternal>
-      </class>
+      </Interface>
     </packageHasNamedElement>
   </packagedElements>
 </package>

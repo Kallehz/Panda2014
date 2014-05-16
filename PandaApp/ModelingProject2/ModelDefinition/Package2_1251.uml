@@ -1,27 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
   dslVersion="1.0.0.0"
-  Id="e622d670-59f4-4e06-8a46-05cf4a435bcb"
-  name="Microsoft"
+  Id="f66c8972-b54d-491e-9597-5734f71f0732"
+  name="Owin"
   visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
   <referencesInternal>
     <reference
-      Id="8cdc5e1c-f5b9-405b-a21a-8d1d8303ba5b"
-      handle="viewcode://./CodeSchema_Namespace?Namespace%3DMicrosoft"
+      Id="757ec801-edea-4ebc-bfe3-682fd082d003"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DMicrosoft.Owin"
       tag="ViewCode" />
   </referencesInternal>
   <packagedElements>
     <packageHasNamedElement>
       <packageMoniker
-        Id="b6d0b92a-6959-4818-bca0-3a08df593d9e"
-        LastKnownName="AspNet"
-        LastKnownLocation="Package7_1708.uml" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <packageMoniker
-        Id="f66c8972-b54d-491e-9597-5734f71f0732"
-        LastKnownName="Owin"
-        LastKnownLocation="Package2_1251.uml" />
+        Id="c8163f9a-8c90-43d3-a39a-d2a3bd928caa"
+        LastKnownName="Security"
+        LastKnownLocation="Package3_1251.uml" />
     </packageHasNamedElement>
   </packagedElements>
 </package>

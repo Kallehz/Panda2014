@@ -69,5 +69,179 @@
         </appliedStereotypesInternal>
       </class>
     </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="7d30c896-017b-4e6d-a270-9ba798bd0203"
+        name="ActionResult"
+        isAbstract="true"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="f812310a-f757-4d30-8192-32e1a34a3f60"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FEgill%2FSource%2FRepos%2FPanda2014%2FPandaApp%2Fpackages%2FMicrosoft.AspNet.Mvc.5.0.0%2Flib%2Fnet45%2FSystem.Web.Mvc.dll Namespace%3DSystem.Web.Mvc Type%3DActionResult"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="390ad6af-7d64-450c-9525-273ec5a779eb"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f6912e37-6f07-4b51-9977-28f0c759cc27">
+                <propertyInstance
+                  Id="6b6f0068-ac8c-4e6e-99cc-b4d0bdce1b41"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a16305a3-a23a-423a-97f4-c13bc9f1d70a">
+                <propertyInstance
+                  Id="e9ed6050-5486-4314-901b-056255fcd94b"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="70250545-c3bf-4b83-b4f1-ef48e9bece46">
+                <propertyInstance
+                  Id="de1193c4-39d2-4767-af3e-9032e0fb9536"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="aedc2228-3655-4ea2-b9dc-27e8c51fdc15">
+                <propertyInstance
+                  Id="db04fa8b-0598-42c9-bc8c-6427311cd778"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="db47cc78-c765-4d52-8641-5550f51a7f64">
+                <propertyInstance
+                  Id="7be73d85-057e-4c7c-bc6a-efc61c8714b4"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="a88b0a31-6c61-453f-bfd9-12952eb28f85"
+        name="Controller"
+        isAbstract="true"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="0388a39c-98fc-429c-b433-2bea4b667485"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FEgill%2FSource%2FRepos%2FPanda2014%2FPandaApp%2Fpackages%2FMicrosoft.AspNet.Mvc.5.0.0%2Flib%2Fnet45%2FSystem.Web.Mvc.dll Namespace%3DSystem.Web.Mvc Type%3DController"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="ed5952ca-35c1-41e0-b391-fa17d68b6d0f"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="86b6ec50-90c1-4aff-aea1-6a30644b9371">
+                <propertyInstance
+                  Id="e8f9f4c3-59c2-4aea-acb4-f841fe32500f"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d13fb317-37f4-43b8-a8f9-71c9347d7929">
+                <propertyInstance
+                  Id="a565d2f1-88ad-4a7d-8caa-d1fd336f7258"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="22d0c59c-e4b8-49ff-905e-e6d09a0308b7">
+                <propertyInstance
+                  Id="d5dee1cb-1f66-4661-a04d-96a970988a91"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c2ddb7bb-1cd6-4c87-8937-cac406e4a8eb">
+                <propertyInstance
+                  Id="8c60dac6-3e66-4948-b7e7-50b1a9621d39"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c655196e-03b2-4d00-8ded-cdd86a712fce">
+                <propertyInstance
+                  Id="44f46e76-0a28-4927-8cd5-4b9581499f06"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="6e1a96d6-6474-42f8-9f36-b73fb28ddd94"
+        name="FormCollection"
+        isAbstract="false"
+        isLeaf="true"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="afa7fbd0-9b9d-4279-8e83-e92853fd4c3e"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FEgill%2FSource%2FRepos%2FPanda2014%2FPandaApp%2Fpackages%2FMicrosoft.AspNet.Mvc.5.0.0%2Flib%2Fnet45%2FSystem.Web.Mvc.dll Namespace%3DSystem.Web.Mvc Type%3DFormCollection"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="63c5282f-38d7-4daf-901f-24aab2adce45"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0af7e315-1611-47fd-a1d3-ad48473be6bd">
+                <propertyInstance
+                  Id="9a7983ed-e871-4f63-8b1e-f107c6feab4c"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a0277f11-bf38-475d-be51-0255963c2aee">
+                <propertyInstance
+                  Id="21dc529e-ce5f-4951-b4f6-5d89fb7a921a"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="9f9b6ef0-20bc-4f74-a7ab-5064207f86d5">
+                <propertyInstance
+                  Id="73462a90-de88-42f7-ad0a-2fc57d4756a9"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2e0e7ac1-1bc1-4cc9-b75d-3e143f83eba4">
+                <propertyInstance
+                  Id="8ec083f8-212f-4918-be9d-ac099bcdbaf5"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="99e758cc-a80f-4200-8743-b939cb411da5">
+                <propertyInstance
+                  Id="51a6a326-84e2-46d0-93f7-af58a584c73d"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
   </packagedElements>
 </package>
