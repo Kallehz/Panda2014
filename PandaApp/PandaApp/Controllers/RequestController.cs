@@ -132,11 +132,16 @@ namespace PandaApp.Controllers
         public ActionResult Details(int id)
         {
             ReqUp r = new ReqUp();
+
+            //Sótt er viðeigandi beiðni
             r.request = db.GetRequestById(id);
+            //Sótt upplýsingar um núverandi notanda
             Account acc = db.GetUserByName(User.Identity.Name);
 
+            //Ef Notandi er til
             if (db.GetUserByName(User.Identity.Name) != null)
             {
+                // Verður 'true' ef notandi hefur 'upvotað' beiðnina áður
                 r.upvoted = db.GetReqUpBool(id, acc.ID);
             }
             else
@@ -144,7 +149,7 @@ namespace PandaApp.Controllers
                 r.upvoted = false;
             }
             
-
+            //keyrt ef ekki hefur komið villa
             if (r != null)
             {
                 return View(r);
