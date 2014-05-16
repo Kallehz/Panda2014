@@ -15,7 +15,7 @@
 </div>
 <!-- search end-->
 
-<h3>Subtitle Search</h3>
+<h2>Subtitle Search</h2>
 <hr />
 
 @if (!Model.Any())
@@ -83,9 +83,7 @@ else
 </table>
 }
 
-@if (Model.HasPreviousPage && Model.HasNextPage)
-{
-    <div class="page-nav">
+<div class="page-nav">
     @if (Model.HasPreviousPage)
     {
         @Html.ActionLink("<<", "Index", new { page = 1 })
@@ -114,4 +112,3 @@ else
         @:&gt;&gt;
     }
 </div>
-}

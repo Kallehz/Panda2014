@@ -9,7 +9,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h3>Subtitle Upload</h3>
+        <h2>Subtitle Upload</h2>
         <hr />
         @Html.ValidationSummary(true)
 
@@ -39,9 +39,9 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+<p>
+    @Html.ActionLink("Back to List", "Index", "Home")
+</p>
 
 
 

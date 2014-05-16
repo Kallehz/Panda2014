@@ -5,7 +5,7 @@
 }
 
 <h2>Title: @Model.Title</h2>
-<h4>Language: @Model.Language</h4>
+<h3>Language: @Model.Language</h3>
 @using (Html.BeginForm("Download", "Subtitle", FormMethod.Post, new { @class = "downloadbutton_edit"}))
 {
     <input type="hidden" name="id" value="@Model.SubtitleID" />

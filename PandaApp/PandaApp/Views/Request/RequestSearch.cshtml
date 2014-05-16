@@ -15,8 +15,10 @@
 </div>
 <!-- Search ends -->
 
-<h3>Search results</h3>
+<h2>Search results</h2>
 <hr />
+
+@Html.ActionLink("Create Request", "Create", null, new { @class = "btn btn-default" })
 
 @if (!Model.Any())
 {
@@ -105,9 +107,7 @@ else
 </table>
 }
 
-@if (Model.HasPreviousPage && Model.HasNextPage)
-{
-    <div class="page-nav">
+<div class="page-nav">
     @if (Model.HasPreviousPage)
     {
         @Html.ActionLink("<<", "Index", new { page = 1 })
@@ -136,6 +136,5 @@ else
         @:&gt;&gt;
     }
 </div>
-}
 
 <script src="~/Scripts/UpvoteScript.js"></script>
