@@ -18,6 +18,7 @@ namespace PandaApp.Controllers
 
         public ActionResult MediaProfile(int id)
         {
+            // To have a list of subtitles on the media profile
             MediaAndSubtitles ms = new MediaAndSubtitles();
 
             ms.m = db.GetMediaById(id);
@@ -31,6 +32,10 @@ namespace PandaApp.Controllers
             return View("NotFound");
         }
 
+
+        // For future options, if we want to
+        // create an empty subtitle for a profile.
+        // We can create it ourselves.
         [HttpGet]
         public ActionResult Create()
         {

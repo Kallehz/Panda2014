@@ -174,6 +174,8 @@ namespace PandaApp.Models
             return result;
         }
 
+        // Never used, profiles use the username, not id.
+        // Available if we want to change that.
         public Account GetUserById(int id)
         {
             var result = (from user in db.Accounts
@@ -182,10 +184,13 @@ namespace PandaApp.Models
             return result;
         }
 
-        public bool GetReqUpBool(int rId, int uId)
+        // Returns true if the upvote exists for the request
+        // with 'reqId' from the user with 'userId'.
+        // Name of function: Get request upvote.
+        public bool GetReqUpBool(int reqId, int userId)
         {
             var item = (from r in db.Upvoters
-                        where r.RequestID == rId && r.UserID == uId
+                        where r.RequestID == reqId && r.UserID == userId
                         select r.ID).FirstOrDefault();
 
             return !Convert.ToBoolean(item);

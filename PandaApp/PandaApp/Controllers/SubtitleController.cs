@@ -18,7 +18,6 @@ namespace PandaApp.Controllers
         PandaRepo db = new PandaRepo();
 
         [Authorize]
-        [HttpPost]
         public ActionResult Edit(int? page, int id)
         {
             EditViewModel mdl = new EditViewModel();
@@ -256,10 +255,10 @@ namespace PandaApp.Controllers
         public ActionResult Details(int id)
         {
             // Gets the subtitle model with 'id'
-            Subtitle r = db.GetSubtitleById(id);
-            if (r != null)
+            Subtitle p = db.GetSubtitleById(id);
+            if (p != null)
             {
-                return View(r);
+                return View(p);
             }
             return View("NotFound");
         }
