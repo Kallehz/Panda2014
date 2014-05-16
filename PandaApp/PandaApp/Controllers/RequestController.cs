@@ -15,6 +15,7 @@ namespace PandaApp.Controllers
 
         public ActionResult Index(int? page)
         {
+            // Gets username of logged in user.
             string username = User.Identity.Name;
 
             IEnumerable<Request> requests = (from item in db.GetAllRequests()
@@ -38,14 +39,6 @@ namespace PandaApp.Controllers
                     req.UpvotedByUser = db.GetReqUpBool(req.ID, db.GetUserByName(username).ID);
                 }
             }
-            /*else
-            {
-                foreach (Request req in requests)
-                {
-                    // This is doing nothing, it is already false
-                    req.UpvotedByUser = false;
-                }
-            }*/
 
             ViewBag.Languages = db.GetLanguageListItems();
             return View(requests.ToPagedList(pageNumber, pageSize));
