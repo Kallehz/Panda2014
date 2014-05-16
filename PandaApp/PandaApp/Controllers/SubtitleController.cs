@@ -67,6 +67,7 @@ namespace PandaApp.Controllers
         [HttpGet]
         public ActionResult Upload()
         {
+            // Gets language dropdown
             ViewBag.Languages = db.GetLanguageListItems();
             return View(new Subtitle());
         }
@@ -192,6 +193,7 @@ namespace PandaApp.Controllers
                 }
             }
 
+            // Gets language dropdown
             ViewBag.Languages = db.GetLanguageListItems();
             return View(item);
         }
@@ -232,6 +234,7 @@ namespace PandaApp.Controllers
             int pageSize = 15;
             int pageNumber = (page ?? 1);
 
+            // Gets language dropdown
             ViewBag.Languages = db.GetLanguageListItems();
             return View(sub.ToPagedList(pageNumber, pageSize));
         }

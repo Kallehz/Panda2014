@@ -40,6 +40,7 @@ namespace PandaApp.Controllers
                 }
             }
 
+            // Gets language dropdown
             ViewBag.Languages = db.GetLanguageListItems();
             return View(requests.ToPagedList(pageNumber, pageSize));
         }        
@@ -87,13 +88,16 @@ namespace PandaApp.Controllers
             int pageSize = 15;
             int pageNumber = (page ?? 1);
 
+            // Gets language dropdown
             ViewBag.Languages = db.GetLanguageListItems();
+
             return View(req.ToPagedList(pageNumber, pageSize));
         }
         //Returns the Create view for a request
         [HttpGet]
         public ActionResult Create()
         {
+            // Gets language dropdown
             ViewBag.Languages = db.GetLanguageListItems();
             return View(new Request());
         }
@@ -117,6 +121,8 @@ namespace PandaApp.Controllers
 
                 return RedirectToAction("Index");
             }
+
+            // Gets language dropdown
             ViewBag.Languages = db.GetLanguageListItems();
             return View();
         }
@@ -126,15 +132,15 @@ namespace PandaApp.Controllers
         {
             ReqUp r = new ReqUp();
 
-            //Sótt er viðeigandi beiðni
+            // Gets request with 'id'
             r.request = db.GetRequestById(id);
-            //Sótt upplýsingar um núverandi notanda
+            // Gets account details for the logged in user
             Account acc = db.GetUserByName(User.Identity.Name);
 
-            //Ef Notandi er til
+            // If the user exists
             if (db.GetUserByName(User.Identity.Name) != null)
             {
-                // Verður 'true' ef notandi hefur 'upvotað' beiðnina áður
+                // Returns true if the user has upvoted the request
                 r.upvoted = db.GetReqUpBool(id, acc.ID);
             }
             else
@@ -142,7 +148,6 @@ namespace PandaApp.Controllers
                 r.upvoted = false;
             }
             
-            //keyrt ef ekki hefur komið villa
             if (r != null)
             {
                 return View(r);
@@ -154,22 +159,20 @@ namespace PandaApp.Controllers
         [HttpPost]
         public void Upvote(int id)
         {
-            //Búið til eintak af PandaBase
             PandaBase panda = new PandaBase();
             
             //Tékkað á því hvort það sé til Upvote með þessari ákveðnu beiðni og notanda. 
             //Ef 'true' þá er það ekki til og haldið er áfram.
             if(db.GetReqUpBool(id, db.GetUserByName(User.Identity.Name).ID))
             {
-                //fundið viðeigandi beiðni og hækkað 'upvotes' um 1.
+                // Find request with 'id' and raises upvote with 1
                 Request req = panda.Requests.Single(re => re.ID == id);
                 req.Upvotes++;
 
-                //Bætt við línu í Upvoters töfluna sem inniheldur ID frá beiðni og notanda
+                // Adds a line to Upvoters table with the users ID and request ID
                 Upvoter upvoter = new Upvoter() { RequestID = id, UserID = db.GetUserByName(User.Identity.Name).ID };
                 panda.Upvoters.Add(upvoter);
 
-                //PandaBase er uppfært
                 panda.SaveChanges();
             }
         }
