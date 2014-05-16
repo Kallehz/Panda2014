@@ -246,7 +246,7 @@ namespace PandaApp.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            // Gets the subtitle mode with 'id'
+            // Gets the subtitle model with 'id'
             Subtitle r = db.GetSubtitleById(id);
             if (r != null)
             {
