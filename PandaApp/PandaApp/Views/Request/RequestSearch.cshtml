@@ -10,7 +10,7 @@
     {
         <input type="text" class="form-control" id="input" name="title" size="21" maxlength="120" placeholder="Request search">
         @Html.DropDownList("Language", (IEnumerable<SelectListItem>)ViewBag.Languages, new { @class = "form-control" })
-        <input type="submit" class="btn btn" value="Search">
+        <input type="submit" class="btn btn-default" value="Search">
     }
 </div>
 <!-- Search ends -->
