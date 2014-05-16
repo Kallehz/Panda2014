@@ -14,28 +14,37 @@
             <th>Language</th>
             <th>Date Created</th>
             <th>Author</th>
+            <th>Download</th>
         </tr>
     </thead>
     <tbody>
+    @foreach (var item in Model.subs)
+    {
         <tr>
-            @foreach (var item in Model.subs)
-            {
-                <td>
-                    @Html.ActionLink(item.Title, "Details", "Subtitle", new { id = item.ID }, null)
-                </td>
-                <td>
-                    @item.Language
-                </td>
-                <td>
-                    @item.DateCreated
-                </td>
-                <td>
-                    @Html.ActionLink(item.Author, "ViewUser", "Account", new { username = item.Author }, null)
-                </td>
-            }
+            <td>
+                @Html.ActionLink(item.Title, "Details", "Subtitle", new { id = item.ID }, null)
+            </td>
+            <td>
+                @item.Language
+            </td>
+            <td>
+                @item.DateCreated
+            </td>
+            <td>
+                @Html.ActionLink(item.Author, "ViewUser", "Account", new { username = item.Author }, null)
+            </td>
+            <td>
+                @using (Html.BeginForm("Download", "Subtitle", FormMethod.Post))
+                {
+                    <input type="hidden" name="id" value="@item.ID" />
+                    <input type="hidden" name="view" value="Details" />
+                    <button type="submit" class="btn btn-mini" value="Download">
+                        <span class="glyphicon glyphicon-save"></span>
+                    </button>
+                }
+            </td>
+
         </tr>
-            
+    }  
     </tbody>
-
-
 </table>
