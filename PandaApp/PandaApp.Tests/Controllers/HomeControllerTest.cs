@@ -18,9 +18,12 @@ namespace PandaApp.Tests.Controllers
             // Arrange
             HomeController controller = new HomeController();
 
+            // I expect this(result attribute) to hold models equal to subtitles on the front page
+            // Every model should have the same attributes as the subtitle on front page
             // Act
             ViewResult result = controller.Index(1) as ViewResult;
-
+            
+            
             // Assert
             Assert.IsNotNull(result);
         }
