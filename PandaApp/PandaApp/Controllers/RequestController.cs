@@ -132,11 +132,16 @@ namespace PandaApp.Controllers
         public ActionResult Details(int id)
         {
             ReqUp r = new ReqUp();
+
+            //Sótt er viðeigandi beiðni
             r.request = db.GetRequestById(id);
+            //Sótt upplýsingar um núverandi notanda
             Account acc = db.GetUserByName(User.Identity.Name);
 
+            //Ef Notandi er til
             if (db.GetUserByName(User.Identity.Name) != null)
             {
+                // Verður 'true' ef notandi hefur 'upvotað' beiðnina áður
                 r.upvoted = db.GetReqUpBool(id, acc.ID);
             }
             else
@@ -144,7 +149,7 @@ namespace PandaApp.Controllers
                 r.upvoted = false;
             }
             
-
+            //keyrt ef ekki hefur komið villa
             if (r != null)
             {
                 return View(r);
@@ -156,16 +161,21 @@ namespace PandaApp.Controllers
         [HttpPost]
         public void Upvote(int id)
         {
+            //Búið til eintak af PandaBase
             PandaBase panda = new PandaBase();
             
+            //Tékkað á því hvort það sé til Upvote með þessari ákveðnu beiðni og notanda. Ef 'true' þá er það ekki til og haldið er áfram.
             if(db.GetReqUpBool(id, db.GetUserByName(User.Identity.Name).ID))
             {
+                //fundið viðeigandi beiðni og hækkað 'upvotes' um 1.
                 Request req = panda.Requests.Single(re => re.ID == id);
                 req.Upvotes++;
 
+                //Bætt við línu í Upvoters töfluna sem inniheldur ID frá beiðni og notanda
                 Upvoter upvoter = new Upvoter() { RequestID = id, UserID = db.GetUserByName(User.Identity.Name).ID };
                 panda.Upvoters.Add(upvoter);
 
+                //PandaBase er uppfært
                 panda.SaveChanges();
             }
         }

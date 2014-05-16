@@ -86,15 +86,15 @@ namespace PandaApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                // this collects information for AspNetUsers
                 var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
 
 
                 if (result.Succeeded)
                 {
-                    //HUGE SECURITY RISK RIGHT HERE!
-                    //DO NOT, DO NOT! UNDER ANY CIRCUMSTANCES ADD Password = model.Password TO THE ACCOUNT REGISTRATION.
-                    Account newAccount = new Account() { Username = model.UserName, Email = model.Email /*This is where you would add it but do not*/ };
+                    // This will collect information for the AccountCredentials
+                    Account newAccount = new Account() { Username = model.UserName, Email = model.Email };
                     db.AddAccount(newAccount);
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
