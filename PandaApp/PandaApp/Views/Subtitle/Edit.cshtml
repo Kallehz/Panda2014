@@ -5,7 +5,13 @@
 }
 
 <h2>Title: @Model.Title</h2>
-<h4>Language: @Model.Language</h4>
+<h3>Language: @Model.Language</h3>
+@using (Html.BeginForm("Download", "Subtitle", FormMethod.Post, new { @class = "downloadbutton_edit"}))
+{
+    <input type="hidden" name="id" value="@Model.SubtitleID" />
+    <input type="hidden" name="view" value="Details" />
+    <input type="submit" class="btn btn-default" value="Download">
+}
 <hr />
 
 @foreach (var item in Model.Lines)
@@ -13,7 +19,9 @@
     Html.RenderPartial("EditPV", item);
 }
 
-<div class="page-nav">
+@if (Model.Lines.HasPreviousPage && Model.Lines.HasNextPage)
+{
+    <div class="page-nav">
         @if (Model.Lines.HasPreviousPage)
         {
             @Html.ActionLink("<<", "Edit", new { page = 1 })
@@ -41,6 +49,11 @@
             @Html.Raw(" ")
             @:&gt;&gt;
         }
-    </div>
+</div>
+}
+
+<p>
+    @Html.ActionLink("Back to subtitle", "Details", "Subtitle", new { id = Model.SubtitleID }, null)
+</p>
 
 <script src="~/Scripts/EditScript.js"></script>

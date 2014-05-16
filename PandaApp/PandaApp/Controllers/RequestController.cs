@@ -15,11 +15,13 @@ namespace PandaApp.Controllers
 
         public ActionResult Index(int? page)
         {
+            string username = User.Identity.Name;
+
             IEnumerable<Request> requests = (from item in db.GetAllRequests()
                                              orderby item.DateCreated descending
                                              select item);
 
-            if (Request.HttpMethod != "GET")
+            if (!page.HasValue)
             {
                 page = 1;
             }
@@ -27,55 +29,71 @@ namespace PandaApp.Controllers
             int pageSize = 15;
             int pageNumber = (page ?? 1);
 
-            if (db.GetUserByName(User.Identity.Name) != null)
+            if (username.Length != 0)
             {
                 foreach (Request req in requests)
                 {
-                    if (db.GetReqUpBool(req.ID, db.GetUserByName(User.Identity.Name).ID))
-                    {
-                        req.UpvotedByUser = true;
-                    }
-                    else
-                    {
-                        req.UpvotedByUser = false;
-                    }
+                    // If you have upvoted this request it will return true, false otherwise.
+                    req.UpvotedByUser = db.GetReqUpBool(req.ID, db.GetUserByName(username).ID);
                 }
             }
-            else
+            /*else
             {
                 foreach (Request req in requests)
                 {
+                    // This is doing nothing, it is already false
                     req.UpvotedByUser = false;
                 }
-            }
+            }*/
 
             ViewBag.Languages = db.GetLanguageListItems();
             return View(requests.ToPagedList(pageNumber, pageSize));
         }        
 
-        public ActionResult RequestSearch(string title, string language)
+        public ActionResult RequestSearch(int? page, string title, string language)
         {
             IEnumerable<Request> req;
 
-            if (language == "" || language == null)
+            if (language.Length == 0)
             {
+                // Gets all requests sorted by upvote count
                 req = (from item in db.GetAllRequests()
                        where item.Title.ToLower().Contains(title.ToLower())
                        orderby item.Upvotes descending
-                       select item).Take(15);
+                       select item);
             }
             else
             {
+                // Gets all requests with the specified language
                 req = (from item in db.GetAllRequests()
                        where (item.Title.ToLower().Contains(title.ToLower()) &&
                        (item.Language == language))
                        orderby item.Upvotes descending
-                       select item).Take(15);
+                       select item);
             }
 
+            // This is for the upvote system
+            string username = User.Identity.Name;
+            if (username.Length != 0)
+            {
+                foreach (Request item in req)
+                {
+                    // If you have upvoted this request it will return true, false otherwise.
+                    item.UpvotedByUser = db.GetReqUpBool(item.ID, db.GetUserByName(username).ID);
+                }
+            }
+
+            // This is the for the paging
+            if (!page.HasValue)
+            {
+                page = 1;
+            }
+
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
 
             ViewBag.Languages = db.GetLanguageListItems();
-            return View(req);
+            return View(req.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpGet]
@@ -135,9 +153,7 @@ namespace PandaApp.Controllers
         public void Upvote(int id)
         {
             PandaBase panda = new PandaBase();
-            /*ReqUp requp = new ReqUp();
-            requp.request = db.GetRequestById(id);*/
-
+            
             if(db.GetReqUpBool(id, db.GetUserByName(User.Identity.Name).ID))
             {
                 Request req = panda.Requests.Single(re => re.ID == id);
@@ -147,9 +163,16 @@ namespace PandaApp.Controllers
                 panda.Upvoters.Add(upvoter);
 
                 panda.SaveChanges();
-
-                //requp.upvoted = false;
             }
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult FillRequest(int requestID, string subtitleLink)
+        {
+            db.FillReq(requestID, subtitleLink);
+
+            return RedirectToAction("Details/" + requestID);
         }
 	}
 }

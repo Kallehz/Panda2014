@@ -1,12 +1,12 @@
 ﻿@model PandaApp.Models.ReqUp
+
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Request details</h2>
 
 <div>
-    <h4>Request</h4>
 	<hr />
     <dl class="dl-horizontal">
         <dt>
@@ -22,7 +22,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.request.Author)
+            @if (Model.request.Author == "Guest")
+            {
+                @Model.request.Author
+            }
+            else
+            {
+                @Html.ActionLink(Model.request.Author, "ViewUser", "Account", new { username = Model.request.Author }, null)
+            }
         </dd>
 
         <dt>
@@ -32,6 +39,7 @@
         <dd>
             @Html.DisplayFor(model => model.request.Language)
         </dd>
+        
         @* Hides video link if its empty *@
         @if (Model.request.ExternalVideoLink != null)
         {
@@ -40,14 +48,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.request.ExternalVideoLink)
+            <a href="@Model.request.ExternalVideoLink">@Model.request.ExternalVideoLink</a>
         </dd>
         }
         <dt>
             @Html.DisplayNameFor(model => model.request.Upvotes)
         </dt>
 
-        <dd>
+        <dd class="d_upvotes">
             @Html.DisplayFor(model => model.request.Upvotes)
         </dd>
 
@@ -59,7 +67,33 @@
             @Html.DisplayFor(model => model.request.DateCreated)
         </dd>
 
+        @if (Model.request.SubtitleLink != null)
+        {
+        <dt>
+            @Html.DisplayNameFor(model => model.request.SubtitleLink)
+        </dt>
+        
+        <dd>
+            @Html.DisplayFor(model => model.request.SubtitleLink)
+        </dd>
+        }
+
     </dl>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-4">
+        @if (Model.request.SubtitleLink == null)
+        {
+            using (Html.BeginForm("FillRequest", "Request", FormMethod.Post))
+            {
+                <label class="col-md-2 control-label">Fill request</label>
+                <input type="hidden" name="requestID" value="@Model.request.ID" />
+                <input type="text" name="subtitleLink" class="form-control" placeholder="Enter subtitle link" />
+                <input type="submit" class="btn btn-default" value="Fill">
+            }
+        }
+    </div>
 </div>
 
 <table>
@@ -74,7 +108,7 @@
             {
                 <td>
                     <div class="row text-center">
-                        @using (Html.BeginForm("Upvote", "Request", FormMethod.Post, new { @id = "upvote" }))
+                        @using (Html.BeginForm("Upvote", "Request", FormMethod.Post, new { @class = "upvote" }))
                         {
                             <input type="hidden" name="id" value="@Model.request.ID" />
                             <input type="submit" class="btn btn" value="Upvote">

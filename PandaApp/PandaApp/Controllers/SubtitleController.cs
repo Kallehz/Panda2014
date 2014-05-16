@@ -22,7 +22,7 @@ namespace PandaApp.Controllers
         {
             EditViewModel mdl = new EditViewModel();
 
-            if (Request.HttpMethod != "GET")
+            if (!page.HasValue)
             {
                 page = 1;
             }
@@ -165,11 +165,11 @@ namespace PandaApp.Controllers
 
                 }
 
-            if (srtTrue)
+                if (srtTrue)
                 {
                     return RedirectToAction("Index", "Home");
                 }
-            else
+                else
                 {
                     db.DeleteSubtitle(item);
                     db.DeleteMedia(med);
@@ -181,7 +181,7 @@ namespace PandaApp.Controllers
             return View(item);
         }
 
-        public ActionResult SubtitleSearch(string title, string language)
+        public ActionResult SubtitleSearch(int? page, string title, string language)
         {
             IEnumerable<Subtitle> sub;
 
@@ -196,7 +196,7 @@ namespace PandaApp.Controllers
                 sub = (from item in db.GetAllSubtitles()
                        where item.Title.ToLower().Contains(title.ToLower())
                        orderby item.DateCreated descending
-                       select item).Take(15);
+                       select item);
             }
             else
             {
@@ -204,13 +204,21 @@ namespace PandaApp.Controllers
                        where (item.Title.ToLower().Contains(title.ToLower()) &&
                        (item.Language == language))
                        orderby item.DateCreated descending
-                       select item).Take(15);
+                       select item);
             }
 
+            if (!page.HasValue)
+            {
+                page = 1;
+            }
+
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
 
             ViewBag.Languages = db.GetLanguageListItems();
-            return View(sub);
+            return View(sub.ToPagedList(pageNumber, pageSize));
         }
+
         [HttpPost]
         public ActionResult PostComment(int subtitleId, string comment)
         {
@@ -225,6 +233,7 @@ namespace PandaApp.Controllers
             }
             return View();
         }
+
         [HttpGet]
         public ActionResult Details(int id)
         {
@@ -239,7 +248,6 @@ namespace PandaApp.Controllers
         [HttpPost]
         public ActionResult Download(int id, string view)
         {
-
             PandaBase db = new PandaBase();
 
             //Calling the variables we need from the database tables.
@@ -274,7 +282,6 @@ namespace PandaApp.Controllers
                 output.Append("\r\n");
                 string onScreen = line.Text;
                 output.Append(onScreen);
-               
             }
 
             //Makes a string from the stringbuilder. Closing the string
@@ -289,7 +296,6 @@ namespace PandaApp.Controllers
             var stream = new MemoryStream(byteArray);
             //return file to user.
             return File(stream, "text/plain", finalname);
-
         }
 
 	}

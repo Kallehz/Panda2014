@@ -15,7 +15,7 @@
 </div>
 <!-- Search ends -->
 
-<h3>View Requests</h3>
+<h2>View Requests</h2>
 <hr />
 
 @Html.ActionLink("Create Request", "Create", null, new { @class = "btn btn-default" })
@@ -37,7 +37,10 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.First().Upvotes)
-            </th>            
+            </th>    
+            <th>
+                Filled
+            </th>        
         </tr>
     </thead>
     <tbody>
@@ -65,23 +68,32 @@
                     @item.DateCreated
                 </td>
                 <td>
-                        @if (item.UpvotedByUser)
+                    @if (item.UpvotedByUser)
+                    {
+                        using (Html.BeginForm("Upvote", "Request", FormMethod.Post, new { @class = "upvote" }))
                         {
-                            using (Html.BeginForm("Upvote", "Request", FormMethod.Post, new { @class = "upvote" }))
-                            {
-                                <input type="hidden" name="id" value="@item.ID" />
-                                <button type="submit" class="btn btn-mini" value="+">
-                                    @item.Upvotes
-                                    <span class="glyphicon glyphicon-arrow-up"></span>
-                                </button>
-                            }
-                        }
-                        else
-                        {
-                            <button type="button" class="btn btn-mini" value="">
+                            <input type="hidden" name="id" value="@item.ID" />
+                            <button type="submit" class="btn btn-mini" value="+">
                                 @item.Upvotes
+                                <span class="glyphicon glyphicon-arrow-up"></span>
                             </button>
                         }
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-mini" value="">
+                            @item.Upvotes
+                        </button>
+                    }
+                </td>
+                <td>
+                    @if (item.SubtitleLink.IsEmpty())
+                    {
+                        @:No
+                    }
+                    else {
+                        @:Yes
+                    }
                 </td>
             </tr>
         }

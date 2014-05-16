@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="03a49134-4a29-41a4-9592-9f9447612287"
+  name="PagedList"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="b1c7fd78-309c-4d33-a0ec-c879a4991f2c"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DPagedList"
+      tag="ViewCode" />
+  </referencesInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="74ce7fb2-bf66-48c7-938a-459864c37358">
+      <profileInstance
+        Id="2f5b135c-286c-4f69-b1b1-bdf1d603d003"
+        name="CSharpProfile" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <Interface
+        Id="9c0d5bd9-f480-43be-8b9e-2cfd9daccfd7"
+        name="IPagedList&lt;SubtitleLine‎&gt;"
+        isAbstract="false"
+        isLeaf="false">
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="852c4fbe-ca8f-4147-a378-2047967b189e"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="13bafb68-966d-42d9-af68-1369484f79cc">
+                <propertyInstance
+                  Id="a32e5f27-12b8-4ad2-88ff-c80282b59f8d"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b8e2c336-2c35-417c-ab70-48e37e544165">
+                <propertyInstance
+                  Id="73f3676c-380c-4ce4-b508-fc35480c9c0e"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c452d3cd-31bc-4e60-be4f-2dca13985eef">
+                <propertyInstance
+                  Id="4c4fc884-52e2-4b8a-81c3-46cc26ab30e0"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="eabb1e22-21b4-40fc-92c5-04add76a2540">
+                <propertyInstance
+                  Id="14da1af9-a265-42c9-9eb2-8c1e3d32d24f"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <signatures>
+          <templateBinding
+            Id="79c08b27-c774-49fe-8385-db9b80774c63">
+            <redefinableTemplateSignatureMoniker
+              Id="588c06e7-faa5-45ad-9802-b58a871b8ece"
+              LastKnownLocation="Package5_1708.uml" />
+            <relationshipOwnedElementsInternal>
+              <templateBindingHasTemplateParameterSubstitution>
+                <templateParameterSubstitution
+                  Id="70cc8f8a-0efd-45cb-8db5-9a36d7cf27b1">
+                  <actuals>
+                    <classMoniker
+                      Id="584d57f8-cf65-4f76-b950-98377aef8531"
+                      LastKnownName="SubtitleLine"
+                      LastKnownLocation="Package1_1708.uml" />
+                  </actuals>
+                  <formal>
+                    <classifierTemplateParameterMoniker
+                      Id="58cbc93c-d916-4644-b384-75b9bf75ecc1"
+                      LastKnownLocation="Package5_1708.uml" />
+                  </formal>
+                </templateParameterSubstitution>
+              </templateBindingHasTemplateParameterSubstitution>
+            </relationshipOwnedElementsInternal>
+          </templateBinding>
+        </signatures>
+        <generalsInternal>
+          <generalization
+            Id="6ec89cf2-ef7b-4a1b-ba43-397bf8a39243"
+            isSubstitutable="false">
+            <interfaceMoniker
+              Id="5028f7fd-0698-479d-b6f1-5162081c61de"
+              LastKnownName="IEnumerable&lt;SubtitleLine‎&gt;"
+              LastKnownLocation="Package4_1708.uml" />
+          </generalization>
+        </generalsInternal>
+      </Interface>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <Interface
+        Id="93761f2b-59dc-4474-9099-a540bbe50cbd"
+        name="IPagedList"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="89f45825-14bf-4176-9f5c-4368d8a305ca"
+            handle="viewcode://./CodeSchema_Interface?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FEgill%2FSource%2FRepos%2FPanda2014%2FPandaApp%2Fpackages%2FPagedList.1.17.0.0%2Flib%2Fnet40%2FPagedList.dll Namespace%3DPagedList Type%3D(Name%3DIPagedList GenericParameterCount%3D1)"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="8a368dff-2f09-419e-b202-b5df117b68d4"
+            name="interface"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7e90bc38-50ab-408b-af50-ceaaa1b692f6">
+                <propertyInstance
+                  Id="821fc49c-0d03-41aa-a811-4005c2a1b68f"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="542b7834-b8ac-48fd-bf8b-6fa308a60487">
+                <propertyInstance
+                  Id="c9e76bd4-99df-4c7c-b572-0cc566030f6b"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8299f513-309b-4920-b852-ea7820e79f31">
+                <propertyInstance
+                  Id="f72b3495-2ce1-4734-a99d-5abfba00d500"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d9936ce9-2837-474f-a77f-e4dd9fccf9cf">
+                <propertyInstance
+                  Id="8d30fa3f-db52-44cf-a003-6ebf7db40bf1"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedRedefinableTemplateSignatureInternal>
+          <redefinableTemplateSignature
+            Id="588c06e7-faa5-45ad-9802-b58a871b8ece"
+            parameters=""
+            name="RedefinableTemplateSignature1"
+            isLeaf="false">
+            <ownedParameters>
+              <classifierTemplateParameter
+                Id="58cbc93c-d916-4644-b384-75b9bf75ecc1">
+                <referencesInternal>
+                  <reference
+                    Id="cac64bc5-48a0-4e4f-bb27-2c97e98b7346"
+                    handle="viewcode://./CodeSchema_GenericParameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FEgill%2FSource%2FRepos%2FPanda2014%2FPandaApp%2Fpackages%2FPagedList.1.17.0.0%2Flib%2Fnet40%2FPagedList.dll Namespace%3DPagedList Type%3D(Name%3DIPagedList GenericParameterCount%3D1) ParameterIdentifier%3D0"
+                    tag="ViewCode" />
+                </referencesInternal>
+                <ownedParameterableElement>
+                  <class
+                    Id="6cc1c3d0-a600-4570-9d3e-47328a318345"
+                    name="T"
+                    isAbstract="false"
+                    isLeaf="false"
+                    isActiveClass="false" />
+                </ownedParameterableElement>
+              </classifierTemplateParameter>
+            </ownedParameters>
+          </redefinableTemplateSignature>
+        </ownedRedefinableTemplateSignatureInternal>
+      </Interface>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
 
 namespace PandaApp.Models
 {
@@ -52,6 +56,7 @@ namespace PandaApp.Models
 
             return result;
         }
+
        public IEnumerable<SubtitleLine> GetLines(int subtitleID)
        {
            var result = (from item in db.SubtitleLines
@@ -124,6 +129,17 @@ namespace PandaApp.Models
         {
             db.Comments.Add(c);
             db.SaveChanges();
+        }
+
+        public void FillReq(int id, string link)
+        {
+            Request r = GetRequestById(id);
+
+            if (r != null)
+            {
+                r.SubtitleLink = link;
+                db.SaveChanges();
+            }
         }
 
         public void AddSubtitleLine(SubtitleLine sl)
