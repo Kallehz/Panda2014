@@ -237,10 +237,11 @@ namespace PandaApp.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            Subtitle r = db.GetSubtitleById(id);
-            if (r != null)
+            // returns all posted comments
+            Subtitle c = db.GetSubtitleById(id);
+            if (c != null)
             {
-                return View(r);
+                return View(c);
             }
             return View("NotFound");
         }
