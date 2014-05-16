@@ -79,8 +79,14 @@ form > #Language
 .welcome
 {
     font-size: 14px;
-    float: right;
-    padding-right: 20px;
+    padding-right: 5px;
+    text-align: right;
+    
+}
+
+.welcome > .logout-text
+{
+    text-decoration: none;
 }
 
 #margin_1

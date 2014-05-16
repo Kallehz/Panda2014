@@ -10,14 +10,19 @@
     <script src="/Scripts/jquery-1.10.2.js"></script>
 </head>
 <body>
-    @if (Request.IsAuthenticated)
-    {
-    <div class="welcome">
-        <p class="logoutText">Welcome, @User.Identity.Name <a href="javascript:document.getElementById('logoutForm').submit()">[log out]</a></p>
-        
-    </div>
-    }
     <div class="navbar">
+        @if (Request.IsAuthenticated)
+        {
+            <div class="welcome">
+                <p class="logout-text">Welcome, @User.Identity.Name <a href="javascript:document.getElementById('logoutForm').submit()">[log out]</a></p>
+            </div>
+        }
+        else
+        {
+            <div class="welcome">
+                <p class="logout-text">&nbsp;</p>
+            </div>
+        }
         <h1>@Html.ActionLink("Panda", "Index", "Home")</h1>
         <ul class="navbar-nav">
             <li class="btn">@Html.ActionLink("Browse", "Index", "Home")</li>
