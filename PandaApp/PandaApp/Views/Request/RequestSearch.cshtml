@@ -95,10 +95,10 @@ else
                 <td>
                     @if (item.SubtitleLink.IsEmpty())
                     {
-                        @:No
+                        <p>No</p>
                     }
                     else {
-                        @:Yes
+                        <a href="@item.SubtitleLink">Yes</a>
                     }
                 </td>
             </tr>

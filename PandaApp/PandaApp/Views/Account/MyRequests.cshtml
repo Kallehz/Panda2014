@@ -25,29 +25,29 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var prof in Model)
+            @foreach (var item in Model)
             {
                 <tr>
                     <td>
-                        @Html.ActionLink(prof.Title, "Details", "Request", new { id = prof.ID }, null)
+                        @Html.ActionLink(item.Title, "Details", "Request", new { id = item.ID }, null)
                     </td>
                     <td>
-                        @prof.Language
+                        @item.Language
                     </td>
                     <td>
-                        @prof.DateCreated
+                        @item.DateCreated
                     </td>
                     <td>
-                        @prof.Upvotes
+                        @item.Upvotes
                     </td>
                     <td>
-                        @if (prof.SubtitleLink.IsEmpty())
+                        @if (item.SubtitleLink.IsEmpty())
                         {
-                            @:No
+                            <p>No</p>
                         }
                         else
                         {
-                            @:Yes
+                            <a href="@item.SubtitleLink">Yes</a>
                         }
                     </td>
                 </tr>
