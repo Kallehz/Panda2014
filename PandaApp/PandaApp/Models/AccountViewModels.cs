@@ -28,17 +28,8 @@ namespace PandaApp.Models
         public string ConfirmPassword { get; set; }
     }
 
-    public class ManageEmailViewModel
-    {
-        [Required]
-        [Display(Name = "New password")]
-        public string NewEmail { get; set; }
-
-        [Display(Name = "Confirm new Email")]
-        [Compare("NewEmail", ErrorMessage = "The new Email and confirmation Email do not match.")]
-        public string ConfirmEmail { get; set; }
-    }
-
+    // This is used by AspNetUsers table
+    // Default login for Asp.NET
     public class LoginViewModel
     {
         [Required]
@@ -54,6 +45,8 @@ namespace PandaApp.Models
         public bool RememberMe { get; set; }
     }
 
+    // This is used by AspNetUsers table
+    // Default register for Asp.NET
     public class RegisterViewModel
     {
         [Required]
