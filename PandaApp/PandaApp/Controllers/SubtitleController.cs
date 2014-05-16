@@ -48,10 +48,17 @@ namespace PandaApp.Controllers
         {
             using (var context = new PandaBase())
             {
-                SubtitleLine line = context.SubtitleLines.Where(l => l.ID == id).FirstOrDefault<SubtitleLine>();
+                // Locates a SubtitleLine in the database with
+                // a given id
+                SubtitleLine line = (context.SubtitleLines.Where(l => l.ID == id)
+                                    .FirstOrDefault<SubtitleLine>());
+                // This adds two line breaks at the end of the text,
+                // this is necessary for the .srt standard
                 line.Text = text + "\r\n" + "\r\n";
                 line.TimeFrom = timeStart;
                 line.TimeTo = timeStop;
+                // Marks the entry 'line' in the database as modified,
+                // this way code-first knows it should update this entry in the database
                 context.Entry(line).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
             }
@@ -97,7 +104,8 @@ namespace PandaApp.Controllers
                 item.Author = User.Identity.Name;
                 db.AddSubtitle(item);
 
-                //Code that checks if uploaded file has content.
+                //Code that checks if uploaded file has content
+                //before the file is saved to the server.
                 if ((file != null) && (file.ContentLength > 0))
                 {
                     string fn = System.IO.Path.GetFileName(file.FileName);
@@ -157,7 +165,8 @@ namespace PandaApp.Controllers
                    
                     counter++;
 
-                    // checks to see if all columns in srtLine have been populated before adding a line to the database.
+                    // checks to see if all columns in srtLine have been populated 
+                    // before adding a line to the database.
                     if (   srtLine.Index != 0 
                         && srtLine.TimeFrom != null 
                         && srtLine.TimeTo != null
@@ -302,8 +311,8 @@ namespace PandaApp.Controllers
 
             //creating the file from the string.
             var byteArray = Encoding.UTF8.GetBytes(finalOutput);
-
             var stream = new MemoryStream(byteArray);
+           
             //return file to user.
             return File(stream, "text/plain", finalname);
         }
