@@ -125,9 +125,9 @@ else
 
     @if (Model.HasNextPage)
     {
-        @Html.ActionLink("Next >", "Index", new { page = Model.PageNumber + 1 })
+        @Html.ActionLink("Next >", "RequestSearch", new { page = Model.PageNumber + 1 })
         @Html.Raw(" ")
-        @Html.ActionLink(">>", "Index", new { page = Model.PageCount })
+        @Html.ActionLink(">>", "RequestSearch", new { page = Model.PageCount })
     }
     else
     {
