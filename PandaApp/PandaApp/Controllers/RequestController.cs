@@ -164,7 +164,8 @@ namespace PandaApp.Controllers
             //Búið til eintak af PandaBase
             PandaBase panda = new PandaBase();
             
-            //Tékkað á því hvort það sé til Upvote með þessari ákveðnu beiðni og notanda. Ef 'true' þá er það ekki til og haldið er áfram.
+            //Tékkað á því hvort það sé til Upvote með þessari ákveðnu beiðni og notanda. 
+            //Ef 'true' þá er það ekki til og haldið er áfram.
             if(db.GetReqUpBool(id, db.GetUserByName(User.Identity.Name).ID))
             {
                 //fundið viðeigandi beiðni og hækkað 'upvotes' um 1.
