@@ -21,6 +21,7 @@ namespace PandaApp.Controllers
                                              orderby item.DateCreated descending
                                              select item);
 
+            // By default we start at page one
             if (!page.HasValue)
             {
                 page = 1;
@@ -65,6 +66,7 @@ namespace PandaApp.Controllers
             else
             {
                 // Gets all requests with the specified language
+                // sorts the results by upvotes
                 req = (from item in db.GetAllRequests()
                        where (item.Title.ToLower().Contains(title.ToLower()) &&
                        (item.Language == language))
@@ -95,7 +97,7 @@ namespace PandaApp.Controllers
             ViewBag.Languages = db.GetLanguageListItems();
             return View(req.ToPagedList(pageNumber, pageSize));
         }
-
+        //Returns the Create view for a request
         [HttpGet]
         public ActionResult Create()
         {
@@ -103,6 +105,8 @@ namespace PandaApp.Controllers
             return View(new Request());
         }
 
+        //Submits a request to the database, 
+        //and returns the user to the Index
         [HttpPost]
         public ActionResult Create(Request item)
         {

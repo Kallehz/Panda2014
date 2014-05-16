@@ -18,10 +18,12 @@ namespace PandaApp.Controllers
         PandaRepo db = new PandaRepo();
 
         [Authorize]
+        [HttpPost]
         public ActionResult Edit(int? page, int id)
         {
             EditViewModel mdl = new EditViewModel();
 
+            // This is for PagingList
             if (!page.HasValue)
             {
                 page = 1;
@@ -30,9 +32,12 @@ namespace PandaApp.Controllers
             int pageSize = 15;
             int pageNumber = (page ?? 1);
 
+            // Put correct values into the model
             mdl.SubtitleID = id;
             mdl.Title = db.GetTitleBySubID(id);
             mdl.Language = db.GetLanguageBySubID(id);
+
+            // For PagingList
             mdl.Lines = db.GetLines(id).ToPagedList(pageNumber, pageSize);
 
             return View(mdl);
@@ -77,6 +82,8 @@ namespace PandaApp.Controllers
             Media med = db.GetMediaByName(item.Title);
             Media newMedia = new Media();
 
+            // If the media doesnt exist it
+            // will be created automatically
             if (med == null)
             {
                 newMedia.Title = item.Title;
@@ -185,6 +192,8 @@ namespace PandaApp.Controllers
         {
             IEnumerable<Subtitle> sub;
 
+            // If media with that exact name exists
+            // you get redirected to the existing profile
             if (db.GetMediaByName(title) != null)
             {
                 var med = db.GetMediaByName(title);
@@ -237,6 +246,7 @@ namespace PandaApp.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
+            // Gets the subtitle model with 'id'
             Subtitle r = db.GetSubtitleById(id);
             if (r != null)
             {
@@ -297,6 +307,5 @@ namespace PandaApp.Controllers
             //return file to user.
             return File(stream, "text/plain", finalname);
         }
-
 	}
 }
