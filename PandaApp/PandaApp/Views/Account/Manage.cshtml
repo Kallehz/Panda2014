@@ -10,10 +10,10 @@
 <hr />
 
 <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-7">
         @{ Html.RenderAction("MyRequests"); }
     </div>
-    <div class="col-md-6 col-md-offset-1">
+    <div class="col-md-4 col-md-offset-1">
         @if (ViewBag.HasLocalPassword)
         {
             @Html.Partial("_ChangePasswordPartial")

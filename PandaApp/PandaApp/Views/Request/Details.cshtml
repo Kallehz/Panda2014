@@ -67,14 +67,20 @@
             @Html.DisplayFor(model => model.request.DateCreated)
         </dd>
 
+        <dt>
+            Filled
+        </dt>
+
         @if (Model.request.SubtitleLink != null)
         {
-        <dt>
-            @Html.DisplayNameFor(model => model.request.SubtitleLink)
-        </dt>
-        
         <dd>
-            @Html.DisplayFor(model => model.request.SubtitleLink)
+            <a href="@Model.request.SubtitleLink">Yes</a>
+        </dd>
+        }
+        else
+        {
+        <dd>
+            <p>No</p>
         </dd>
         }
 
