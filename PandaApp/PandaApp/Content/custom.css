@@ -104,12 +104,14 @@ form > #Language
     margin-left: 0px;
 }
 
+.col-md-6 > form > .form-group > label,
 .col-md-4 > form > .form-group > label
 {
     width: inherit;
 }
 
+.col-md-6 > form > .form-group > .col-md-10,
 .col-md-4 > form > .form-group > .col-md-10
 {
-    margin-left: inherit;
+    margin-left: 0px;
 }

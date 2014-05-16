@@ -3,6 +3,12 @@
 <h4>My requests</h4>
 <hr />
 
+@if (!Model.Any())
+{
+    <p>You have not made any requests.</p>
+}
+else
+{
 <div>
     <table class="table">
         <thead>
@@ -27,31 +33,32 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.ActionLink(item.Title, "Details", "Request", new { id = item.ID }, null)
-                    </td>
-                    <td>
-                        @item.Language
-                    </td>
-                    <td>
-                        @item.DateCreated
-                    </td>
-                    <td>
-                        @item.Upvotes
-                    </td>
-                    <td>
-                        @if (item.SubtitleLink.IsEmpty())
-                        {
-                            <p>No</p>
-                        }
-                        else
-                        {
-                            <a href="@item.SubtitleLink">Yes</a>
-                        }
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Title, "Details", "Request", new { id = item.ID }, null)
+                </td>
+                <td>
+                    @item.Language
+                </td>
+                <td>
+                    @item.DateCreated
+                </td>
+                <td>
+                    @item.Upvotes
+                </td>
+                <td>
+                    @if (item.SubtitleLink.IsEmpty())
+                    {
+                        <p>No</p>
+                    }
+                    else
+                    {
+                        <a href="@item.SubtitleLink">Yes</a>
+                    }
+                </td>
+            </tr>
             }
         </tbody>
     </table>
 </div>
+}
