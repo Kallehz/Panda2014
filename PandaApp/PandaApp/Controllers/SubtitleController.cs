@@ -18,7 +18,6 @@ namespace PandaApp.Controllers
         PandaRepo db = new PandaRepo();
 
         [Authorize]
-        [HttpPost]
         public ActionResult Edit(int? page, int id)
         {
             EditViewModel mdl = new EditViewModel();

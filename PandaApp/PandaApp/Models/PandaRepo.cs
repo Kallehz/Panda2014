@@ -174,6 +174,8 @@ namespace PandaApp.Models
             return result;
         }
 
+        // Never used, profiles use the username, not id.
+        // Available if we want to change that.
         public Account GetUserById(int id)
         {
             var result = (from user in db.Accounts
