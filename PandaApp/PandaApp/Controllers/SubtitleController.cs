@@ -47,7 +47,6 @@ namespace PandaApp.Controllers
                 line.Text = text + "\r\n" + "\r\n";
                 line.TimeFrom = timeStart;
                 line.TimeTo = timeStop;
-                Debug.Write(timeStart + "-" + timeStop);
                 context.Entry(line).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
             }
@@ -74,22 +73,22 @@ namespace PandaApp.Controllers
             {
                 return View("UploadError");
             }
-
             
             Media med = db.GetMediaByName(item.Title);
             Media newMedia = new Media();
+
             if (med == null)
             {
                 newMedia.Title = item.Title;
                 db.AddMedia(newMedia);
                 med = newMedia;
             }
+            
             if (ModelState.IsValid)
             {
                 item.MediaID = med.ID;
                 item.Author = User.Identity.Name;
                 db.AddSubtitle(item);
-
 
                 //Code that checks if uploaded file has content.
                 if ((file != null) && (file.ContentLength > 0))
@@ -105,9 +104,8 @@ namespace PandaApp.Controllers
                 string srtString = new StreamReader(file.InputStream, Encoding.Default, true).ReadToEnd();
 
                 //regex for srt files from http://www.codeproject.com/Articles/32834/Subtitle-Synchronization-with-C
-                string pattern =
-                  @"(?<sequence>\d+)\r\n(?<start>\d{2}\:\d{2}\:\d{2},\d{3}) --\> " +
-                  @"(?<end>\d{2}\:\d{2}\:\d{2},\d{3})\r\n(?<text>[\s\S]*?\r\n\r\n)";
+                string pattern =  @"(?<sequence>\d+)\r\n(?<start>\d{2}\:\d{2}\:\d{2},\d{3}) --\> " +
+                                  @"(?<end>\d{2}\:\d{2}\:\d{2},\d{3})\r\n(?<text>[\s\S]*?\r\n\r\n)";
                 
                 //parse string and send to database
                 int counter = 1;
@@ -153,7 +151,7 @@ namespace PandaApp.Controllers
                     counter++;
 
                     // checks to see if all columns in srtLine have been populated before adding a line to the database.
-                    if (srtLine.Index != 0 
+                    if (   srtLine.Index != 0 
                         && srtLine.TimeFrom != null 
                         && srtLine.TimeTo != null
                         && srtLine.Text != null 
@@ -165,13 +163,14 @@ namespace PandaApp.Controllers
 
                 }
 
+                //If columns have been populated the format is fine and file created. 
+                //Else entires that have been created are deleted and user directed to error page.
                 if (srtTrue)
                 {
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    //TODO! delete entries in SUBTITLE if upload fails.
                     db.DeleteSubtitle(item);
                     db.DeleteMedia(med);
                     return View("UploadError");
